@@ -288,7 +288,17 @@ theme_change_callback (MBTrayApp *app, char *theme_name )
 void
 timeout_callback ( MBTrayApp *app )
 {
+  struct timeval tv;
+
   mb_tray_app_repaint (app);
+
+  /* Make sure we get called again in 60 secs - we should get called 
+   * exactly on the minute initially.
+  */
+  tv.tv_usec = 0;
+  tv.tv_sec  = 60;
+
+  mb_tray_app_set_timeout_callback (app, timeout_callback, &tv); 
 }
 
 void
@@ -321,6 +331,9 @@ main(int argc, char **argv)
   MBPixbufImage *img_icon = NULL;
   struct timeval tv;
   char *icon_path;
+  struct timezone  tz;
+  struct tm       *localTime = NULL; 
+  time_t           actualTime;
 
 #if ENABLE_NLS
   setlocale (LC_ALL, "");
@@ -328,7 +341,6 @@ main(int argc, char **argv)
   bind_textdomain_codeset (PACKAGE, "UTF-8"); 
   textdomain (PACKAGE);
 #endif
-
 
   app = mb_tray_app_new ( _("Clock"),
 			  resize_callback,
@@ -347,8 +359,15 @@ main(int argc, char **argv)
   mb_font_set_color (Fnt, Col);
 
   memset(&tv,0,sizeof(struct timeval));
-  tv.tv_sec = 30;
 
+  /* Figure out number of seconds till next minute */
+  gettimeofday(&tv, &tz);
+  actualTime = tv.tv_sec;
+  localTime = localtime(&actualTime);
+  tv.tv_usec = 0;
+  tv.tv_sec  = 60 - localTime->tm_sec;
+
+  /* This we then get reset when first called to 60 */
   mb_tray_app_set_timeout_callback (app, timeout_callback, &tv); 
 
   mb_tray_app_set_button_callback (app, button_callback );
