@@ -1,5 +1,5 @@
 /*
-   mbmenu - a small application launcher
+   mb-applet-menu-launcher - a small application launcher
 
    Copyright 2002 Matthew Allum
 
@@ -381,7 +381,7 @@ build_menu(void)
     MBMenuMenu *item;
   };
 
-  int i = 0;
+  int i = 0, j = 0;
   DIR *dp;
   struct dirent *dir_entry;
   struct stat stat_info;
@@ -475,17 +475,18 @@ build_menu(void)
   snprintf(app_paths[2], 256, "%s/.applications", getenv("HOME"));
   snprintf(app_paths[3], 256, "%s/applications", DATADIR);
   
-  for (i = 0; i < APP_PATHS_N; i++)
+  for (j = 0; j < APP_PATHS_N; j++)
     {
 
-      if ((dp = opendir(app_paths[i])) == NULL)
+      if ((dp = opendir(app_paths[j])) == NULL)
 	{
 	  fprintf(stderr, "mb-applet-menu-launcher: failed to open %s\n", 
-		  app_paths[i]);
+		  app_paths[j]);
 	  continue;
 	}
       
-      chdir(app_paths[i]);
+      chdir(app_paths[j]);
+
       while((dir_entry = readdir(dp)) != NULL)
 	{
 	  if (strcmp(dir_entry->d_name+strlen(dir_entry->d_name)-8,".desktop"))
@@ -496,6 +497,7 @@ build_menu(void)
 	    {
 	      MBDotDesktop *dd;
 	      int flags = 0;
+	      
 	      dd = mb_dotdesktop_new_from_file(dir_entry->d_name);
 	      if (dd)
 		{
