@@ -399,7 +399,8 @@ build_menu(void)
 
   /* List of paths to check for .desktop files */
   char                     app_paths[APP_PATHS_N][256];
-  Bool got_root_items = False;
+  Bool got_root_items        = False;
+  Bool had_action_sepearator = False;
 
   struct menu_lookup_t *menu_lookup = NULL;
 
@@ -444,8 +445,6 @@ build_menu(void)
 
   menu_panel = mb_menu_add_path(app_data->mbmenu, "Utilities/Panel" , NULL, MBMENU_NO_SORT );
 
-  mb_menu_add_seperator_to_menu(app_data->mbmenu, app_data->mbmenu->rootmenu, 
-				MBMENU_NO_SORT);
 
   tmp_path = mb_dot_desktop_icon_get_full_path (app_data->theme_name, 
 						16, 
@@ -511,9 +510,18 @@ build_menu(void)
 		      
 		      category = mb_dotdesktop_get(dd, "Categories");
 		      
-		      if (category && strstr(category, "Action"))
+		      if (png_path && category && strstr(category, "Action"))
 			{
 			  m = app_data->mbmenu->rootmenu;
+
+			  if (!had_action_sepearator)
+			    {
+			        mb_menu_add_seperator_to_menu(app_data->mbmenu,
+							      app_data->mbmenu->rootmenu, 
+							      MBMENU_NO_SORT);
+				had_action_sepearator = True;
+			    }
+
 			  flags = MBMENU_NO_SORT;
 			}
 		      else
