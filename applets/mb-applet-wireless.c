@@ -55,10 +55,10 @@
 #define IMG_EXT "xpm"
 #endif
 
-static int LastImg = 0;
+static int LastImg = -1;
 
 enum {
-  MW_BROKE = 1,
+  MW_BROKE = 0,
   MW_NO_LINK,
   MW_SIG_1_40,
   MW_SIG_41_60,
@@ -401,7 +401,7 @@ resize_callback (MBTrayApp *app, int w, int h )
 
   if (want_resize)  /* we only request a resize is absolutely needed */
     {
-      LastImg = 0;
+      LastImg = -1;
       mb_tray_app_request_size (app, scale_width, scale_height);
     }
 
@@ -452,7 +452,7 @@ theme_callback (MBTrayApp *app, char *theme_name)
   if (!theme_name) return;
   if (ThemeName) free(ThemeName);
 
-  LastImg = 0; 			/* Make sure paint gets updated */
+  LastImg = -1; 			/* Make sure paint gets updated */
 
   ThemeName = strdup(theme_name);
   load_icons(app);

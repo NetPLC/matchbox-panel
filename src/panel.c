@@ -603,6 +603,7 @@ panel_set_theme_from_root_prop(MBPanel *panel)
 		util_xcol_from_spec(panel, panel->msg_urgent_col, 
 				    DEFAULT_MSG_BGURGCOL);
 
+
 	      if (mb_dotdesktop_get(theme, "PanelMsgFgCol"))
 		util_xcol_from_spec(panel, panel->msg_fg_col, 
 				    mb_dotdesktop_get(theme, 
