@@ -173,7 +173,7 @@ panel_menu_init(MBPanel *panel)
 		       MBMENU_NO_SORT );
 
   if (icon_path) free(icon_path);
-
+  
   icon_path = mb_dot_desktop_icon_get_full_path (panel->theme_name, 
 						 16, FOLDER_IMG  );
 
@@ -228,7 +228,7 @@ panel_menu_init(MBPanel *panel)
 		    } else {
 		      char launcher_exec_str[256] = { 0 };
 		      snprintf(launcher_exec_str, 256, 
-			       "monolaunch -o -1 --desktop %s/%s",
+			       "mb-applet-launcher -o -1 --desktop %s/%s",
 			       DATADIR "/applications", dir_entry->d_name);
 		      mb_menu_add_item_to_menu(panel->mbmenu, 
 					       menu_launchers, 

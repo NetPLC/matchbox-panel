@@ -464,14 +464,19 @@ build_menu(void)
       fprintf(stderr, "mbmenu: cant get current directory\n");
       exit(0);
     }
-  
-  snprintf(app_paths[0], 256, "/usr/share/applications");
-  snprintf(app_paths[1], 256, "/usr/local/share/applications");
-  snprintf(app_paths[2], 256, "%s/.applications", getenv("HOME"));
-  snprintf(app_paths[3], 256, "%s/applications", DATADIR);
+
+  snprintf(app_paths[0], 256, "%s/applications", DATADIR);  
+  snprintf(app_paths[1], 256, "/usr/share/applications");
+  snprintf(app_paths[2], 256, "/usr/local/share/applications");
+  snprintf(app_paths[3], 256, "%s/.applications", getenv("HOME"));
+
   
   for (j = 0; j < APP_PATHS_N; j++)
     {
+
+      /* Dont reread the prefix path if matches */
+      if (j > 0 && !strcmp(app_paths[0], app_paths[j]))
+	continue;
 
       if ((dp = opendir(app_paths[j])) == NULL)
 	{

@@ -1,3 +1,10 @@
+2004-02-07  Matthew Allum,,,  <mallum@handhelds.org>
+
+	* applets/mb-applet-menu-launcher.c: (build_menu):
+	Dont read same /applications dir twice
+	* src/panel_menu.c: (panel_menu_init):
+	Launch mb-applet-launcher not monoluanch
+
 2004-02-05  Matthew Allum,,,  <mallum@openedhand.com>
 
 	* applets/Makefile.am:
