@@ -1,3 +1,11 @@
+2004-11-02  Ross Burton  <ross@openedhand.com>
+
+	* src/panel.c:
+	Set DISPLAY if it was set on the command line.
+
+	* src/panel_menu.c:
+	Only attempt to read .desktop files
+
 2004-08-30 matchbox-panel-0.8.3 released released tag: RELEASE_0_8_3
 
 2004-08-30  mallum,,,  <mallum@handhelds.org>

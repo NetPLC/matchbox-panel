@@ -1604,6 +1604,7 @@ MBPanel
     if (!strcmp ("-display", argv[i]) || !strcmp ("-d", argv[i])) {
       if (++i>=argc) panel_usage (argv[0]);
       display_name = argv[i];
+      setenv("DISPLAY", display_name, 1);
       continue;
     }
     if (!strcmp ("--no-session", argv[i]) || !strcmp ("-ns", argv[i])) {

@@ -195,6 +195,8 @@ panel_menu_init(MBPanel *panel)
       while((dir_entry = readdir(dp)) != NULL)
 	{
 	  struct stat stat_info;
+	  if (strcmp(dir_entry->d_name+strlen(dir_entry->d_name)-8,".desktop"))
+	    continue;
 	  stat(dir_entry->d_name, &stat_info);
 	  if (!(stat_info.st_mode & S_IFDIR))
 	    {
