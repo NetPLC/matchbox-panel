@@ -3,7 +3,7 @@ CATALOGS = @MOFILES@
 CLEANFILES = $(CATALOGS) matchbox.pot
 
 # keep this sorted
-EXTRA_DIST = en_GB.po es_ES.po fi_FI.po de.po cs.po fr_FR.po
+EXTRA_DIST = en_GB.po es_ES.po fi_FI.po de.po cs.po fr_FR.po zh_TW.po
 
 POTFILES  = \
 	$(top_builddir)/src/panel_menu.c   \

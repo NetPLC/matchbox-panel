@@ -1,0 +1,2014 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scim 0.1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-06-25 21:15+0800\n"
+"PO-Revision-Date: 2004-06-27 02:41+0800\n"
+"Last-Translator: Jim Huang <jserv@kaffe.org>\n"
+"Language-Team: scim@freedesktop.org\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Append an entry for forward mode.
+#: src/scim_imengine.cpp:466 src/scim_utility.cpp:673
+#: modules/FrontEnd/scim_x11_frontend.cpp:1878
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1096
+#: extras/panel/scim_panel_gtk.cpp:3123
+msgid "English/Keyboard"
+msgstr "英文鍵盤"
+
+#: src/scim_utility.cpp:674
+msgid "Amharic"
+msgstr "阿姆哈拉語"
+
+#: src/scim_utility.cpp:675
+msgid "Arabic"
+msgstr "阿拉伯文"
+
+#: src/scim_utility.cpp:676
+msgid "Arabic (Egypt)"
+msgstr "阿拉伯文(埃及)"
+
+#: src/scim_utility.cpp:677
+msgid "Arabic (Lebanon)"
+msgstr "阿拉伯文(黎巴嫩)"
+
+#: src/scim_utility.cpp:678
+msgid "Assamese"
+msgstr ""
+
+#: src/scim_utility.cpp:679
+msgid "Azerbaijani"
+msgstr "亞賽拜然語"
+
+#: src/scim_utility.cpp:680
+msgid "Belarusian"
+msgstr "白俄羅斯語"
+
+#: src/scim_utility.cpp:681
+msgid "Bulgarian"
+msgstr "保加利亞語"
+
+#: src/scim_utility.cpp:682 src/scim_utility.cpp:683
+msgid "Bengali"
+msgstr "孟加拉語"
+
+#: src/scim_utility.cpp:684
+msgid "Bengali (India)"
+msgstr "孟加拉語(印度)"
+
+#: src/scim_utility.cpp:685
+msgid "Tibetan"
+msgstr ""
+
+#: src/scim_utility.cpp:686
+msgid "Bosnian"
+msgstr "波斯尼亞語"
+
+#: src/scim_utility.cpp:687
+msgid "Catalan"
+msgstr "加泰羅尼亞語"
+
+#: src/scim_utility.cpp:688
+msgid "Czech"
+msgstr "捷克語"
+
+#: src/scim_utility.cpp:689
+msgid "Welsh"
+msgstr "威爾斯語"
+
+#: src/scim_utility.cpp:690
+msgid "Danish"
+msgstr "丹麥語"
+
+#: src/scim_utility.cpp:691
+msgid "German"
+msgstr "德文"
+
+#: src/scim_utility.cpp:692
+msgid "Greek"
+msgstr "希臘文"
+
+#: src/scim_utility.cpp:693
+msgid "English"
+msgstr "英文"
+
+#: src/scim_utility.cpp:694
+msgid "English (Australian)"
+msgstr "英文(澳洲)"
+
+#: src/scim_utility.cpp:695
+msgid "English (Canadian)"
+msgstr "英文(加拿大)"
+
+#: src/scim_utility.cpp:696
+msgid "English (British)"
+msgstr "英文(英國)"
+
+#: src/scim_utility.cpp:697
+msgid "English (Ireland)"
+msgstr "英文(愛爾蘭)"
+
+#: src/scim_utility.cpp:698
+msgid "English (American)"
+msgstr "英文(美國)"
+
+#: src/scim_utility.cpp:699 src/scim_utility.cpp:700
+msgid "Spanish"
+msgstr "西班牙文"
+
+#: src/scim_utility.cpp:701
+msgid "Spanish (Mexico)"
+msgstr "西班牙文(墨西哥)"
+
+#: src/scim_utility.cpp:702
+msgid "Estonian"
+msgstr "愛沙尼亞語"
+
+#: src/scim_utility.cpp:703
+msgid "Basque"
+msgstr "巴斯克語"
+
+#: src/scim_utility.cpp:704
+msgid "Persian"
+msgstr "波斯語"
+
+#: src/scim_utility.cpp:705
+msgid "Finnish"
+msgstr "芬蘭文"
+
+#: src/scim_utility.cpp:706
+msgid "French"
+msgstr "法文"
+
+#: src/scim_utility.cpp:707
+msgid "Irish"
+msgstr "愛爾蘭語"
+
+#: src/scim_utility.cpp:708
+msgid "Galician"
+msgstr "加利西亞語"
+
+#: src/scim_utility.cpp:709
+msgid "Gujarati"
+msgstr "古吉拉特語"
+
+#: src/scim_utility.cpp:710 src/scim_utility.cpp:718
+msgid "Hebrew"
+msgstr "希伯來文"
+
+#: src/scim_utility.cpp:711
+msgid "Hindi"
+msgstr "北印度文"
+
+#: src/scim_utility.cpp:712
+msgid "Croatian"
+msgstr "克羅地亞語"
+
+#: src/scim_utility.cpp:713
+msgid "Hungarian"
+msgstr "匈牙利文"
+
+#: src/scim_utility.cpp:714
+msgid "Interlingua"
+msgstr "世界語"
+
+#: src/scim_utility.cpp:715
+msgid "Indonesian"
+msgstr "印尼語"
+
+#: src/scim_utility.cpp:716
+msgid "Icelandic"
+msgstr "冰島語"
+
+#: src/scim_utility.cpp:717
+msgid "Italian"
+msgstr "意大利文"
+
+#: src/scim_utility.cpp:719
+msgid "Japanese"
+msgstr "日文"
+
+#: src/scim_utility.cpp:720
+msgid "Kazakh"
+msgstr "哈薩克語"
+
+#: src/scim_utility.cpp:721
+msgid "Cambodian"
+msgstr ""
+
+#: src/scim_utility.cpp:722
+msgid "Kannada"
+msgstr "卡納達語"
+
+#: src/scim_utility.cpp:723
+msgid "Korean"
+msgstr "韓文"
+
+#: src/scim_utility.cpp:724
+#, fuzzy
+msgid "Laothian"
+msgstr "拉脫維亞語"
+
+#: src/scim_utility.cpp:725
+msgid "Lithuanian"
+msgstr "立陶宛文"
+
+#: src/scim_utility.cpp:726
+msgid "Latvian"
+msgstr "拉脫維亞語"
+
+#: src/scim_utility.cpp:727
+msgid "Macedonian"
+msgstr "馬其頓語"
+
+#: src/scim_utility.cpp:728
+msgid "Malayalam"
+msgstr "馬拉雅拉姆語"
+
+#: src/scim_utility.cpp:729
+msgid "Mongolian"
+msgstr "蒙古文"
+
+#: src/scim_utility.cpp:730
+msgid "Marathi"
+msgstr "馬拉地語"
+
+#: src/scim_utility.cpp:731
+msgid "Malay"
+msgstr "馬來語"
+
+#: src/scim_utility.cpp:732
+msgid "Dutch"
+msgstr "荷蘭文"
+
+#: src/scim_utility.cpp:733
+msgid "Norwegian (nynorsk)"
+msgstr "挪威語(nynorsk)"
+
+#: src/scim_utility.cpp:734
+msgid "Norwegian (bokmal)"
+msgstr "挪威語(bokmal)"
+
+#: src/scim_utility.cpp:735
+msgid "Oriya"
+msgstr "奧里雅語"
+
+#: src/scim_utility.cpp:736
+msgid "Panjabi"
+msgstr "旁遮普語"
+
+#: src/scim_utility.cpp:737
+msgid "Polish"
+msgstr "波蘭文"
+
+#: src/scim_utility.cpp:738 src/scim_utility.cpp:740
+msgid "Portuguese"
+msgstr "葡萄牙文"
+
+#: src/scim_utility.cpp:739
+msgid "Portuguese (Brazilian)"
+msgstr "葡萄牙文(巴西)"
+
+#: src/scim_utility.cpp:741
+msgid "Romanian"
+msgstr "羅馬尼亞語"
+
+#: src/scim_utility.cpp:742
+msgid "Russian"
+msgstr "俄文"
+
+#: src/scim_utility.cpp:743
+msgid "Slovak"
+msgstr "斯洛伐克語"
+
+#: src/scim_utility.cpp:744
+msgid "Slovenian"
+msgstr "斯洛文尼亞語"
+
+#: src/scim_utility.cpp:745
+msgid "Albanian"
+msgstr "亞爾巴尼亞語"
+
+#: src/scim_utility.cpp:746 src/scim_utility.cpp:747 src/scim_utility.cpp:748
+msgid "Serbian"
+msgstr "塞爾維亞語"
+
+#: src/scim_utility.cpp:749 src/scim_utility.cpp:751
+msgid "Swedish"
+msgstr "瑞典語"
+
+#: src/scim_utility.cpp:750
+msgid "Swedish (Finland)"
+msgstr "瑞典語(芬蘭)"
+
+#: src/scim_utility.cpp:752
+msgid "Tamil"
+msgstr "塔米爾語"
+
+#: src/scim_utility.cpp:753
+msgid "Telugu"
+msgstr "泰盧固語"
+
+#: src/scim_utility.cpp:754
+msgid "Thai"
+msgstr "泰文"
+
+#: src/scim_utility.cpp:755
+msgid "Turkish"
+msgstr "土耳其文"
+
+#: src/scim_utility.cpp:756
+msgid "Uighur"
+msgstr "維吾爾語"
+
+#: src/scim_utility.cpp:757
+msgid "Ukrainian"
+msgstr "烏克蘭語"
+
+#: src/scim_utility.cpp:758
+msgid "Urdu"
+msgstr "烏爾都語(巴基斯坦)"
+
+#: src/scim_utility.cpp:759
+msgid "Uzbek"
+msgstr "烏玆別克語"
+
+#: src/scim_utility.cpp:760
+msgid "Vietnamese"
+msgstr "越南文"
+
+#: src/scim_utility.cpp:761
+msgid "Walloon"
+msgstr "華隆語"
+
+#: src/scim_utility.cpp:762 src/scim_utility.cpp:763
+msgid "Yiddish"
+msgstr "依地語"
+
+#: src/scim_utility.cpp:764
+msgid "Chinese"
+msgstr "中文"
+
+#: src/scim_utility.cpp:765 src/scim_utility.cpp:767
+msgid "Chinese (simplified)"
+msgstr "中文(簡體)"
+
+#: src/scim_utility.cpp:766 src/scim_utility.cpp:768
+msgid "Chinese (traditional)"
+msgstr "中文(繁體)"
+
+#: src/scim_utility.cpp:814 src/scim_utility.cpp:829
+msgid "Other"
+msgstr "其它語言"
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:55
+msgid "zh_CN,zh_TW,zh_HK,zh_SG,ja_JP,ko_KR"
+msgstr ""
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:90
+#: modules/IMEngine/scim_rawcode_imengine.cpp:99
+msgid "RAW CODE"
+msgstr "內碼輸入"
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:132
+msgid "(C) 2002-2004 James Su <suzhe@tsinghua.org.cn>"
+msgstr "(C) 2002-2004 James Su <suzhe@tsinghua.org.cn>"
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:145
+msgid ""
+"Hot Keys:\n"
+"\n"
+"  Control+u:\n"
+"    switch between Multibyte encoding and Unicode.\n"
+"\n"
+"  Control+comma:\n"
+"    switch between full/half width punctuation mode.\n"
+"\n"
+"  Shift+space:\n"
+"    switch between full/half width letter mode.\n"
+"\n"
+"  Esc:\n"
+"    reset the input method.\n"
+msgstr ""
+"快捷鍵：\n"
+"\n"
+"  Control+u:\n"
+"    切換地區編碼和 Unicode 編碼。\n"
+"\n"
+"  Control+comma:\n"
+"    切換全型和半型標點符號模式。\n"
+"\n"
+"  Shift+space:\n"
+"    切換全型和半型英文字母模式。\n"
+"\n"
+"  Esc:\n"
+"    重設輸入法。\n"
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:199
+#: modules/IMEngine/scim_rawcode_imengine.cpp:423
+msgid "Unicode"
+msgstr ""
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:199
+#: modules/IMEngine/scim_table_imengine.cpp:186
+msgid "The status of the current input method. Click to change it."
+msgstr "目前輸入法的模式狀態，滑鼠點選可切換模式。"
+
+#: modules/IMEngine/scim_rawcode_imengine.cpp:421
+#: modules/IMEngine/scim_table_imengine.cpp:827
+msgid "En"
+msgstr "英"
+
+#: modules/IMEngine/scim_table_imengine.cpp:181
+msgid "Full/Half Letter"
+msgstr ""
+
+#: modules/IMEngine/scim_table_imengine.cpp:182
+msgid "Full/Half Punct"
+msgstr ""
+
+#: modules/IMEngine/scim_table_imengine.cpp:187
+msgid "The input mode of the letters. Click to toggle between half and full."
+msgstr "英文字母輸入模式。滑鼠點選可切換 全型/半型 模式。"
+
+#: modules/IMEngine/scim_table_imengine.cpp:188
+msgid ""
+"The input mode of the puncutations. Click to toggle between half and full."
+msgstr "標點符號輸入模式。滑鼠點選擊可切換 全型/半型 模式。"
+
+#: modules/IMEngine/scim_table_imengine.cpp:296
+msgid ""
+"Hot Keys:\n"
+"\n"
+"  "
+msgstr ""
+"快速鍵：\n"
+"\n"
+"  "
+
+#: modules/IMEngine/scim_table_imengine.cpp:298
+msgid ""
+"    Switch between full/half width letter mode.\n"
+"\n"
+"  "
+msgstr ""
+"    切換全型和半型英文字母模式。\n"
+"\n"
+"  "
+
+#: modules/IMEngine/scim_table_imengine.cpp:300
+msgid ""
+"    Switch between full/half width punctuation mode.\n"
+"\n"
+"  "
+msgstr ""
+"    切換 全/半型 標點符號模式。\n"
+"\n"
+"  "
+
+#: modules/IMEngine/scim_table_imengine.cpp:302
+msgid ""
+"    Switch between Forward/Input mode.\n"
+"\n"
+"  "
+msgstr ""
+"    切換 轉送/輸入 模式。\n"
+"\n"
+"  "
+
+#: modules/IMEngine/scim_table_imengine.cpp:304
+msgid ""
+"    Add a new phrase.\n"
+"\n"
+"  "
+msgstr ""
+"    新增片語.\n"
+"\n"
+"  "
+
+#: modules/IMEngine/scim_table_imengine.cpp:306
+msgid ""
+"    Delete the selected phrase.\n"
+"\n"
+msgstr ""
+"    刪除所選定的片語.\n"
+"\n"
+
+#: modules/IMEngine/scim_table_imengine.cpp:307
+msgid ""
+"  Control+Down:\n"
+"    Move lookup cursor to next shorter phrase\n"
+"    Only available when LongPhraseFirst option is set.\n"
+"\n"
+msgstr ""
+"  Control+Down:\n"
+"    將列表的遊標移到下一個更短的片語\n"
+"    只有在設定了 LongPhraseFirst 選項的時候才會作用。\n"
+"\n"
+
+#: modules/IMEngine/scim_table_imengine.cpp:309
+msgid ""
+"  Control+Up:\n"
+"    Move lookup cursor to previous longer phrase\n"
+"    Only available when LongPhraseFirst option is set.\n"
+"\n"
+msgstr ""
+"  Control+Up:\n"
+"    將列表的遊標移到上一個更長的片語\n"
+"    只在設定了 LongPhraseFirst 選項的時候才會作用。\n"
+"\n"
+
+#: modules/IMEngine/scim_table_imengine.cpp:311
+msgid ""
+"  Esc:\n"
+"    reset the input method.\n"
+"\n"
+"\n"
+msgstr ""
+"  Esc:\n"
+"    重設輸入法。\n"
+"\n"
+"\n"
+
+#: modules/IMEngine/scim_table_imengine.cpp:312
+msgid ""
+"How to add a phrase:\n"
+"    Input the new phrase as normal, then press the\n"
+"  hot key. A hint will be shown to let you input a key\n"
+"  for this phrase.\n"
+"    Input a key then press the space bar.\n"
+"  A hint will be shown to indicate whether\n"
+"  the phrase was added sucessfully.\n"
+msgstr ""
+"如何新增片語：\n"
+"    就如平常作法輸入該新片語，然後按下快速鍵。\n"
+"  這時會出現一個提示來讓您為這個片語設定快速鍵。\n"
+"    輸入一個鍵值然後按下空白鍵，\n"
+"  之後會再出現一個提示以確認該片語是否成功地新增了。\n"
+
+#: modules/IMEngine/scim_table_imengine.cpp:1665
+msgid "Input a key string for phrase: "
+msgstr "為這個片語輸入一個鍵值: "
+
+#: modules/IMEngine/scim_table_imengine.cpp:1667
+msgid "Success."
+msgstr "成功。"
+
+#: modules/IMEngine/scim_table_imengine.cpp:1670
+msgid "Failed."
+msgstr "失敗。"
+
+#: modules/IMEngine/scim_make_table.cpp:139
+#, fuzzy
+msgid ""
+"Too few argument!\n"
+"Usage:\n"
+"  scim-make-table <table_file> [options]\n"
+"\n"
+"  table_file\tthe table file for table module\n"
+"  -b\t\tconvert to binary format, otherwise to text format\n"
+"  -o output\tsave new table to file output\n"
+"  -no\t\tdo not save new phrase table\n"
+"  -if ifreq\tload phrase frequencies from this file\n"
+"  -of ofreq\tsave phrase frequencies to this file\n"
+"  -s file\tspecifiy the source file to count phrase ages.\n"
+msgstr ""
+"參數不足！\n"
+"用法：\n"
+"  scim-make-table <table_file> [options]\n"
+"\n"
+"  table_file\t對照表程式模組所使用的對照檔\n"
+"  -b\t\t轉換成二進制格式，否則使用純文字格式\n"
+"  -o output\t把新的對照表儲存為檔案輸出\n"
+"  -no\t\t不要儲存新的片語表\n"
+"  -if ifreq\t從這個檔案中載入常用的片語\n"
+"  -of ofreq\t把常用的片語儲存到這個檔案中\n"
+"  -s file\t指定一個來源檔以計算片語使用頻率。\n"
+
+# modules/Server/scim_make_table.cpp 167
+#: modules/IMEngine/scim_make_table.cpp:163
+msgid "option -no cannot be used with -o\n"
+msgstr "選項 -no 不能和 -o 一起使用\n"
+
+#: modules/IMEngine/scim_make_table.cpp:172
+msgid "option -o cannot be used with -no\n"
+msgstr "選項 -o 不能和 -no 一起使用\n"
+
+#: modules/IMEngine/scim_make_table.cpp:176
+#: modules/IMEngine/scim_make_table.cpp:185
+#: modules/IMEngine/scim_make_table.cpp:194
+msgid "No argument for option "
+msgstr "在選項中沒有指定參數"
+
+#: modules/IMEngine/scim_make_table.cpp:210
+msgid "Invalid option: "
+msgstr "不正確的選項："
+
+#: modules/IMEngine/scim_make_table.cpp:216
+msgid "Loading table file "
+msgstr "正在載入對照檔 "
+
+#: modules/IMEngine/scim_make_table.cpp:216
+#: modules/IMEngine/scim_make_table.cpp:229
+#: modules/IMEngine/scim_make_table.cpp:235
+msgid " ...\n"
+msgstr ""
+
+#: modules/IMEngine/scim_make_table.cpp:219
+msgid "table file load failed!"
+msgstr "對照檔載入失敗！"
+
+#: modules/IMEngine/scim_make_table.cpp:229
+msgid "Saving frequency table file "
+msgstr "正在儲存常用對照檔 "
+
+#: modules/IMEngine/scim_make_table.cpp:231
+msgid "frequency table file load failed!"
+msgstr "常用對照檔載入失敗！"
+
+#: modules/IMEngine/scim_make_table.cpp:235
+msgid "Saving table file "
+msgstr "正在儲存對照檔 "
+
+#: modules/IMEngine/scim_make_table.cpp:238
+msgid "Table file save failed!"
+msgstr "對照檔儲存失敗！"
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2009
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1805
+msgid "Smart Common Input Method platform "
+msgstr "泛用智慧型輸入法平台"
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2011
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1807
+msgid ""
+"\n"
+"(C) 2002-2004 James Su <suzhe@tsinghua.org.cn>\n"
+"\n"
+"Hot keys:\n"
+"\n"
+"  "
+msgstr ""
+"\n"
+"(C) 2002-2004 James Su <suzhe@tsinghua.org.cn>\n"
+"\n"
+"快速鍵：\n"
+"\n"
+"  "
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2015
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1811
+#, fuzzy
+msgid ""
+":\n"
+"    open/close the input method.\n"
+"\n"
+"  "
+msgstr ""
+":\n"
+"    開啟/關閉輸入程式。\n"
+"\n"
+"  "
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2018
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1814
+msgid ""
+":\n"
+"    switch to the next input method.\n"
+"\n"
+"  "
+msgstr ""
+":\n"
+"    切換到下一種輸入法。\n"
+"\n"
+"  "
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2021
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1817
+msgid ""
+":\n"
+"    switch to the previous input method.\n"
+"\n"
+"\n"
+msgstr ""
+":\n"
+"    切換到上一種輸入法。\n"
+"\n"
+"\n"
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2025
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1821
+msgid ""
+":\n"
+"\n"
+msgstr ""
+"：\n"
+"\n"
+
+#: modules/FrontEnd/scim_x11_frontend.cpp:2028
+#: modules/FrontEnd/scim_x11_frontend.cpp:2031
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1824
+#: extras/gtk2_immodule/gtkimcontextscim.cpp:1827
+msgid ""
+"\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:90
+msgid "X Window"
+msgstr "X Window"
+
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:95
+msgid "A FrontEnd module for X11R6 Window System, using XIM Protocol."
+msgstr "一個用於 X11R6 Window 系統的介面模組，使用 XIM 協定。"
+
+#. label
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:143
+msgid "_Trigger:"
+msgstr "作用鍵(_T)："
+
+#. title
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:145
+msgid "Select the trigger keys"
+msgstr "選擇輸入法的作用鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:147
+msgid ""
+"The key events to turn on/off SCIM input method. Multiple key events should "
+"be separated by comma."
+msgstr "用來 開啟/關閉 SCIM 輸入法的作用鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:160
+msgid "_Next input method:"
+msgstr "下一種輸入法(_N)："
+
+#. title
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:162
+msgid "Select the next input method keys"
+msgstr "選擇下一種輸入法按鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:164
+msgid ""
+"The key events to switch to the next input method.Multiple key events should "
+"be separated by comma."
+msgstr "用來切換至下一種輸入法的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:179
+msgid "_Previous input method:"
+msgstr "上一種輸入法(_P)："
+
+#. title
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:181
+msgid "Select the previous input method keys"
+msgstr "選擇上一種輸入法按鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:183
+msgid ""
+"The key events to switch to the previous input method.Multiple key events "
+"should be separated by comma."
+msgstr "用來切換至上一種輸入法的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. Create the ToolBar setup block.
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:249
+msgid "XIM Settings"
+msgstr "XIM 設定"
+
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:259
+msgid "_On The Spot"
+msgstr "_On The Spot"
+
+#. Create the Lookup Table setup block.
+#. Create the label for this note page.
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:264
+#: modules/SetupUI/scim_table_imengine_setup.cpp:740
+msgid "Keyboard"
+msgstr "鍵盤"
+
+#: modules/SetupUI/scim_x11_frontend_setup.cpp:316
+msgid ""
+"If this option is checked, the OnTheSpot input style will be used when the "
+"client supports it."
+msgstr "如果勾取了這個選項，同時用戶端也支援時，將使用 On The Spot 模式。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:100
+msgid "Generic Table"
+msgstr "泛用對照表"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:105
+#, fuzzy
+msgid "A IMEngine Module which uses generic table input method file."
+msgstr "一個使用泛用對照表輸入文字的功能模組。"
+
+#. label
+#: modules/SetupUI/scim_table_imengine_setup.cpp:210
+msgid "Full width _punctuation:"
+msgstr "切換 全/半型 標點符號(_P)："
+
+#. title
+#: modules/SetupUI/scim_table_imengine_setup.cpp:212
+msgid "Select full width puncutation keys"
+msgstr "選擇 全/半型 標點符號模式切換鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_table_imengine_setup.cpp:214
+msgid ""
+"The key events to switch full/half width punctuation input mode. Multiple "
+"key events should be separated by comma."
+msgstr "用來切換 全/半型 標點符號輸入模式的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_table_imengine_setup.cpp:227
+msgid "Full width _letter:"
+msgstr "切換 全/半 型英文字母(_L)："
+
+#. title
+#: modules/SetupUI/scim_table_imengine_setup.cpp:229
+msgid "Select full width letter keys"
+msgstr "選擇 全/半型 英文字母模式切換鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_table_imengine_setup.cpp:231
+msgid ""
+"The key events to switch full/half width letter input mode. Multiple key "
+"events should be separated by comma."
+msgstr "用來切換 全/半型 英文字母輸入模式的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_table_imengine_setup.cpp:244
+msgid "_Mode switch:"
+msgstr "輸入模式切換(_M)："
+
+#. title
+#: modules/SetupUI/scim_table_imengine_setup.cpp:246
+msgid "Select mode switch keys"
+msgstr "選擇輸入模式切換鍵"
+
+#. tooltip
+#: modules/SetupUI/scim_table_imengine_setup.cpp:248
+msgid ""
+"The key events to change current input mode. Multiple key events should be "
+"separated by comma."
+msgstr "用來切換目前輸入模式的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_table_imengine_setup.cpp:264
+msgid "_Add phrase:"
+msgstr "新增片語(_A)："
+
+#. title
+#: modules/SetupUI/scim_table_imengine_setup.cpp:266
+msgid "Select add phrase keys."
+msgstr "選擇新增片語鍵。"
+
+#. tooltip
+#: modules/SetupUI/scim_table_imengine_setup.cpp:268
+msgid ""
+"The key events to add a new user defined phrase. Multiple key events should "
+"be separated by comma."
+msgstr "用來新增片語的按鍵。可以用逗號來分隔多個按鍵。"
+
+#. label
+#: modules/SetupUI/scim_table_imengine_setup.cpp:282
+msgid "_Delete phrase:"
+msgstr "刪除片語(_D)："
+
+#. title
+#: modules/SetupUI/scim_table_imengine_setup.cpp:284
+msgid "Select delete phrase keys."
+msgstr "選擇刪除片語鍵。"
+
+#. tooltip
+#: modules/SetupUI/scim_table_imengine_setup.cpp:286
+msgid ""
+"The key events to delete a selected phrase. Multiple key events should be "
+"separated by comma."
+msgstr "用來刪除所選定片語的按鍵。可以用逗號來分隔多個按鍵。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:413
+msgid "Show _prompt"
+msgstr "顯現提示(_P)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:418
+msgid "Show key _hint"
+msgstr "顯現提示訊息(_H)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:423
+msgid "Save _user table in binary format"
+msgstr "以二進制格式儲存使用者的對照表(_U)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:428
+msgid "Show the u_ser defined phrases first"
+msgstr "優先顯示使用者自訂的片語(_S)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:433
+msgid "Show the _longer phrases first"
+msgstr "優先顯示較長的片語(_L)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:457
+msgid ""
+"If this option is checked, the key prompt of the currently selected phrase "
+"will be shown."
+msgstr "如果勾取這個選項，則顯示目前所選定片語按鍵的提示訊息。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:462
+msgid ""
+"If this option is checked, the remaining keystrokes of the phraseswill be "
+"shown on the lookup table."
+msgstr "如果勾取這個選項，將在選詞列表中顯示每個片語所保留的輸入按鍵。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:467
+msgid ""
+"If this option is checked, the user table will be stored with binary format, "
+"this will increase the loading speed."
+msgstr "如果勾取這個選項，使用者對照表將以二進制格式儲存，如此會提高載入速度。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:472
+msgid ""
+"If this option is checked, the user defined phrases will be shown in front "
+"of others. "
+msgstr "如果勾取這個選項，將優先顯示使用者自訂的片語。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:477
+msgid ""
+"If this option is checked, the longer phrase will be shown in front of "
+"others. "
+msgstr "如果勾取這個選項，將優先顯示較長的片語。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:572
+msgid "The installed tables:"
+msgstr "已安裝的對照表："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:603
+#: extras/setup/scim_setup_ui.cpp:577
+msgid "Name"
+msgstr "名稱"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:624
+msgid "Language"
+msgstr "語言"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:640
+msgid "Type"
+msgstr "格式"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:656
+msgid "File"
+msgstr "檔案"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:678
+msgid "_Install"
+msgstr "安裝(_I)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:682
+msgid "Install a new table."
+msgstr "安裝新的對照表"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:688
+msgid "_Delete"
+msgstr "刪除(_D)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:692
+msgid "Delete the selected table."
+msgstr "刪除所選定的對照表。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:698
+msgid "_Properties"
+msgstr "內容(_P)"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:702
+msgid "Edit the properties of the selected table."
+msgstr "編輯所選定的對照表的內容"
+
+#. Create the label for this note page.
+#: modules/SetupUI/scim_table_imengine_setup.cpp:732
+msgid "Generic"
+msgstr "泛用"
+
+#. Create the label for this note page.
+#: modules/SetupUI/scim_table_imengine_setup.cpp:750
+msgid "Table Management"
+msgstr "管理對照表"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:952
+msgid "Select an icon file"
+msgstr "選擇一個圖示檔"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1071
+msgid "User"
+msgstr "使用者"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1071
+msgid "System"
+msgstr "系統"
+
+#. Select the table file.
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1239
+msgid "Please select the table file to be installed."
+msgstr "請選擇所要安裝的對照檔。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1267
+msgid "Failed to install the table! It's already in table file directory."
+msgstr "無法安裝該對照表！它已存在於對照檔目錄中了。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1286
+msgid "Failed to load the table file!"
+msgstr "無法載入該對照檔！"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1306
+msgid ""
+"Failed to install the table! Another version of this table was already "
+"installed."
+msgstr "無法安裝該對照表！已安裝了這個對照表的另一個版本。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1320
+msgid ""
+"Another version of this table was already installed. Do you want to replace "
+"it with the new one?"
+msgstr "已安裝了這個對照表的另一個版本。您是否想要用新的將其取代？"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1346
+msgid ""
+"Failed to install the table! A table with the same file name was already "
+"installed."
+msgstr "無法安裝該對照表！已安裝了使用相同檔名的對照表。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1360
+msgid ""
+"A table with the same file name was already installed. Do you want to "
+"overwrite it?"
+msgstr "已安裝了使用相同檔名的對照表。您是否想要覆蓋過去？"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1379
+#, c-format
+msgid "Failed to install the table to %s!"
+msgstr "無法將對照表安裝至 %s！"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1416
+#, c-format
+msgid "Can not delete the file %s!"
+msgstr "無法刪除 %s 這個檔案！"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1427
+msgid "Are you sure to delete this table file?"
+msgstr "您確定要刪除這個對照檔嗎？"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1440
+msgid "Failed to delete the table file!"
+msgstr "無法刪除這個對照檔！"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1455
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1851
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1875
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1899
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1923
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1947
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1971
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1996
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2023
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2046
+msgid "True"
+msgstr "是"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1457
+msgid "False"
+msgstr "否"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1499
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1500
+msgid "Split Keys:"
+msgstr "斷句鍵："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1501
+msgid "The key strokes to split inputed string."
+msgstr "用來對所輸入字串斷句的鍵擊。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1507
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1508
+msgid "Commit Keys:"
+msgstr "傳送鍵："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1509
+msgid "The key strokes to commit converted result to client."
+msgstr "這個鍵擊是用來把轉換結果傳送給用戶端。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1515
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1516
+msgid "Forward Keys:"
+msgstr "轉送鍵："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1517
+msgid "The key strokes to forward inputed string to client."
+msgstr "這個鍵擊是用來把輸入的字串轉送給用戶端。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1523
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1524
+msgid "Select Keys:"
+msgstr "選擇按鍵："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1525
+msgid "The key strokes to select candidate phrases in lookup table."
+msgstr "這個鍵擊是用來在片語列表中選擇。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1531
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1532
+msgid "Page Up Keys:"
+msgstr "上一頁按鍵："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1533
+msgid "The lookup table page up keys"
+msgstr "片語列表的上一頁按鍵"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1539
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1540
+msgid "Page Down Keys:"
+msgstr "下一頁按鍵"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1541
+msgid "The lookup table page down keys"
+msgstr "片語列表的下一頁按鍵"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1564
+msgid "Table Properties"
+msgstr "對照表內容"
+
+#. Name
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1588
+msgid "Name:"
+msgstr "名稱："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1602
+msgid "The name of this table."
+msgstr "該對照表的名稱。"
+
+#. Author
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1607
+msgid "Author:"
+msgstr "作者："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1621
+msgid "The author of this table."
+msgstr "該對照表的作者。"
+
+#. UUID
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1626
+msgid "UUID:"
+msgstr ""
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1640
+msgid "The unique ID of this table."
+msgstr "該對照表的識別碼。"
+
+#. Serial Number
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1645
+msgid "Serial Number:"
+msgstr "序號："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1659
+msgid "The serial number of this table."
+msgstr "該對照表的序號。"
+
+#. Icon file
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1664
+msgid "Icon File:"
+msgstr "圖示檔："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1681
+msgid "Browse"
+msgstr "瀏覽"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1690
+msgid "The icon file of this table."
+msgstr "該對照表的圖示檔。"
+
+#. Supported Languages
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1695
+#, fuzzy
+msgid "Supported Languages:"
+msgstr "所支援的 Locales："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1709
+#, fuzzy
+msgid "The languages supported by this table."
+msgstr "該對照表所支援的 Locales。"
+
+#. Status Prompts
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1714
+msgid "Status Prompt:"
+msgstr "狀態提示："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1728
+msgid "A prompt string to be shown in status area."
+msgstr "在狀態區中所顯現的提示字串。"
+
+#. Valid Input Chars
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1733
+msgid "Valid Input Chars:"
+msgstr "可用的輸入字元："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1747
+msgid "The valid input chars of this table."
+msgstr "在該對照表中可用的輸入字元。"
+
+#. Mulit Wildcard Char
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1752
+msgid "Multi Wildcard Char:"
+msgstr "萬用比對字元："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1766
+msgid ""
+"The multi wildcard chars of this table. These chars can be used to match one "
+"or more arbitrary chars."
+msgstr "該對照表所使用的萬用比對字元。這些字元可以用來代表一個或多個任意字元。"
+
+#. Single Wildcard Char
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1772
+msgid "Single Wildcard Char:"
+msgstr "單一比對字元："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1786
+msgid ""
+"The single wildcard chars of this table.These chars can be used to match one "
+"arbitrary char."
+msgstr "該對照表所使用的單一比對字元。這些字元可以用來代表一個任意字元。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1810
+msgid "..."
+msgstr "..."
+
+#. Max key length
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1824
+msgid "Max Key Length:"
+msgstr "鍵的最大長度"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1839
+msgid "The maxmium length of key strings."
+msgstr "鍵值的最大長度。"
+
+#. Auto Select
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1844
+msgid "Auto Select:"
+msgstr "自動選擇："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1862
+msgid ""
+"If true then the first candidate phrase will be selected automatically when "
+"inputing the next key."
+msgstr "啟用之後，在輸入下一鍵時會自動選擇列表中的第一個片語。"
+
+#. Auto Wildcard
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1868
+msgid "Auto Wildcard:"
+msgstr "自動比對："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1886
+msgid ""
+"If true then a multi wildcard char will be append to the end of inputed key "
+"string when searching phrases."
+msgstr "啟用之後，在尋找片語時會在所輸入字串的後面加上萬用比對字元。"
+
+#. Auto Commit
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1892
+msgid "Auto Commit:"
+msgstr "自動傳送："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1910
+msgid ""
+"If true then the converted result string will be committed to client "
+"automatically."
+msgstr "啟用之後，所轉換後的字串會自動傳送給用戶端。"
+
+#. Auto Split
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1916
+msgid "Auto Split:"
+msgstr "自動斷句："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1934
+msgid ""
+"If true then the inputed key string will be splitted automatically when "
+"necessary."
+msgstr "啟用之後，所輸入的字串會適當自動斷句。"
+
+#. Dynamic Adjust
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1940
+msgid "Dynamic Adjust:"
+msgstr "動態調整："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1958
+msgid "If true then the phrases' frequencies will be adjusted dynamically."
+msgstr "啟用之後，會自動調整片語的常用度。"
+
+#. Auto Fill Preedit String
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1964
+msgid "Auto Fill Preedit Area:"
+msgstr "自動填充預編輯區："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1982
+msgid ""
+"If true then the preedit string will be filled up with the current candiate "
+"phrase automatically.This option is only valid when Auto Select is TRUE."
+msgstr ""
+
+#. Always Show Lookup
+#: modules/SetupUI/scim_table_imengine_setup.cpp:1989
+msgid "Always Show Lookup Table:"
+msgstr "一直顯示選詞列表："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2007
+msgid ""
+"If true then the lookup table will always be shown when any candidate phrase "
+"is available. Otherwise the lookup table will only be shown when necessary.\n"
+"If Auto Fill is false, then this option will be no effect, and always be "
+"true."
+msgstr ""
+
+#. Default full width punctuation
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2016
+msgid "Default Full Width Punct:"
+msgstr "缺省全型標點符號："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2034
+msgid "If true then full width punctuations will be inputed by default."
+msgstr "啟用之後，會缺省輸入全型標點符號。"
+
+#. Default full width letter
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2039
+msgid "Default Full Width Letter:"
+msgstr "預設全型英文字母："
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2057
+msgid "If true then full width letters will be inputed by default."
+msgstr "啟用之後，會缺省輸入全型英文字母。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2201
+msgid "Invalid icon file."
+msgstr "不正確的圖示檔。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2206
+#, fuzzy
+msgid "Invalid languages."
+msgstr "不正確的 Locales。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2211
+msgid "Invalid status prompt."
+msgstr "不正確的狀態提示。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2219
+msgid "Invalid multi wildcard chars."
+msgstr "不正確的萬用比對字元。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2231
+msgid "Invalid single wildcard chars."
+msgstr "不正確的單一比對字元。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2239
+msgid "Invalid commit keys."
+msgstr "不正確的傳送鍵。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2244
+msgid "Invalid select keys."
+msgstr "不正確的選擇鍵。"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2249
+msgid "Invalid page up keys."
+msgstr "不正確的上一頁鍵"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2254
+msgid "Invalid page down keys."
+msgstr "不正確的下一頁鍵"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2260
+msgid "Invalid max key length."
+msgstr "不正確的最大鍵值長度"
+
+#: modules/SetupUI/scim_table_imengine_setup.cpp:2451
+#, c-format
+msgid "Failed to save table %s!"
+msgstr "無法儲存對照表 %s ！"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:96
+msgid "GTK"
+msgstr "GTK"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:101
+msgid "A panel daemon based on GTK+-2.x library."
+msgstr "一個使用 GTK+-2.x 函式庫的操控面板背景程式。"
+
+#. Create the ToolBar setup block.
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:201
+msgid "ToolBar"
+msgstr "工具列"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:212
+msgid "Always _show"
+msgstr "永遠顯示(_S)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:218
+msgid "Auto s_nap"
+msgstr "自動靠邊(_N)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:224
+msgid "Show _input method icon"
+msgstr "顯示輸入法圖示(_I)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:230
+msgid "Show inp_ut method name"
+msgstr "顯示輸入法名稱(_U)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:242
+msgid "Hide time_out:"
+msgstr "逾時隱藏(_O)："
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:255
+msgid "Show s_tick icon"
+msgstr "顯示緊鄰圖示(_T)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:261
+msgid "Show s_etup icon"
+msgstr "顯示設定圖示(_E)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:267
+msgid "Show _help icon"
+msgstr "顯示求助圖示(_H)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:273
+#, fuzzy
+msgid "Show _property label"
+msgstr "顯現提示(_P)"
+
+#. Create the Input Window setup block
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:284
+msgid "Input window"
+msgstr "輸入視窗"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:293
+msgid "E_mbedded lookup table"
+msgstr "嵌入式選詞列表(_M)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:297
+msgid "_Vertical lookup table"
+msgstr "垂直式選詞列表(_V)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:301
+msgid "Show status _box"
+msgstr "顯示狀態列(_B)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:305
+msgid "Misc"
+msgstr "其它"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:314
+msgid "Show tra_y icon"
+msgstr "顯示系統列圖示(_Y)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:318
+msgid "Stick _windows"
+msgstr "緊鄰視窗(_W)"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:326
+msgid "_Font:"
+msgstr "字形(_F)："
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:400
+msgid ""
+"If this option is checked, the toolbar will be always shown on the screen."
+"Otherwise, it will be hidden when SCIM is deactivated."
+msgstr ""
+"如果勾取這個選項，工具列將永遠顯示在螢幕上。否則當 SCIM 並不是動作視窗時工具"
+"列將被隱藏。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:406
+msgid ""
+"If this option is checked, the toolbar will be snapped to the screen border."
+msgstr "如果勾取這個選項，工具列將緊黏在螢幕邊緣。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:411
+msgid ""
+"The toolbar will be hidden out after this timeout is elapsed. This option is "
+"only valid when \"Always show\" is checked. Set to zero to disable this "
+"behavior."
+msgstr ""
+"在經過一定時間後，工具列將被隱藏起來。該選項只在勾取了 \"永遠顯示\" 時才會作"
+"用。設定成 0 則關閉此功能。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:418
+msgid ""
+"If this option is checked, the input method icon will be showed on the "
+"toolbar."
+msgstr "如果勾取這個選項，輸入法圖示將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:422
+msgid ""
+"If this option is checked, the input method name will be showed on the "
+"toolbar."
+msgstr "如果勾取這個選項，輸入法名稱將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:426
+msgid ""
+"If this option is checked, the stick icon will be showed on the toolbar."
+msgstr "如果勾取這個選項，緊鄰圖示將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:430
+msgid ""
+"If this option is checked, the setup icon will be showed on the toolbar."
+msgstr "如果勾取這個選項，設定圖示將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:434
+msgid "If this option is checked, the help icon will be showed on the toolbar."
+msgstr "如果勾取這個選項，求助圖示將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:438
+#, fuzzy
+msgid ""
+"If this option is checked, the text label of input method properties will be "
+"showed on the toolbar."
+msgstr "如果勾取這個選項，輸入法名稱將顯示在工具列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:442
+msgid ""
+"If this option is checked, the lookup table will be embedded into the input "
+"window."
+msgstr "如果勾取這個選項，選詞列表將出現在輸入視窗中。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:447
+msgid ""
+"If this option is checked, the lookup table will be displayed vertically."
+msgstr "如果勾取這個選項，選詞列表將垂直顯示。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:452
+msgid ""
+"If this option is checked, a float status box will be displayed to show the "
+"status of current input module."
+msgstr "如果勾取這個選項，將顯示一個浮動的狀態列用來顯示目前的輸入模組的狀態。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:457
+msgid ""
+"If this option is checked, the tray icon will be showed on the desktop's "
+"taskbar."
+msgstr "如果勾取這個選項，系統圖示將顯示在桌面的工作列上。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:461
+msgid ""
+"If this option is checked, the toolbar, input and lookup table windows will "
+"be sticked to its original position."
+msgstr "如果勾取這個選項，則輸入和選詞列表視窗將停留在它們的原本位置。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:467
+msgid "The font setting will be used in the input and lookup table windows."
+msgstr "該字形設定將套用於輸入和選詞列表視窗。"
+
+#: modules/SetupUI/scim_panel_gtk_setup.cpp:719
+msgid "Select Interface Font"
+msgstr "選擇介面字形"
+
+#: extras/setup/scim_setup_ui.cpp:43
+msgid "SCIM"
+msgstr ""
+
+#: extras/setup/scim_setup_ui.cpp:44
+msgid "FrontEnd"
+msgstr "介面"
+
+#: extras/setup/scim_setup_ui.cpp:45 extras/setup/scim_setup_ui.cpp:537
+msgid "IMEngine"
+msgstr "輸入法引擎"
+
+#: extras/setup/scim_setup_ui.cpp:46
+msgid "Panel"
+msgstr "面板"
+
+#: extras/setup/scim_setup_ui.cpp:47
+msgid "Extra"
+msgstr "附加項目"
+
+#: extras/setup/scim_setup_ui.cpp:240
+msgid "Failed to load any Config Modules!"
+msgstr "無法載入任何設定模組！"
+
+#.
+#. vi:ts=4:nowrap:ai:expandtab
+#.
+#: extras/setup/scim_setup_ui.cpp:269 extras/setup/scim-setup.desktop.in.h:1
+msgid "SCIM Input Method Setup"
+msgstr "SCIM 輸入法設定"
+
+#: extras/setup/scim_setup_ui.cpp:402
+msgid ""
+" <span size=\"20000\">Smart Common Input Method platform</span> \n"
+"\n"
+"<span size=\"16000\" style=\"italic\">GUI Setup Utility</span>\n"
+"\n"
+"\n"
+"\n"
+"<span size=\"12000\">Copyright 2002-2004, James Su &lt;suzhe@tsinghua.org."
+"cn&gt;</span>"
+msgstr ""
+" <span size=\"20000\">泛用智慧型輸入法平台</span> \n"
+"\n"
+"<span size=\"16000\" style=\"italic\">圖形介面設定工具</span>\n"
+"\n"
+"\n"
+"\n"
+"<span size=\"12000\">版權所有 2002-2004, 蘇  哲&lt;suzhe@tsinghua.org.cn&gt;"
+"</span>"
+
+#: extras/setup/scim_setup_ui.cpp:416
+msgid "_Current Config Module:"
+msgstr "目前設定模組(_C)："
+
+#: extras/setup/scim_setup_ui.cpp:432
+msgid "<Not found>"
+msgstr "<無法找到>"
+
+#: extras/setup/scim_setup_ui.cpp:468 extras/setup/scim_setup_ui.cpp:536
+#, c-format
+msgid "<span size=\"x-large\">The Setup for %s modules.</span>"
+msgstr "<span size=\"x-large\">%s 模組的設定。</span>"
+
+#: extras/setup/scim_setup_ui.cpp:553
+msgid "The installed input method services:"
+msgstr "已安裝的輸入法服務："
+
+#: extras/setup/scim_setup_ui.cpp:595
+msgid "Enable"
+msgstr "開啟"
+
+#: extras/setup/scim_setup_ui.cpp:835
+msgid "Are you sure to quit SCIM Setup?"
+msgstr "是否關閉 SCIM 設定程式？"
+
+#: extras/setup/scim_setup_ui.cpp:903
+msgid "You can enable/disable installed input methods here."
+msgstr "你可在此開啟或關閉已安裝的輸入法。"
+
+#: extras/setup/scim_setup_ui.cpp:1164
+#, c-format
+msgid "Current Config Module has been changed to %s."
+msgstr "目前的設定模組已更換成 %s。"
+
+#: extras/setup/scim_setup_ui.cpp:1239
+#, fuzzy
+msgid ""
+"Not all configuration can be reloaded on the fly. Don't forget to restart "
+"SCIM in order to let all of the new configuration take effect."
+msgstr "別忘了重新啟動 SCIM 來讓新的設定生效。"
+
+#: extras/setup/scim-setup.desktop.in.h:2
+msgid "Setup utility for Smart Common Input Method platform"
+msgstr "泛用智慧型輸入法平台的設定工具"
+
+#: extras/panel/scim_panel_gtk.cpp:1001
+msgid "SCIM Help"
+msgstr "求助 SCIM"
+
+#: extras/panel/scim_panel_gtk.cpp:1018
+msgid "Smart Common Input Method"
+msgstr "泛用智慧型輸入法平台"
+
+#: extras/panel/scim_panel_gtk.cpp:1077
+msgid "Stick/unstick the input window and the toolbar."
+msgstr "緊鄰/釋開 輸入視窗和工具列。"
+
+#: extras/panel/scim_panel_gtk.cpp:1083
+msgid "Start the SCIM Setup Utility."
+msgstr "啟動 SCIM 設定工具。"
+
+#: extras/panel/scim_panel_gtk.cpp:1089
+msgid "Show a brief help about SCIM and the current input method."
+msgstr "顯示關於 SCIM 和目前輸入法的精簡說明。"
+
+#. Reload Configuration.
+#: extras/panel/scim_panel_gtk.cpp:2308
+msgid "Reload Configuration"
+msgstr "重新載入設定值"
+
+#. Stick
+#: extras/panel/scim_panel_gtk.cpp:2318
+msgid "Stick Windows"
+msgstr "緊鄰視窗"
+
+#. Setup
+#: extras/panel/scim_panel_gtk.cpp:2328
+msgid "Setup ..."
+msgstr "設定 ..."
+
+#. Help
+#: extras/panel/scim_panel_gtk.cpp:2339
+msgid "Help ..."
+msgstr "求助 ..."
+
+#. Clients exit.
+#: extras/panel/scim_panel_gtk.cpp:2358
+#, fuzzy
+msgid "Exit"
+msgstr "離開"
+
+#: utils/scimstringview.c:194
+msgid "Cursor Position"
+msgstr "遊標位置"
+
+#: utils/scimstringview.c:195
+msgid "The current position of the insertion cursor in chars."
+msgstr "在字元中插入的遊標的所在位置。"
+
+#: utils/scimstringview.c:204
+msgid "Maximum length"
+msgstr "最大長度"
+
+#: utils/scimstringview.c:205
+msgid "Maximum number of characters for this string view. Zero if no maximum."
+msgstr "這個字串視窗最長可以容衲多少字元。0 表示無限制。"
+
+#: utils/scimstringview.c:214
+msgid "Maximum width"
+msgstr "最大寬度"
+
+#: utils/scimstringview.c:215
+msgid "Maximum width of this string view."
+msgstr "這個字串視窗的最大寬度。"
+
+#: utils/scimstringview.c:224
+msgid "Has Frame"
+msgstr "有外框"
+
+#: utils/scimstringview.c:225
+msgid "FALSE removes outside bevel from string view."
+msgstr "無 法 移去字串視窗的外部斜邊"
+
+#: utils/scimstringview.c:232
+msgid "Draw cursor"
+msgstr "繪製遊標"
+
+#: utils/scimstringview.c:233
+msgid "TRUE draw blinking cursor."
+msgstr "啟用時，繪製閃爍遊標"
+
+#: utils/scimstringview.c:240
+msgid "Auto move cursor"
+msgstr "自動移動遊標"
+
+#: utils/scimstringview.c:241
+msgid "TRUE auto move cursor position when mouse clicking."
+msgstr "啟用時，當滑鼠點選時會自動移動遊標。"
+
+#: utils/scimstringview.c:248
+msgid "Forward button press event"
+msgstr "轉送鍵擊事件"
+
+#: utils/scimstringview.c:249
+msgid "TRUE forward button press event to user program."
+msgstr "啟用時，轉送鍵擊事件給使用者程式。"
+
+#: utils/scimstringview.c:256
+msgid "Auto resize the widget to fit the string"
+msgstr "根據字串自動調整邊框大小"
+
+#: utils/scimstringview.c:257
+msgid "TRUE Auto resize on."
+msgstr "啟用時，自動調整大小。"
+
+#: utils/scimstringview.c:264
+msgid "Width in chars"
+msgstr "字元寬度"
+
+#: utils/scimstringview.c:265
+msgid "Number of characters to leave space for in the string view."
+msgstr "在字串視窗裡所保留的空白字元數。"
+
+#: utils/scimstringview.c:274
+msgid "Scroll offset"
+msgstr "捲軸位移"
+
+#: utils/scimstringview.c:275
+msgid "Number of pixels of the string view scrolled off the screen to the left"
+msgstr "字串視窗距離螢幕左邊的像素值"
+
+#: utils/scimstringview.c:284
+msgid "Text"
+msgstr "文字"
+
+#: utils/scimstringview.c:285
+msgid "The contents of the string view"
+msgstr "字串視窗的說明"
+
+#: utils/scimkeyselection.cpp:394
+msgid "Selected _Keys:"
+msgstr "選定的按鍵(_K)："
+
+#: utils/scimkeyselection.cpp:439
+msgid "Key Code:"
+msgstr "鍵值："
+
+#: utils/scimkeyselection.cpp:455
+msgid "Modifiers:"
+msgstr "作用鍵："
+
+#: utils/scimkeyselection.cpp:468
+msgid "_Ctrl"
+msgstr ""
+
+#: utils/scimkeyselection.cpp:472
+msgid "A_lt"
+msgstr ""
+
+#: utils/scimkeyselection.cpp:476
+msgid "_Shift"
+msgstr ""
+
+#: utils/scimkeyselection.cpp:480
+msgid "_Release"
+msgstr "放開(_R)"
+
+#: utils/scimkeyselection.cpp:769
+msgid "Key Selection"
+msgstr "選擇按鍵"
+
+#: utils/scimtrayicon.c:108
+msgid "Orientation"
+msgstr "方位"
+
+#: utils/scimtrayicon.c:109
+msgid "The orientation of the tray."
+msgstr "狀態列的方位。"
+
+#~ msgid ""
+#~ "If this option is checked, a status box will be displayed on the lower "
+#~ "left corner of the client window to show the status of the current input "
+#~ "method.This option needs the support of the client application."
+#~ msgstr ""
+#~ "如果勾取了這個選項，將在使用者視窗的左下角顯示一個用來顯示目前輸入法的模式"
+#~ "的浮動的狀態列。該選項必須要用戶端應用程式也能支援才行。"
+
+#~ msgid "Interface"
+#~ msgstr "介面"
+
+#~ msgid "Socket"
+#~ msgstr "連線"
+
+#~ msgid ""
+#~ "A FrontEnd module to provide the input method service via a network/local "
+#~ "socket."
+#~ msgstr "一個透過 網路/本機 連線提供輸入法功能的介面模組。"
+
+#~ msgid "_Connect Address:"
+#~ msgstr "連線位址(_C)："
+
+#~ msgid "Connect _Timeout:"
+#~ msgstr "連線逾時(_T)："
+
+#~ msgid "_Max Clients:"
+#~ msgstr "最大用戶端數(_M)："
+
+#~ msgid "_Config ReadOnly"
+#~ msgstr "設定為唯讀(_C)"
+
+#, fuzzy
+#~ msgid ""
+#~ "The address of this FrontEnd to which Socket IMEngine modules should "
+#~ "connect. Must begin with local: or inet:. For example:\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+#~ msgstr ""
+#~ "在該介面和連線功能模組連線時所使用的位址。必須以 local: 或者 inet: 開始。"
+#~ "例如:\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+
+#~ msgid ""
+#~ "The timeout value of the connections, in milliseconds. -1 means unlimited."
+#~ msgstr "連線的逾時值，單位為毫秒，-1 表示無限大。"
+
+#~ msgid ""
+#~ "The maximum number of clients can connect to this Socket FrontEnd. -1 "
+#~ "means unlimited."
+#~ msgstr "允許和此連線介面連線的用戶端的最多個數，-1 表示無限制。"
+
+#~ msgid ""
+#~ "If this option is checked, then the clients can only read the "
+#~ "configurations via this Socket FrontEnd. Otherwise, the update will be "
+#~ "allowed."
+#~ msgstr ""
+#~ "如果勾取了這個選項，則用戶端在透過此連線介面時只能讀取設定。否則將允許用戶"
+#~ "端更新設定。"
+
+#~ msgid "Connect address must begin with \"local:\" or \"inet:\"."
+#~ msgstr "連線位址必須以 \"local:\" 或 \"inet:\" 開始。"
+
+#, fuzzy
+#~ msgid ""
+#~ "A IMEngine Module which uses the input mothod service provided by a "
+#~ "Socket FrontEnd."
+#~ msgstr "一個使用連線介面來提供輸入法的功能模組。"
+
+#~ msgid ""
+#~ "The address of the Socket FrontEnd to be connected. Must begin with "
+#~ "local: or inet:. For example:\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+#~ msgstr ""
+#~ "和連線介面連接時所使用的位址。\n"
+#~ "必須以 local: 或者 inet: 開始。例如:\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+
+#~ msgid ""
+#~ "The timeout value of the connection, in milliseconds. -1 means unlimited."
+#~ msgstr "連線的逾時值，單位為毫秒，-1 表示無限大。"
+
+#~ msgid "Connection"
+#~ msgstr "連線"
+
+#~ msgid "_Connect address:"
+#~ msgstr "連線位址(_C)："
+
+#~ msgid "Connect _timeout:"
+#~ msgstr "連線逾時(_T)："
+
+#~ msgid ""
+#~ "The address of this panel to which FrontEnds should connect. Must begin "
+#~ "with local: or inet:. For example:\n"
+#~ "  local:/tmp/scim-panel-socket"
+#~ msgstr ""
+#~ "該面板和前端介面連線時所使用的位址。必須以 local: 或 inet: 開始。例如：\n"
+#~ "  local:/tmp/scim-panel-socket"
+
+#~ msgid ""
+#~ "zh_CN.UTF-8,zh_CN.GB18030,zh_CN.GBK,zh_CN.GB2312,zh_CN,zh_TW.UTF-8,zh_TW."
+#~ "Big5,zh_TW,zh_HK.UTF-8,zh_HK,ja_JP.eucJP,ja_JP.ujis,ja_JP,ja,ko_KR.eucKR,"
+#~ "ko_KR"
+#~ msgstr ""
+#~ "zh_CN.UTF-8,zh_CN.GB18030,zh_CN.GBK,zh_CN.GB2312,zh_CN,zh_TW.UTF-8,zh_TW."
+#~ "Big5,zh_TW,zh_HK.UTF-8,zh_HK,ja_JP.eucJP,ja_JP.ujis,ja_JP,ja,ko_KR.eucKR,"
+#~ "ko_KR"
+
+#~ msgid "Server"
+#~ msgstr "功能"
+
+#~ msgid "Unstick Windows"
+#~ msgstr "釋開視窗"
+
+#~ msgid ""
+#~ "\n"
+#~ "(C) 2002,2003 James Su <suzhe@tsinghua.org.cn>\n"
+#~ "    2004 James Su <suzhe@tsinghua.org.cn>\n"
+#~ "\n"
+#~ "Hot keys:\n"
+#~ "\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "(C) 2002-2004 James Su <suzhe@tsinghua.org.cn>\n"
+#~ "\n"
+#~ "快捷鍵：\n"
+#~ "\n"
+#~ "  "
+
+#~ msgid "_Timeout:"
+#~ msgstr "逾時(_T)："
+
+#~ msgid ""
+#~ "The address of the socket to be listened. Must begin with local: or "
+#~ "inet:. For example:\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+#~ msgstr ""
+#~ "指定監聽的連線位址。必須以 local: 或 inet: 開始。例如：\n"
+#~ "  local:/tmp/scim-socket-frontend\n"
+#~ "  inet:localhost:12345"
+
+#~ msgid "Show server _icon"
+#~ msgstr "顯示服務圖示(_I)"
+
+#~ msgid "Show se_rver name"
+#~ msgstr "顯示服務名稱(_R)"
+
+#~ msgid ""
+#~ "If this option is checked, the server icon will be showed on the toolbar."
+#~ msgstr "如果勾取這個選項，服務圖示將顯示在工具列上."
+
+#~ msgid "_Embedded"
+#~ msgstr "嵌入(_E)"
+
+#~ msgid "_Vertical"
+#~ msgstr "垂直(_V)"
+
+#~ msgid "Input"
+#~ msgstr "輸入"
+
+#~ msgid "S_ticked"
+#~ msgstr "粘住(_T)"
+
+#~ msgid "Look and Feel"
+#~ msgstr "視感"

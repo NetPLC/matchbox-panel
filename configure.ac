@@ -85,7 +85,7 @@ MOFILES=""
 
 if test x$enable_nls = xyes; then
 
-  LINGUAS="en_GB es_ES fi_FI de cs fr_FR"
+  LINGUAS="en_GB es_ES fi_FI de cs fr_FR zh_TW"
 
   AC_CHECK_FUNC(gettext, [HAVEGETTEXT="yes"], 
 	     AC_CHECK_LIB(intl, gettext, [INTLIBS="-lintl" HAVEGETTEXT="yes"],
