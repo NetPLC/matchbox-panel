@@ -41,6 +41,9 @@ AC_ARG_ENABLE(small_icons,
   [  --enable-small-icons    enable small icons],
      enable_small_icons=$enableval, enable_small_icons=no )
 
+AC_ARG_ENABLE(dnotify,
+  [  --enable-dnotify      enable dnotify support (Linux 2.4+ only).],
+  enable_dnotify=$enableval, enable_dnotify=no)
 
 AC_ARG_ENABLE(debug,
   [  --enable-debug    enable debug ( verbose ) build],
@@ -54,6 +57,13 @@ dnl ------ Debug Build ------------------------------------------------------
 
 if test x$enable_debug = xyes; then
       LIBMB_CFLAGS="$LIBMB_CFLAGS -DDEBUG"
+fi
+
+dnl ----- DNOTIFY ----------------------------------------------------------
+
+if test x$enable_dnotify = xyes; then
+## FIXME: need to actually check its present
+  AC_DEFINE(USE_DNOTIFY, [1], [Has dnotify support])
 fi
 
 dnl ----- Startup Notification ---------------------------------------------
@@ -206,9 +216,9 @@ echo "
         Building with Debug:                ${enable_debug}
 
         Building with Startup-Notification: ${enable_sn}
-	Building with NLS                   ${enable_nls}
+	Building with NLS:                  ${enable_nls}
         Building with small icons:          ${enable_small_icons}
-	
+	Building with DNOTIFY:		    ${enable_dnotify}
 
         Building mb-applet-battery:         ${miniapm_enabled}
 "
