@@ -1,5 +1,11 @@
 2004-04-27  Matthew Allum,,,  <mallum@handhelds.org>
 
+	* src/panel.c: (panel_set_bg), (panel_init), (main):
+	* src/session.c: (session_init), (session_save):
+	Error message cleanup
+
+2004-04-27  Matthew Allum,,,  <mallum@handhelds.org>
+
 	* applets/mb-applet-menu-launcher.c: (sn_exec), (fork_exec),
 	(build_menu), (load_icon):
 	Improved/cleaned error messages

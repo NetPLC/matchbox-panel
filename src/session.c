@@ -49,7 +49,7 @@ session_init(MBPanel *panel)
 
   if (getenv("HOME") == NULL)
     {
-      fprintf(stderr, "mbdock: unable to get home directory, is HOME set?\n");
+      fprintf(stderr, "matchbox-panel: unable to get home directory, is HOME set?\n");
       panel->session_preexisting_lock = False;
       return;
     }
@@ -62,7 +62,7 @@ session_init(MBPanel *panel)
     {
       if (panel->use_session)
 	{
-	  fprintf(stderr, "mbdock: creating %s directory for session files\n",
+	  fprintf(stderr, "matchbox-panel: creating %s directory for session files\n",
 		  sessionfile);
 	  mkdir(sessionfile, 0755);
 	}
@@ -125,7 +125,7 @@ void session_save(MBPanel *panel)
 
   if (getenv("HOME") == NULL)
     {
-      fprintf(stderr, "mbdock: unable to get home directory, is HOME set?\n");
+      fprintf(stderr, "matchbox-panel: unable to get home directory, is HOME set?\n");
       return;
     }
 
@@ -138,7 +138,7 @@ void session_save(MBPanel *panel)
   
   if ((panel->session_fp = fopen(sessionfile, "w")) == NULL)
     { 
-      fprintf(stderr,"mbdock: Unable to create Session file ( %s )\n", 
+      fprintf(stderr,"matchbox-panel: Unable to create Session file ( %s )\n", 
 	      sessionfile); 
       return; 
     }

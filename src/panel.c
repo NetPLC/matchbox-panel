@@ -290,7 +290,7 @@ panel_set_bg(MBPanel *panel, int bg_type, char *bg_spec)
       
       if ((img_tmp = mb_pixbuf_img_new_from_file(panel->pb, tmp_path)) == NULL)
 	{
-	  fprintf(stderr, "mbdock: failed to load %s\n", bg_spec);
+	  fprintf(stderr, "matchbox-panel: failed to load %s\n", bg_spec);
 	  panel_set_bg(panel, BG_SOLID_COLOR, DEFAULT_COLOR_SPEC);
 	  return;
 	}
@@ -1640,7 +1640,7 @@ MBPanel
     }
     if (strstr (argv[i], "-geometry") || !strcmp ("-g", argv[i])) {
       if (++i>=argc) panel_usage (argv[0]);
-      fprintf(stderr,"mbdock: -geometry is depreciated, please consider --size  and --orientation instead\n");
+      fprintf(stderr,"matchbox-panel: -geometry is depreciated, please consider --size  and --orientation instead\n");
       geometry_str = argv[i];
       continue;
     }
@@ -1748,7 +1748,7 @@ MBPanel
   if (panel->margin_start > ( ( panel_length * 40 ) / 100 ) 
       || panel->margin_end > ( ( panel_length * 40 ) / 100  ))
     {
-      fprintf(stderr, "mbdock: Panel margins too large. clipping.\n");
+      fprintf(stderr, "matchbox-panel: Panel margins too large. clipping.\n");
       panel->margin_start = 2;
       panel->margin_end   = 2;
     }
@@ -1906,6 +1906,12 @@ MBPanel
 
       panel->use_flip = False;
 
+      /* 
+       *   We need someway ( selection ? ) to check if the 	 
+       *   wm is running and only map then - not before 
+       *   
+       */
+
       XChangeProperty(panel->dpy, panel->win, 
 		      panel->atoms[ATOM_NET_WM_STATE], XA_ATOM, 32, 
 		      PropModeReplace, 
@@ -2025,7 +2031,7 @@ int main(int argc, char *argv[])
       XSetSelectionOwner(panel->dpy, panel->atoms[ATOM_SYSTEM_TRAY],
 			 panel->win, CurrentTime);
     } else {
-      fprintf(stderr, "Panel already exists. aborting. Try running mbdock with the --id switch.\n"); 
+      fprintf(stderr, "Panel already exists. aborting. Try running matchbox-panel with the --id switch.\n"); 
       exit(0);
     }
 
