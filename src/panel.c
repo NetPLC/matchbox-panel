@@ -84,7 +84,6 @@ panel_xsettings_notify_cb (const char       *name,
                */
 	      DBG("%s() setting  XSET_GTK_FONT: '%s'\n", __func__, 
 		  setting->data.v_string);
-	      /* mb_menu_set_font (panel->mbmenu, setting->data.v_string); */
 	      mb_font_set_from_string(panel->msg_font, setting->data.v_string);
 	      
 	    }
@@ -585,6 +584,10 @@ panel_set_theme_from_root_prop(MBPanel *panel)
 
 
 		}
+
+	      if (mb_dotdesktop_get(theme, "PanelMsgFont"))
+		mb_font_set_from_string(panel->msg_font, 
+					mb_dotdesktop_get(theme, "PanelMsgFont"));
 
 	      if (mb_dotdesktop_get(theme, "PanelMsgBgCol"))
 		util_xcol_from_spec(panel, panel->msg_col, 

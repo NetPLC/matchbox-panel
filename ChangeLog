@@ -1,3 +1,9 @@
+2004-08-08  mallum,,,  <mallum@handhelds.org>
+
+	* src/panel.c: (panel_xsettings_notify_cb),
+	(panel_set_theme_from_root_prop):
+	Add support for PanelMsgFont in theme.desktop
+
 2004-07-27  mallum,,,  <mallum@handhelds.org>
 
 	* applets/mb-applet-system-monitor.c: (paint_callback):
