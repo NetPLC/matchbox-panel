@@ -1,4 +1,10 @@
-2004-02-03  Matthew Allum, mallum@handhelds.oprg
+2004-02-03  Matthew Allum, mallum@handhelds.org
+
+	* applets/mb-applet-menu-launcher.c: (build_menu):
+	Made menu, like desktop attempt to parse multiple
+	application dir rather than just prefix based one.	
+
+2004-02-03  Matthew Allum, mallum@handhelds.org
 
 	* src/panel_menu.c:
 	Changed USE_PNG check to MB_HAVE_PNG

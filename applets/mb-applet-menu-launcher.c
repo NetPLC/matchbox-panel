@@ -373,6 +373,9 @@ void reload_menu(int signum, siginfo_t *siginfo, void *data)
 static void
 build_menu(void)
 {
+
+#define APP_PATHS_N 4
+
   struct menu_lookup_t {
     char       *match_str;
     MBMenuMenu *item;
@@ -383,8 +386,6 @@ build_menu(void)
   struct dirent *dir_entry;
   struct stat stat_info;
   char orig_wd[256];
-
-  char *dd_dir = DATADIR "/applications";
 
   char dirs[2][256] = { MENUDIR };
   FILE *fp;
@@ -400,6 +401,8 @@ build_menu(void)
   MBDotDesktopFolderEntry *ddentry;
   char                    *root_match_str;
 
+  /* List of paths to check for .desktop files */
+  char                     app_paths[APP_PATHS_N][256];
   Bool got_root_items = False;
 
   struct menu_lookup_t *menu_lookup = NULL;
@@ -467,141 +470,156 @@ build_menu(void)
       exit(0);
     }
   
-  if ((dp = opendir(dd_dir)) == NULL)
-    {
-      fprintf(stderr, "mbmenu: failed to open %s\n", dd_dir);
-      exit(0);
-    }
+  snprintf(app_paths[0], 256, "/usr/share/applications");
+  snprintf(app_paths[1], 256, "/usr/local/share/applications");
+  snprintf(app_paths[2], 256, "%s/.applications", getenv("HOME"));
+  snprintf(app_paths[3], 256, "%s/applications", DATADIR);
   
-  chdir(dd_dir);
-  while((dir_entry = readdir(dp)) != NULL)
+  for (i = 0; i < APP_PATHS_N; i++)
     {
-      if (strcmp(dir_entry->d_name+strlen(dir_entry->d_name)-8,".desktop"))
-	continue;
 
-      lstat(dir_entry->d_name, &stat_info);
-      if (!(S_ISDIR(stat_info.st_mode)))
+      if ((dp = opendir(app_paths[i])) == NULL)
 	{
-	  MBDotDesktop *dd;
-	  int flags = 0;
-	  dd = mb_dotdesktop_new_from_file(dir_entry->d_name);
-	  if (dd)
-	    {
-	      char *png_path = NULL;
-	      MBMenuActivateCB activate_callback = NULL;
-
-	      if (mb_dotdesktop_get(dd, "Icon") 
-		  && mb_dotdesktop_get(dd, "Name")
-		  && mb_dotdesktop_get(dd, "Exec"))
-		{
-		 MBMenuMenu *m = NULL, *fallback = NULL;
-		 char *category;
-
-		 png_path = mb_dot_desktop_icon_get_full_path(app_data->theme_name, 16, mb_dotdesktop_get(dd, "Icon"));
-
-		 category = mb_dotdesktop_get(dd, "Categories");
-
-		 if (category && strstr(category, "Action"))
-		   {
-		     m = app_data->mbmenu->rootmenu;
-		     flags = MBMENU_NO_SORT;
-		   }
-		 else
-		   {
-		     if (root_match_str)
-		       {
-			 if (!strcmp("fallback", root_match_str))
-			   {
-			     fallback = app_data->mbmenu->rootmenu;
-			   }
-			 else if (category && strstr(category, root_match_str))
-			   {
-			     m = app_data->mbmenu->rootmenu;
-			   }
-		       }
-		     
-		     if (m == NULL 
-			 && category != NULL)
-		       {
-			 for (i=0; 
-			      i<mb_dot_desktop_folders_get_cnt(ddfolders);
-			      i++)
-			   {
-			     if (!strcmp(menu_lookup[i].match_str,"fallback"))
-			       {
-				 fallback = menu_lookup[i].item;
-			       }
-			     if (strstr(category, menu_lookup[i].match_str))
-			       {
-				 m = menu_lookup[i].item;
-			       }
-			   }
-		       }
-		     
-		     if (m == NULL) m = fallback;
-		     
-		   }
-		 activate_callback = menu_clicked_cb;
-#ifdef USE_LIBSN
-		 
-		 if (mb_dotdesktop_get(dd, "SingleInstance")
-		     && !strcasecmp(mb_dotdesktop_get(dd, "SingleInstance"),
-				    "true"))
-		   {
-		     activate_callback = menu_clicked_si_cb;
-		   }
-		 else if (mb_dotdesktop_get(dd, "StartupNotify")
-			  && !strcasecmp(mb_dotdesktop_get(dd, "StartupNotify"),
-					 "true"))
-		   {
-		     activate_callback = menu_clicked_sn_cb;
-		       }
-#endif
-		 if (mb_dotdesktop_get(dd, "Type") 
-		     && !strcmp(mb_dotdesktop_get(dd, "Type"), "PanelApp"))
-		   {
-		     m = menu_panel;
-		   }
-		 
-		 if (png_path && m)
-		   {
-		     
-		     if (!flags && m == app_data->mbmenu->rootmenu)
-		       {
-			 if (got_root_items == False)
-			   {
-			     mb_menu_add_seperator_to_menu(app_data->mbmenu, 
-							   app_data->mbmenu->rootmenu, 
-							   MBMENU_PREPEND);
-			     got_root_items = True;
-			   }
-
-			 flags = MBMENU_PREPEND;
-		       }
-		     
-		     mb_menu_add_item_to_menu(app_data->mbmenu, m, 
-					      mb_dotdesktop_get(dd, "Name"),
-					      png_path,
-					      mb_dotdesktop_get(dd, "Exec"),
-					      activate_callback, 
-					      (void *)app_data, flags); 
-		     /* mb_menu_add_seperator_to_menu(app_data-> mbmenu, m); */
-		     
-		     free(png_path);
-		   }
-		}
-	      else fprintf(stderr, 
-			   "mbmenu: %s has no icon, png or name\n", 
-			   dir_entry->d_name);
-	      mb_dotdesktop_free(dd);
-	    }
-	  else
-	    fprintf(stderr, "mbmenu: failed to parse %s :( \n", dir_entry->d_name);
+	  fprintf(stderr, "mb-applet-menu-launcher: failed to open %s\n", 
+		  app_paths[i]);
+	  continue;
 	}
-    }
+      
+      chdir(app_paths[i]);
+      while((dir_entry = readdir(dp)) != NULL)
+	{
+	  if (strcmp(dir_entry->d_name+strlen(dir_entry->d_name)-8,".desktop"))
+	    continue;
+	  
+	  lstat(dir_entry->d_name, &stat_info);
+	  if (!(S_ISDIR(stat_info.st_mode)))
+	    {
+	      MBDotDesktop *dd;
+	      int flags = 0;
+	      dd = mb_dotdesktop_new_from_file(dir_entry->d_name);
+	      if (dd)
+		{
+		  char *png_path = NULL;
+		  MBMenuActivateCB activate_callback = NULL;
+		  
+		  if (mb_dotdesktop_get(dd, "Icon") 
+		      && mb_dotdesktop_get(dd, "Name")
+		      && mb_dotdesktop_get(dd, "Exec"))
+		    {
+		      MBMenuMenu *m = NULL, *fallback = NULL;
+		      char *category;
+		      
+		      png_path = mb_dot_desktop_icon_get_full_path(app_data->theme_name, 16, mb_dotdesktop_get(dd, "Icon"));
+		      
+		      category = mb_dotdesktop_get(dd, "Categories");
+		      
+		      if (category && strstr(category, "Action"))
+			{
+			  m = app_data->mbmenu->rootmenu;
+			  flags = MBMENU_NO_SORT;
+			}
+		      else
+			{
+			  if (root_match_str)
+			    {
+			      if (!strcmp("fallback", root_match_str))
+				{
+				  fallback = app_data->mbmenu->rootmenu;
+				}
+			      else if (category 
+				       && strstr(category, root_match_str))
+				{
+				  m = app_data->mbmenu->rootmenu;
+				}
+			    }
+			  
+			  if (m == NULL 
+			      && category != NULL)
+			    {
+			      for (i=0; 
+				   i<mb_dot_desktop_folders_get_cnt(ddfolders);
+				   i++)
+				{
+				  if (!strcmp(menu_lookup[i].match_str,
+					      "fallback"))
+				    {
+				      fallback = menu_lookup[i].item;
+				    }
+				  if (strstr(category, 
+					     menu_lookup[i].match_str))
+				    {
+				      m = menu_lookup[i].item;
+				    }
+				}
+			    }
+			  
+			  if (m == NULL) m = fallback;
+			  
+			}
+		      activate_callback = menu_clicked_cb;
+#ifdef USE_LIBSN
+		      
+		      if (mb_dotdesktop_get(dd, "SingleInstance")
+			  && !strcasecmp(mb_dotdesktop_get(dd, 
+							   "SingleInstance"),
+					 "true"))
+			{
+			  activate_callback = menu_clicked_si_cb;
+			}
+		      else if (mb_dotdesktop_get(dd, "StartupNotify")
+			       && !strcasecmp(mb_dotdesktop_get(dd, 
+								"StartupNotify"),
+					      "true"))
+			{
+			  activate_callback = menu_clicked_sn_cb;
+			}
+#endif
+		      if (mb_dotdesktop_get(dd, "Type") 
+			  && !strcmp(mb_dotdesktop_get(dd, "Type"), 
+				     "PanelApp"))
+			{
+			  m = menu_panel;
+			}
+		      
+		      if (png_path && m)
+			{
+			  
+			  if (!flags && m == app_data->mbmenu->rootmenu)
+			    {
+			      if (got_root_items == False)
+				{
+				  mb_menu_add_seperator_to_menu(app_data->mbmenu, 
+								app_data->mbmenu->rootmenu, 
+								MBMENU_PREPEND);
+				  got_root_items = True;
+				}
+			      
+			      flags = MBMENU_PREPEND;
+			    }
+			  
+			  mb_menu_add_item_to_menu(app_data->mbmenu, m, 
+						   mb_dotdesktop_get(dd, "Name"),
+						   png_path,
+						   mb_dotdesktop_get(dd, "Exec"),
+						   activate_callback, 
+						   (void *)app_data, flags); 
+			  /* mb_menu_add_seperator_to_menu(app_data-> mbmenu, m); */
+			  
+			  free(png_path);
+			}
+		    }
+		  else fprintf(stderr, 
+			       "mbmenu: %s has no icon, png or name\n", 
+			       dir_entry->d_name);
+		  mb_dotdesktop_free(dd);
+		}
+	      else
+		fprintf(stderr, "mbmenu: failed to parse %s :( \n", dir_entry->d_name);
+	    }
+	}
   
-  closedir(dp);
-
+      closedir(dp);
+    }
   /* Now parse old Debian / Familiar Menu entrys */
   chdir(orig_wd);
 
