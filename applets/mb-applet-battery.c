@@ -83,6 +83,8 @@ struct apm_reply {
 #define CONTEXT_APP_ARGS   "battery"
 #define CONTEXT_APP_WANT_SN 1
 
+#define CHECK_TIME_SLICE  2 	/* 2 seconds between battery checks */
+
 static int apm_vals[3];
 static MBPixbuf *pb;
 static MBPixbufImage *img_icon = NULL, *img_icon_scaled = NULL,
@@ -447,7 +449,7 @@ main( int argc, char *argv[])
 		      mb_tray_app_xscreen(app));
    
    memset(&tv,0,sizeof(struct timeval));
-   tv.tv_sec = 10;
+   tv.tv_sec = CHECK_TIME_SLICE;
 
    mb_tray_app_set_timeout_callback (app, timeout_callback, &tv); 
    
@@ -469,8 +471,6 @@ main( int argc, char *argv[])
 #ifdef USE_LIBSN
   sn_dpy = sn_display_new (mb_tray_app_xdisplay(app), NULL, NULL);
 #endif
-
-
    
    mb_tray_app_main (app);
 
