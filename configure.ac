@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT([matchbox-panel], 0.8.1, [mallum@handhelds.org])
+AC_INIT([matchbox-panel], 0.8.2, [mallum@handhelds.org])
 AC_CONFIG_SRCDIR([src/panel.c])
 
 AM_INIT_AUTOMAKE()
