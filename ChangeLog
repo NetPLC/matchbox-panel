@@ -1,5 +1,10 @@
 2004-06-28  Matthew Allum,,,  <mallum@handhelds.org>
 
+	* po/zh_TW.po:
+	prevous zh_TW was corrupt
+
+2004-06-28  Matthew Allum,,,  <mallum@handhelds.org>
+
 	* configure.ac:
 	* po/Makefile.am:
 	* po/zh_TW.po:
