@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT([matchbox-panel], 0.8.3, [mallum@handhelds.org])
+AC_INIT([matchbox-panel], 0.9.1, [mallum@handhelds.org])
 AC_CONFIG_SRCDIR([src/panel.c])
 
 AM_INIT_AUTOMAKE()
@@ -53,8 +53,8 @@ AC_ARG_ENABLE(debug,
      enable_debug=$enableval, enable_debug=no )
 
 
-PKG_CHECK_MODULES(LIBMB, libmb >= 1.5,,
-	         AC_MSG_ERROR([*** Required Matchbox Library (libmb) 1.5 not installed ***]))
+PKG_CHECK_MODULES(LIBMB, libmb >= 1.6,,
+	         AC_MSG_ERROR([*** Required Matchbox Library (libmb) 1.6 not installed ***]))
 
 dnl ------ Debug Build ------------------------------------------------------
 

@@ -354,19 +354,29 @@ panel_set_bg(MBPanel *panel, int bg_type, char *bg_spec)
 		      &panel->xcol ))
 	{
 
+	  /*
 	  XAllocColor(panel->dpy, 
 		      DefaultColormap(panel->dpy, panel->screen),
 		      &panel->xcol);
+	  */
 
 	  XSetWindowBackground(panel->dpy, panel->win, 
-			       panel->xcol.pixel);
+			       mb_pixbuf_lookup_x_pixel(panel->pb, 
+							panel->xcol.red >> 8,
+							panel->xcol.green >> 8,
+							panel->xcol.blue >> 8, 0));
+
+	  //			       panel->xcol.pixel);
 	  XClearWindow(panel->dpy, panel->win);
 
 	  if (panel->bg_pxm != None) 
 	    XFreePixmap(panel->dpy, panel->bg_pxm);
 	  panel->bg_pxm = None;
 	  
-	  snprintf(xprop_def, 32, "rgb:%li", panel->xcol.pixel);
+	  snprintf(xprop_def, 32, "rgb:%li", mb_pixbuf_lookup_x_pixel(panel->pb, 
+								      panel->xcol.red >> 8,
+								      panel->xcol.green >> 8,
+								      panel->xcol.blue >> 8, 0));
 	}
       panel->root_pixmap_id = 0;
       break;

@@ -110,7 +110,7 @@
 
 
 #define DEFAULT_COLOR_SPEC "#e2e2de" /* Same as gnome ? */
-#define MB_MSG_FONT        "Sans-8:bold"   
+#define MB_MSG_FONT        "Sans 14px"   
 
 enum {
   BG_SOLID_COLOR,
