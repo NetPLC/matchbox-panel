@@ -270,6 +270,7 @@ panel_set_bg(MBPanel *panel, int bg_type, char *bg_spec)
   char *tmp_path = NULL;
 
   if (panel->bg_spec) free(panel->bg_spec);
+
   panel->bg_spec = strdup(bg_spec);
   panel->bg_type = bg_type;
 
@@ -1170,9 +1171,11 @@ panel_main(MBPanel *panel)
 		      if (!(panel->use_flip && had_rotation))
 			{
 			  char *tmp_str = NULL;
-			  if (panel->bg_spec) 
-			    tmp_str = strdup(panel->bg_spec) ;
-			  panel_set_bg(panel, panel->bg_type, tmp_str);
+			  if (panel->bg_spec)
+			    {
+			      tmp_str = strdup(panel->bg_spec) ;
+			      panel_set_bg(panel, panel->bg_type, tmp_str);
+			    }
 			  if (tmp_str) free(tmp_str);
 			}
 

@@ -1,3 +1,8 @@
+2004-02-25  Matthew Allum,,,  <mallum@openedhand.com>
+
+	* src/panel.c: (panel_set_bg), (panel_main):
+	Avoid panel in titlebar crash with no set background
+
 2004-02-24  Matthew Allum,,,  <mallum@openedhand.com>
 
 	* src/panel.h:
