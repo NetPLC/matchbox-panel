@@ -1,5 +1,10 @@
 2004-02-05  Matthew Allum,,,  <mallum@openedhand.com>
 
+	* applets/Makefile.am:
+	Fix to mb-applet-battery Makefile.am login
+
+2004-02-05  Matthew Allum,,,  <mallum@openedhand.com>
+
 	* configure.ac:
 	Added dnotify switch
 
