@@ -1,7 +1,7 @@
 SUBDIRS = dotdesktop icons small-icons
 
 PREFIXDIR  = $(prefix)
-PKGDATADIR = $(pkgdatadir)
+PKGDATADIR = $(datadir)/matchbox
 DATADIR    = $(datadir)
 
 INCLUDES = -DDATADIR=\"$(DATADIR)\" -DPKGDATADIR=\"$(PKGDATADIR)\" -DPREFIX=\"$(PREFIXDIR)\" $(LIBMB_CFLAGS)

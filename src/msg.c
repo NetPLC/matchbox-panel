@@ -205,8 +205,6 @@ msg_win_create(MBPanel             *panel,
       break;
     }
 
-  printf("%s() called()\n", __func__);
-  
   if (PANEL_IS_VERTICAL(panel))
     {
       arrow_offset = msg_win_h / 2; 
