@@ -547,7 +547,7 @@ main(int argc, char **argv)
 
 	  if (img_file[0] != '/')
 	    {
-	      snprintf(png_path, 256, "%s/share/pixmaps/%s", DATADIR,  
+	      snprintf(png_path, 256, "%s/pixmaps/%s", DATADIR,  
 		       mb_dotdesktop_get(dd, "Icon") );
 	      img_file = strdup(png_path);
 	    }
@@ -582,7 +582,7 @@ main(int argc, char **argv)
       if (img_file[0] != '/')
 	{
 	  /* FIXME: should really get from theme */
-	  snprintf(png_path, 256, "%s/share/pixmaps/%s", DATADIR, img_file);
+	  snprintf(png_path, 256, "%s/pixmaps/%s", DATADIR, img_file);
 	  img_file = strdup(png_path);
 	}
 

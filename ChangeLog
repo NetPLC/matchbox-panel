@@ -1,5 +1,10 @@
 2004-02-04  Matthew Allum, mallum@handhelds.org
 
+	* applets/mb-applet-launcher.c: (main):
+	Remove extra share from img created absolute paths
+
+2004-02-04  Matthew Allum, mallum@handhelds.org
+
 	* applets/dotdesktop/mb-launcher-term.desktop:
 	* applets/mb-applet-launcher.c: (main):
 	Fixed mb-launcher-term not to require absolute paths 
