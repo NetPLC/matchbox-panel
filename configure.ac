@@ -146,7 +146,7 @@ else
    found_png="no"	
 fi
 
-AM_CONDITIONAL(WANT_PNG, test x$found_png = xyes)  
+AM_CONDITIONAL(WANT_PNGS, test x$found_png = xyes)  
 
 
 dnl ---- Icons --------------------------------------------------------------
