@@ -228,7 +228,7 @@ panel_menu_init(MBPanel *panel)
 		    } else {
 		      char launcher_exec_str[256] = { 0 };
 		      snprintf(launcher_exec_str, 256, 
-			       "mb-applet-launcher -o -1 --desktop %s/%s",
+			       "mb-applet-launcher --desktop %s/%s",
 			       DATADIR "/applications", dir_entry->d_name);
 		      mb_menu_add_item_to_menu(panel->mbmenu, 
 					       menu_launchers, 

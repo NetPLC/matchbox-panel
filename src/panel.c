@@ -2045,6 +2045,8 @@ int main(int argc, char *argv[])
 
   XMapWindow (panel->dpy, panel->win);
 
+  XSync(panel->dpy, False);
+
   session_init (panel);
 
   panel_main(panel);

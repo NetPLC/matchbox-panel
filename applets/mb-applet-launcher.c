@@ -566,8 +566,18 @@ main(int argc, char **argv)
 	  else if (mb_dotdesktop_get(dd, "StartupNotify")
 		   && !strcasecmp(mb_dotdesktop_get(dd, "StartupNotify"), 
 				  "true"))
-	    action = ACTION_SN;
+	    {
+	      action = ACTION_SN;
+	    }
+	  else   
 #endif
+	    if (mb_dotdesktop_get(dd, "X-MB-NoWindow")
+		&& !strcasecmp(mb_dotdesktop_get(dd, "X-MB-NoWindow"), 
+			       "true"))
+	      {
+		DoAnimation = False;
+		action = ACTION_NONE;
+	      }	
 	}
       else
 	{
@@ -638,6 +648,9 @@ main(int argc, char **argv)
   signal(SIGCHLD, SIG_IGN);
 
   mb_tray_app_set_icon(TrayApp, pb, img_icon);
+
+  /* make sure we always end up on the left of the panel */
+  mb_tray_app_request_offset (TrayApp, -1); 
 
   if (start_app)
     {

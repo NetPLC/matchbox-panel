@@ -1,3 +1,16 @@
+2004-08-30 matchbox-panel-0.8.3 released released tag: RELEASE_0_8_3
+
+2004-08-30  mallum,,,  <mallum@handhelds.org>
+
+	* applets/mb-applet-launcher.c: (main):
+	Add support for honoring X-MB-NoWindow .desktop key
+	* configure.ac:
+	Bump up version
+	* src/panel.c: (main):
+	* src/panel.h:
+	* src/panel_menu.c: (panel_menu_init):
+	Fix silly atom orientation problem
+
 2004-08-08  mallum,,,  <mallum@handhelds.org>
 
 	* src/panel.c: (panel_xsettings_notify_cb),
@@ -9,7 +22,7 @@
 	* applets/mb-applet-system-monitor.c: (paint_callback):
 	Change mem,cpu bar order to match bubble message 
 
-2004-03-22 matchbox-panel-0.8.2 released released tag: RELEASE_0_8_2
+2004-07-23 matchbox-panel-0.8.2 released released tag: RELEASE_0_8_2
 
 2004-07-23  mallum,,,  <mallum@handhelds.org>
 
