@@ -134,7 +134,7 @@ paint_callback ( MBTrayApp *app, Drawable pxm )
   struct timezone  tz;
   struct tm       *localTime = NULL; 
   time_t           actualTime;
-  char             timestr[5] = { 0 };
+  char             timestr[6] = { 0 };
   MBPixbufImage   *img_bg = NULL;
   MBDrawable      *drw;
 
@@ -143,7 +143,8 @@ paint_callback ( MBTrayApp *app, Drawable pxm )
   actualTime = tv.tv_sec;
   localTime = localtime(&actualTime);
 
-  sprintf(timestr, _("%.2d:%.2d"), localTime->tm_hour, localTime->tm_min);
+  snprintf(timestr, sizeof(timestr), _("%.2d:%.2d"),
+           localTime->tm_hour, localTime->tm_min);
 
   img_bg = mb_tray_app_get_background (app, Pixbuf);
 

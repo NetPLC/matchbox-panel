@@ -105,11 +105,11 @@ msgstr ""
 msgid ""
 "Battery Power\n"
 "Juice %.2i %%\n"
-"Time left: %.2i mins\n"
+"Time left: %.2i h. %.2i min.\n"
 msgstr ""
 "電池供電\n"
 "能量 %.2i %%\n"
-"剩餘時間: %.2i 分\n"
+"剩餘時間: %.2i h.%.2i 分\n"
 
 #: ../applets/mb-applet-battery.c:392
 #, c-format

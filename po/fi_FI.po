@@ -106,11 +106,11 @@ msgstr ""
 msgid ""
 "Battery Power\n"
 "Juice %.2i %%\n"
-"Time left: %.2i mins\n"
+"Time left: %.2i h. %.2i min.\n"
 msgstr ""
 "Akkuteho\n"
 "Virtaa %.2i %%\n"
-"Käyttöaikaa jäljellä: %.2i min.\n"
+"Käyttöaikaa jäljellä: %.2i h. %.2i min.\n"
 
 #: ../applets/mb-applet-battery.c:392
 #, c-format

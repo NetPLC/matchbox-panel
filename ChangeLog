@@ -1,3 +1,26 @@
+2005-04-06  mallum,,,  <mallum@openedhand.com>
+
+	* applets/mb-applet-battery.c: (button_callback):
+	Show Hours + Min rather than just mins
+	* applets/mb-applet-clock.c: (paint_callback):
+	Provent potential overflow
+	* applets/mb-applet-menu-launcher.c: (build_menu):
+	Use MAXPATHLEN
+	* po/cs.po:
+	* po/de.po:
+	* po/en_GB.po:
+	* po/es_ES.po:
+	* po/fi_FI.po:
+	* po/fr_FR.po:
+	* po/zh_TW.po:
+	Update for battery time output
+	* src/panel.c: (panel_set_bg):
+	* src/panel_menu.c: (panel_menu_init):
+	Overflow fixes. 
+
+	Via patches from Philippe De Swert 
+	and Andreas Gunnarsson. 
+
 2005-04-05  mallum,,,  <mallum@openedhand.com>
 
 	* applets/mb-applet-wireless.c: (update_wireless),

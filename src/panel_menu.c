@@ -144,8 +144,12 @@ panel_menu_update_remove_items(MBPanel *panel)
 void 
 panel_menu_init(MBPanel *panel)
 {
+#ifndef MAXPATHLEN
+#define MAXPATHLEN 1024
+#endif
+
   MBMenuMenu *m, *menu_launchers;
-  char orig_wd[256] = { 0 };
+  char orig_wd[MAXPATHLEN] = { 0 };
   struct dirent *dir_entry;
   char *icon_path = NULL;
   DIR *dp;
@@ -173,7 +177,7 @@ panel_menu_init(MBPanel *panel)
 
   if (icon_path) free(icon_path);
 
-  if (getcwd(orig_wd, 255) == (char *)NULL)
+  if (getcwd(orig_wd, MAXPATHLEN) == (char *)NULL)
     {
       printf("Cant get current directory\n");
       exit(0);

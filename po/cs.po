@@ -104,11 +104,11 @@ msgstr ""
 msgid ""
 "Battery Power\n"
 "Juice %.2i %%\n"
-"Time left: %.2i mins\n"
+"Time left: %.2i h. %.2i min.\n"
 msgstr ""
 "Napájeno z baterie\n"
 "Napětí %.2i %%\n"
-"Zbývá: %.2i minut\n"
+"Zbývá: %.2i h. %.2i minut\n"
 
 #: ../applets/mb-applet-battery.c:392
 #, c-format

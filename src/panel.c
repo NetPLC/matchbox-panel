@@ -274,7 +274,7 @@ panel_set_bg(MBPanel *panel, int bg_type, char *bg_spec)
     case BG_PIXMAP:
       if (bg_spec[0] != '/' && panel->theme_path != NULL)
 	{
-	  tmp_path = alloca( sizeof(char) * (strlen(panel->theme_path) + strlen(bg_spec)));
+	  tmp_path = alloca( sizeof(char) * (strlen(panel->theme_path) + strlen(bg_spec) + 2));
 	  sprintf(tmp_path, "%s/%s", panel->theme_path, bg_spec);
 	}
       else tmp_path = bg_spec;

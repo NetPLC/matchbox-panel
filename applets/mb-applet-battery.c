@@ -394,7 +394,7 @@ button_callback (MBTrayApp *app, int x, int y, Bool is_released )
 	  if (apm_vals[TIME_LEFT] > 0 )
 	    {
 	      sprintf(tray_msg, 
-	   	      _("Battery Power\nJuice %.2i %%\nTime left: %.2i mins\n"), apm_vals[PERCENTAGE], apm_vals[TIME_LEFT]);
+		      _("Battery Power\nJuice %.2i %%\nTime left: %.2i h. %.2i min.\n"), apm_vals[PERCENTAGE], (apm_vals[TIME_LEFT]/60), (apm_vals[TIME_LEFT]%60));
 	    }
           else
 	    {

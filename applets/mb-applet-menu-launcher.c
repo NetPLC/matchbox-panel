@@ -381,7 +381,12 @@ build_menu(void)
   DIR *dp;
   struct dirent *dir_entry;
   struct stat stat_info;
-  char orig_wd[256];
+
+#ifndef MAXPATHLEN
+#define MAXPATHLEN 1024
+#endif
+
+  char orig_wd[MAXPATHLEN];
 
   char dirs[2][256] = { MENUDIR };
   FILE *fp;
@@ -464,7 +469,7 @@ build_menu(void)
   if (tmp_path) free(tmp_path);
   if (tmp_path2) free(tmp_path2);
 
-  if (getcwd(orig_wd, 255) == (char *)NULL)
+  if (getcwd(orig_wd, MAXPATHLEN) == (char *)NULL)
     {
       fprintf(stderr, "mb-applet-menu-launcher: cant get current directory\n");
       exit(0);
