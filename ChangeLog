@@ -1,3 +1,17 @@
+2004-02-05  Matthew Allum,,,  <mallum@openedhand.com>
+
+	* Makefile.am:
+	Add po to output dirs
+	* applets/small-icons/mbterm.png:
+	* applets/small-icons/mbterm.xpm:
+	* applets/small-icons/minitime.png:
+	* applets/small-icons/minitime.xpm:
+	Added missing icons
+	* configure.ac:
+	Various tweaks
+	* src/panel.h:
+	Made panel include config.h
+
 2004-02-04  Matthew Allum, mallum@handhelds.org
 
 	* applets/mb-applet-launcher.c: (main):

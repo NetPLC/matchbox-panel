@@ -1,1 +1,1 @@
-SUBDIRS = src applets
+SUBDIRS = src applets po

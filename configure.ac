@@ -37,9 +37,9 @@ AC_ARG_ENABLE(nls,
   [  --enable-nls        enable Native Language Support ( gettext/libintl )],
    enable_nls=$enableval, enable_nls=no)
 
-AC_ARG_ENABLE(sicons,
+AC_ARG_ENABLE(small_icons,
   [  --enable-small-icons    enable small icons],
-     enable_sicons=$enableval, enable_sicons=no )
+     enable_small_icons=$enableval, enable_small_icons=no )
 
 
 AC_ARG_ENABLE(debug,
@@ -147,7 +147,7 @@ AM_CONDITIONAL(WANT_PNGS, test x$found_png = xyes)
 
 dnl ---- Icons --------------------------------------------------------------
 
-AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_sicons = xyes)  
+AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_small_icons = xyes)  
 
 dnl ----- Specific Applet deps ----------------------------------------------
 
@@ -201,12 +201,14 @@ echo "
 
         prefix:                 ${prefix}
         source code location:   ${srcdir}
-        compiler:               ${CC} ${X_LIBS}
+        compiler:               ${CC} 
 
         Building with Debug:                ${enable_debug}
 
         Building with Startup-Notification: ${enable_sn}
-        Building with small icons:          ${enable_sicons}
+	Building with NLS                   ${enable_nls}
+        Building with small icons:          ${enable_small_icons}
+	
 
         Building mb-applet-battery:         ${miniapm_enabled}
 "
