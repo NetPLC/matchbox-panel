@@ -1,3 +1,11 @@
+2005-03-17  mallum,,,  <mallum@openedhand.com>
+
+	* applets/Makefile.am:
+	* applets/mb-applet-wireless.c:
+	* configure.ac:
+	Initial work on porting to use iwlib. 
+	Currently *unworking*
+
 2005-02-22  mallum,,,  <mallum@openedhand.com>
 
 	* src/panel.c: (panel_main):

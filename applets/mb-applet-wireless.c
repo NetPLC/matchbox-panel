@@ -34,18 +34,19 @@
 # define _(text) (text)
 #endif
 
-#define HAVE_LINUX_WIRELESS_H 1
-
-#ifdef HAVE_LINUX_WIRELESS_H
-
 #include <sys/types.h>
 #include <sys/ioctl.h>
 
 #include <netdb.h>      /* gethostbyname, getnetbyname */
+#if 0
 #include <linux/if_arp.h>   /* For ARPHRD_ETHER */
 #include <linux/socket.h>   /* For AF_INET & struct sockaddr */
+#endif
 #include <sys/socket.h>       /* For struct sockaddr_in */
+#if 0
 #include <linux/wireless.h>
+#else
+#include <iwlib.h>
 
 #endif
 
@@ -54,6 +55,8 @@
 #else
 #define IMG_EXT "xpm"
 #endif
+
+/* also see http://www.snorp.net/files/patches/wireless-applet.c */
 
 static int LastImg = -1;
 
@@ -90,208 +93,39 @@ static MBPixbufImage *Imgs[6] = { 0,0,0,0,0,0 },
 static int CurImg = MW_BROKE;
 
 struct {
-
-   char  iface[5];
+   char  *iface;
    char  status[3];
-   float link;
-   float level;
-   float noise;
-   int   nwid;
-   int   crypt;
-   int   misc;
-   int   mode;   
-
+   struct wireless_info info;
 } Mwd;
 
-#define HAVE_LINUX_WIRELESS_H 1
-
-#ifdef HAVE_LINUX_WIRELESS_H
-
-typedef struct iw_range     iwrange;
-typedef struct iw_param     iwparam;
-typedef struct iw_freq      iwfreq;
-typedef struct iw_priv_args iwprivargs;
-typedef struct sockaddr     sockaddr;
-
-typedef struct iw_info
-{
-
-  	char      name[IFNAMSIZ];     /* Wireless/protocol name */
-  	int       has_nwid;
-  	iwparam   nwid;           /* Network ID */
-  	int       has_freq;
-  	float     freq;           /* Frequency/channel */
-  	int       has_sens;
-  	iwparam   sens;           /* sensitivity */
-  	int       has_key;
-  	unsigned char key[IW_ENCODING_TOKEN_MAX]; /* Encoding key used */
-  	int       key_size;       /* Number of bytes */
-  	int       key_flags;      /* Various flags */
-  	int       has_essid;
-  	int       essid_on;
-  	char      essid[IW_ESSID_MAX_SIZE + 1];   /* ESSID */
-  	int       has_nickname;
-  	char      nickname[IW_ESSID_MAX_SIZE + 1]; /* NickName */
-  	int       has_ap_addr;
-  	sockaddr  ap_addr;        /* Access point address */
-  	int       has_bitrate;
-  	iwparam   bitrate;        /* Bit rate in bps */
-  	int       has_rts;
-  	iwparam   rts;            /* RTS threshold in bytes */
-  	int       has_frag;
-  	iwparam   frag;           /* Fragmentation threshold in bytes */
-  	int       has_mode;
-  	int       mode;           /* Operation mode */
-  	int       has_power;
-  	iwparam   power;          /* Power management parameters */
-#if 0	
-  	/* Stats */
-  	iwstats   stats;
-  	int       has_stats;
-  	iwrange   range;
-  	int       has_range;
-#endif
-} InterfaceInfo;
-
-InterfaceInfo ExtendedIWInfo;
-
-int 
-get_extented_iw_info(InterfaceInfo *indata)
-{
-  InterfaceInfo *wdata = indata;
-  struct iwreq   request;
-  int            netsock_fd = -1;
-
-
-  strcpy( wdata->name, Mwd.iface );
-  
-  /* open socket */
-
-  netsock_fd = socket(AF_INET, SOCK_DGRAM, 0);
-	
-  if (netsock_fd == -1) return -1;
-
-  /* network name */
-
-  strcpy ( request.ifr_name, wdata->name);
-  request.u.essid.pointer = (caddr_t) wdata->essid;
-  request.u.essid.length  = IW_ESSID_MAX_SIZE + 1;
-  request.u.essid.flags   = 0;
-  
-  if ( ioctl (netsock_fd, SIOCGIWESSID, &request) >= 0)
-    {
-      wdata->has_essid = 1;
-      wdata->essid_on = request.u.data.flags;
-    }
-  else wdata->has_essid = 0;
-
-#if 0 	    /* Stuff possibly breaks on some cards  */
-
-  /* station name */
-
-  strcpy ( request.ifr_name, wdata->name);
-  request.u.essid.pointer = (caddr_t) wdata->nickname;
-  request.u.essid.length=0;
-  request.u.essid.flags=0;
-	
-  if ( ioctl (netsock_fd, SIOCGIWNICKN, &request) < 0)
-    {
-      wdata->nickname[0] = '\0';
-    }
-
-  /* mode */
-
-  strcpy ( request.ifr_name, wdata->name);
-  
-  if ( ioctl (netsock_fd, SIOCGIWMODE, &request) >= 0)
-    {
-      if ((request.u.mode < 6) && (request.u.mode >= 0))
-	wdata->mode = request.u.mode;
-    }
-
-  /* enc settings (on/off and key) */
-	
-  wdata->has_key = 0;
-  strcpy ( request.ifr_name, wdata->name);
-  request.u.data.pointer = (caddr_t) wdata->key;
-  request.u.data.length=0;
-  request.u.data.flags=0;
-
-  if ( ioctl (netsock_fd, SIOCGIWENCODE, &request) >= 0)
-    {
-      wdata->has_key = 1;
-      wdata->key_size = request.u.data.length;
-      wdata->key_flags = request.u.data.flags;
-    }
-
-  /* power savings */
-	
-  strcpy(request.ifr_name, wdata->name);
-  request.u.power.flags = 0;
-  
-  if(ioctl(netsock_fd, SIOCGIWPOWER, &request) >= 0)
-    {
-      wdata->has_power = 1;
-      memcpy(&(wdata->power), &(request.u.power), sizeof(iwparam));
-    }
-
-  /* access point mac address */
-	
-  strcpy(request.ifr_name, wdata->name);
-  
-  if(ioctl(netsock_fd, SIOCGIWAP, &request) >= 0)
-    {
-      wdata->has_ap_addr = 1;
-      memcpy(&(wdata->ap_addr), &(request.u.ap_addr), sizeof (sockaddr));
-    }
-
-#endif
-
-  /* pack it up and spit it out */
-
-  close (netsock_fd);
-
-  return 0;
-}
-
-#endif
+int skfd; /* file descriptor for socket */
 
 Bool
-update_wireless(void) {
-  FILE *wireless;   // File handle for /proc/net/wireless
-  int count;					      
-  char line[255];
+update_wireless(void) 
+{
 
-  Mwd.link = 0;
-  Mwd.level = 0;
-  Mwd.noise = 0;
-  Mwd.nwid = 0;
-  Mwd.crypt = 0;
-  Mwd.misc = 0;
+  if (skfd == -1) {
+    fprintf (stderr, "Unable to open a socket for wireless extensions.\nPlease ensure your kernel has wireless extensions support.");
+    return False;
+  }
 
-  if ((wireless = fopen ("/proc/net/wireless", "r")) != NULL)
-  {
-     fgets(line,sizeof(line),wireless);
-     fgets(line,sizeof(line),wireless);
-     if (fgets(line,sizeof(line),wireless) == NULL) {
-	Mwd.mode = 0;
-	Mwd.iface[0]=0;
-     } else {
-	sscanf(line,"%s %s %f %f %f %d %d %d",
-	       Mwd.iface, Mwd.status, &Mwd.link, &Mwd.level,
-	       &Mwd.noise, &Mwd.nwid, &Mwd.crypt, &Mwd.misc);
-	for(count=0;(count<strlen(line)) && (line[count]==0x20);count++);
-        strncpy(Mwd.iface,&line[count],5);
-        Mwd.iface[4]=0;
-	Mwd.mode = 1;
-     }
-     fclose(wireless);
-  }
-  else
-  {
-     fprintf (stderr, "miniwave: Wirless device /proc/net/wireless not found\nEnable radio networking and recompile your kernel\n");
-     return False;
-  }
+  if (Mwd.iface == NULL)
+      return False;
+
+  if (iw_get_basic_config(skfd, Mwd.iface, &Mwd.info.b) < 0)
+    {
+      printf("iw_get_basic_config failed %s\n", Mwd.iface); 
+      return False;
+    }
+
+
+  if(iw_get_range_info(skfd, Mwd.iface, &(Mwd.info.range)) >= 0)
+    Mwd.info.has_range = 1;  
+
+  if (iw_get_stats(skfd, Mwd.iface, &(Mwd.info.stats),
+                   &(Mwd.info.range), Mwd.info.has_range) >= 0)
+    Mwd.info.has_stats = 1;
+
   return True;
 }
 
@@ -303,16 +137,16 @@ paint_callback (MBTrayApp *app, Drawable drw )
 
   if (update_wireless())
     {
-      if (Mwd.mode)
+      if (Mwd.info.has_range && (Mwd.info.stats.qual.level != 0))
 	{
 	  /* res->percent = (int)rint ((log (link) / log (92)) * 100.0); ? */
-	  if (Mwd.link > 0 && Mwd.link < 41)
+	  if (Mwd.info.stats.qual.qual > 0 && Mwd.info.stats.qual.qual < 41)
 	    CurImg = MW_SIG_1_40;
-	  else if (Mwd.link > 40 && Mwd.link < 61)
+	  else if (Mwd.info.stats.qual.qual > 40 && Mwd.info.stats.qual.qual < 61)
 	    CurImg = MW_SIG_41_60;
-	  else if (Mwd.link > 60 && Mwd.link < 81)
+	  else if (Mwd.info.stats.qual.qual > 60 && Mwd.info.stats.qual.qual < 81)
 	    CurImg = MW_SIG_61_80;
-	  else if (Mwd.link > 80)
+	  else if (Mwd.info.stats.qual.qual > 80)
 	    CurImg = MW_SIG_80_100;
 	  else
 	    CurImg = MW_NO_LINK;
@@ -421,26 +255,38 @@ button_callback (MBTrayApp *app, int x, int y, Bool is_released )
 
   if (!is_released) return;
 
-  if (Mwd.mode)
+  update_wireless() ;
+
+  /*if (Mwd.info.mode)*/
     {
-      if (get_extented_iw_info(&ExtendedIWInfo) == 0)
+      /*if (get_extented_iw_info(&Mwd.info) == 0)*/
 	{
 	  sprintf(tray_msg,
 		  "%s:\n" 
 		  "  Network: %s\n"
 		  "  Link %.1f\n  Level %.1f\n  Noise %.1f\n",
 		  Mwd.iface, 
-		  ExtendedIWInfo.has_essid ? ExtendedIWInfo.essid  : "Unkown",
-		  Mwd.link, Mwd.level, Mwd.noise );
+		  Mwd.info.has_nickname ? Mwd.info.nickname  : "Unknown",
+		  Mwd.info.stats.qual.qual, 
+		  Mwd.info.stats.qual.level, 
+		  Mwd.info.stats.qual.noise );
 	}
+      /*
       else
+
 	{
 	  sprintf(tray_msg, _("%s:\n Link %.1f\n Level %.1f\n Noise %.1f\n"),
-		  Mwd.iface, Mwd.link, Mwd.level, Mwd.noise );
+		  Mwd.iface, 
+		  Mwd.info.stats.qual.qual, 
+		  Mwd.info.stats.qual.level, 
+		  Mwd.info.stats.qual.noise );
 	}
+      */
     }
+    /*
   else
     sprintf(tray_msg, _("No wireless cards detected\n"));
+    */
 
   mb_tray_app_tray_send_message(app, tray_msg, 5000);
 
@@ -465,6 +311,20 @@ timeout_callback ( MBTrayApp *app )
   mb_tray_app_repaint (app);
 }
 
+int get_iface(int skfd, char *ifname, char *args[], int count)
+{
+
+ if (iw_get_basic_config(skfd, ifname, &Mwd.info.b) < 0)
+   return;
+
+  if (Mwd.iface != NULL)
+    return 0;
+
+  Mwd.iface = strdup(ifname);
+  return 0;
+}
+
+
 int
 main( int argc, char *argv[])
 {
@@ -478,7 +338,12 @@ main( int argc, char *argv[])
   textdomain (PACKAGE);
 #endif
 
-  memset(&ExtendedIWInfo, 0, sizeof(InterfaceInfo));
+  memset(&Mwd.info, 0, sizeof(struct wireless_info));
+  skfd = iw_sockets_open();
+  if (skfd != -1)
+    {
+      iw_enum_devices(skfd, get_iface, NULL, 0);
+    }
 
   app = mb_tray_app_new ( _("Wireless Monitor"),
 			  resize_callback,
@@ -503,7 +368,10 @@ main( int argc, char *argv[])
    mb_tray_app_set_icon(app, pb, Imgs[3]);
    
    mb_tray_app_main (app);
-   
+
+   if (Mwd.iface != NULL)
+      free(Mwd.iface);
+
    return 1;
 }
 

@@ -31,6 +31,7 @@ LDADD = $(LIBMB_LIBS) $(SN_LIBS)
 mb_applet_clock_SOURCES =          mb-applet-clock.c
 mb_applet_menu_launcher_SOURCES =  mb-applet-menu-launcher.c
 mb_applet_wireless_SOURCES =       mb-applet-wireless.c
+mb_applet_wireless_LDADD   =       $(LIBMB_LIBS) $(SN_LIBS) $(WIRELESS_LIBS)
 mb_applet_launcher_SOURCES =       mb-applet-launcher.c  
 mb_applet_system_monitor_SOURCES = mb-applet-system-monitor.c 
 
