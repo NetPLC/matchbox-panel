@@ -1,5 +1,10 @@
 2005-01-21  mallum,,,  <mallum@openedhand.com>
 
+	* applets/icons/miniapm*.png
+	Improve large miniapm panel icons a little.
+
+2005-01-21  mallum,,,  <mallum@openedhand.com>
+
 	* applets/dotdesktop/Makefile.am:
 	Only install .desktop files for installed applets
 	* applets/mb-applet-battery.c: (paint_callback), (button_callback):
