@@ -180,7 +180,7 @@ int system_memory(void)
 void
 paint_callback (MBTrayApp *app, Drawable drw )
 {
-  static int prev_cpu_pixels, prev_mem_pixels;
+  static int prev_cpu_pixels = -1, prev_mem_pixels = -1;
   int        cpu_pixels, mem_pixels;
   int        cpusize, memsize;
   int        x, y;
@@ -200,7 +200,7 @@ paint_callback (MBTrayApp *app, Drawable drw )
   cpu_pixels = (cpusize * ( cpubox_h) )/ 100 ;
   mem_pixels = (memsize * ( membox_h) )/ 100 ;
 
-  if (cpu_pixels == prev_cpu_pixels && mem_pixels == prev_mem_pixels)
+  if ((cpu_pixels == prev_cpu_pixels && mem_pixels == prev_mem_pixels))
     return;
 
   img_backing = mb_tray_app_get_background (app, pb);
