@@ -53,8 +53,8 @@ AC_ARG_ENABLE(debug,
      enable_debug=$enableval, enable_debug=no )
 
 
-PKG_CHECK_MODULES(LIBMB, libmb >= 1.1,,
-	         AC_MSG_ERROR([*** Required Matchbox Library (libmb) not installed ***]))
+PKG_CHECK_MODULES(LIBMB, libmb >= 1.5,,
+	         AC_MSG_ERROR([*** Required Matchbox Library (libmb) 1.5 not installed ***]))
 
 dnl ------ Debug Build ------------------------------------------------------
 
