@@ -87,6 +87,8 @@
 #define ATOM_MB_SYSTEM_TRAY_CONTEXT 29
 #define ATOM_MB_REQ_CLIENT_ORDER 30
 
+#define ATOM_MB_DOCK_TITLEBAR_SHOW_ON_DESKTOP 21
+
 #define XEMBED_EMBEDDED_NOTIFY  0
 #define XEMBED_WINDOW_ACTIVATE  1
 
@@ -193,7 +195,7 @@ typedef struct _panel {
   MBPanelApp             *apps_start_head;
   MBPanelApp             *apps_end_head;
 
-  Atom                    atoms[31];
+  Atom                    atoms[32];
   int                     padding;
   int                     margin_start;
   int                     margin_end;  

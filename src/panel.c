@@ -1820,6 +1820,9 @@ MBPanel
   panel->atoms[ATOM_NET_WM_STATE_TITLEBAR]
     = XInternAtom(panel->dpy, "_MB_WM_STATE_DOCK_TITLEBAR", False);
 
+  panel->atoms[ATOM_MB_DOCK_TITLEBAR_SHOW_ON_DESKTOP]
+    = XInternAtom(panel->dpy, "_MB_DOCK_TITLEBAR_SHOW_ON_DESKTOP", False);
+
   panel->atoms[ATOM_MB_SYSTEM_TRAY_CONTEXT]
     = XInternAtom(panel->dpy, "_MB_SYSTEM_TRAY_CONTEXT", False);
 
@@ -1893,12 +1896,20 @@ MBPanel
 
   if (panel->want_titlebar_dest)
     {
+      Atom state_list[] 
+	= { panel->atoms[ATOM_NET_WM_STATE_TITLEBAR],
+	    panel->atoms[ATOM_MB_DOCK_TITLEBAR_SHOW_ON_DESKTOP] };
+
+      int n_states = 1;
+
+      if (getenv("MB_PANEL_NO_DESKTOP_HIDE")) n_states = 2;
+
       panel->use_flip = False;
 
       XChangeProperty(panel->dpy, panel->win, 
 		      panel->atoms[ATOM_NET_WM_STATE], XA_ATOM, 32, 
 		      PropModeReplace, 
-		      (unsigned char *) &panel->atoms[ATOM_NET_WM_STATE_TITLEBAR], 1);
+		      (unsigned char *) &state_list, n_states);
 
       panel->orientation = North;
     }
