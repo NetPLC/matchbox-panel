@@ -1530,11 +1530,12 @@ panel_reorder_apps(MBPanel *panel)
 MBPanel 
 *panel_init(int argc, char *argv[])
 {
-  int panel_length;
-  XGCValues gv;
+  int                  panel_length;
+  XGCValues            gv;
   XSetWindowAttributes dattr;
-  unsigned long dattr_flags = CWBackPixel;
-  XSizeHints size_hints;
+  unsigned long        dattr_flags = CWBackPixel;
+  XSizeHints           size_hints;
+  XWMHints            *wm_hints;
 
   unsigned long wm_struct_vals[4];
 
@@ -1884,19 +1885,17 @@ MBPanel
   XSetStandardProperties(panel->dpy, panel->win, win_name, 
 			 win_name, 0, argv, argc, &size_hints);
 
-  /*
-    XXX For now the menu popup button is removed.
-        If goes down well, need to rip old code out. 
-  
-  panel_menu_button_create(panel);
-
-  */
-
   XChangeProperty(panel->dpy, panel->win, 
 		  panel->atoms[ATOM_WM_WINDOW_TYPE], XA_ATOM, 32, 
 		  PropModeReplace,
 		  (unsigned char *) &panel->atoms[ATOM_WM_WINDOW_TYPE_DOCK], 
 		  1);
+
+  wm_hints = XAllocWMHints();
+  wm_hints->input = False;
+  wm_hints->flags = InputHint;
+  XSetWMHints(panel->dpy, panel->win, wm_hints );
+  XFree(wm_hints);
 
   if (panel->want_titlebar_dest)
     {
