@@ -1,0 +1,4 @@
+2004-02-03  Matthew Allum, mallum@handhelds.oprg
+
+	* src/panel_menu.c:
+	Changed USE_PNG check to MB_HAVE_PNG

@@ -1,6 +1,6 @@
 #include "panel_menu.h"
 
-#ifdef USE_PNG
+#ifdef MB_HAVE_PNG
 #define FOLDER_IMG  "mbfolder.png"
 #define ADD_IMG     "mbadd.png"
 #define REMOVE_IMG  "mbremove.png"
