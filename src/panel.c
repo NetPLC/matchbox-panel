@@ -30,14 +30,6 @@ MBPanel *G_panel = NULL;
 
 #ifdef USE_XSETTINGS
 
-/*
-   XX = system_tray_id;
-
-/MATCHBOX/PANEL/XX/ORIENTATION north|south|east|west
-/MATCHBOX/PANEL/XX/BACKGROUND  default|rgb:XXX|pxm:XXX|trans:XXX
- Gtk/FontName
-*/
-
 #define XSET_UNKNOWN  0
 #define XSET_GTK_FONT 1
 
@@ -666,10 +658,11 @@ panel_usage(char *bin_name)
 	  "--id                 <int> Panel ID\n"
           "--size, -s           <int> width/height of dock in pixels\n"
           "--orientation        <north|east|south|west>\n"
-          "--default-apps, -da <app list> comma seperated list of apps to\n"
+          "--default-apps, -da  <app list> comma seperated list of apps to\n"
           "                     add to a tray when no session exists\n"
-          "--margin-start       <+int> initial app offset in pixels (panel start)\n"
-          "--margin-end         <+int> initial app offset in pixels (panel end)\n"
+          "--margins            <int>[,<int>]  specify left+right[, top+bottom ] panel\n"
+	  "                     margins in pixels ( default: 2,2 )\n"
+	  "--padding            Specify padding betweeen applets in pixels ( default: 2)\n"
 	  "--titlebar           Request panel in titlebar - see docs for limitations\n"
           "--no-session, -ns    No session saving.\n"
           "--no-menu, -nm       No popup menu\n"   
@@ -1467,7 +1460,7 @@ panel_reorder_apps(MBPanel *panel)
 
   papp = panel->apps_start_head;
 
-  offset = panel->margin_start;
+  offset = panel->margin_sides;
 
   DBG("%s() start list:\n", __func__ );
 
@@ -1498,7 +1491,7 @@ panel_reorder_apps(MBPanel *panel)
 
   if (papp)
     {
-      offset = ( PANEL_IS_VERTICAL(panel) ? panel->h : panel->w ) - panel->margin_end;
+      offset = ( PANEL_IS_VERTICAL(panel) ? panel->h : panel->w ) - panel->margin_sides;
       
       while( papp != NULL)
 	{
@@ -1596,8 +1589,8 @@ MBPanel
   panel->apps_start_head     = NULL;
   panel->apps_end_head       = NULL;
   panel->ignore_next_config  = False;
-  panel->margin_start        = 2;
-  panel->margin_end          = 2;
+  panel->margin_sides        = 2;
+  panel->margin_topbottom    = 2;
   panel->bg_spec             = NULL;
   panel->want_titlebar_dest  = False;
 
@@ -1655,16 +1648,34 @@ MBPanel
       if (panel->default_panel_size < 1) panel_usage (argv[0]);
       continue;
     }
-    if (strstr (argv[i], "--margin-start")) {
+    if (strstr (argv[i], "--padding") || !strcmp ("-s", argv[i])) {
       if (++i>=argc) panel_usage (argv[0]);
-      panel->margin_start = atoi(argv[i]);
-      if (panel->margin_start < 1) panel_usage (argv[0]);
+      panel->padding = atoi(argv[i]);
+      if (panel->padding < 0) panel_usage (argv[0]);
       continue;
     }
-    if (strstr (argv[i], "--margin-end")) {
-      if (++i>=argc) panel_usage (argv[0]);
-      panel->margin_end = atoi(argv[i]);
-      if (panel->margin_end < 1) panel_usage (argv[0]);
+    if (strstr (argv[i], "--margins")) {
+      char *p = NULL;
+
+      if (++i>=argc) 
+	panel_usage (argv[0]);
+
+      p = argv[i];
+
+      if ((p = strchr(argv[i], ',')) != NULL)
+	{
+	  *p = '\0'; p++;
+	}
+
+      panel->margin_sides = atoi(argv[i]);
+      if (panel->margin_sides < 0) panel_usage (argv[0]);
+
+      if (p != NULL)
+	{
+	  panel->margin_topbottom = atoi(p);
+	  if (panel->margin_topbottom < 0) panel_usage (argv[0]);
+	}
+
       continue;
     }
     if (!strcmp ("--bgpixmap", argv[i]) || !strcmp ("-b", argv[i])) {
@@ -1682,11 +1693,6 @@ MBPanel
       panel->system_tray_id = atoi(argv[i]);
       continue;
 
-    }
-    if (!strcmp ("--border", argv[i])) {
-      if (++i>=argc) panel_usage (argv[0]);
-      panel_border_sz = atoi(argv[i]);
-      continue;
     }
     if (!strcmp ("--orientation", argv[i])) {
       Bool found = False;
@@ -1748,15 +1754,6 @@ MBPanel
       panel_length = panel->h;
   else
       panel_length = panel->w;
-
-  /* Clip margin values to 40% */
-  if (panel->margin_start > ( ( panel_length * 40 ) / 100 ) 
-      || panel->margin_end > ( ( panel_length * 40 ) / 100  ))
-    {
-      fprintf(stderr, "matchbox-panel: Panel margins too large. clipping.\n");
-      panel->margin_start = 2;
-      panel->margin_end   = 2;
-    }
 
   if (geometry_str)
     XParseGeometry(geometry_str, &panel->x, &panel->y, &panel->w, &panel->h);  

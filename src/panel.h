@@ -197,8 +197,8 @@ typedef struct _panel {
 
   Atom                    atoms[32];
   int                     padding;
-  int                     margin_start;
-  int                     margin_end;  
+  int                     margin_topbottom;
+  int                     margin_sides;  
 
   /* Message windows */
 

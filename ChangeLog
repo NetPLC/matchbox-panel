@@ -1,3 +1,12 @@
+2004-12-13  mallum,,,  <mallum@openedhand.com>
+
+	* src/panel.c: (panel_usage), (panel_reorder_apps), (panel_init):
+	* src/panel.h:
+	* src/panel_app.c: (panel_app_add_end), (panel_app_new),
+	(panel_app_handle_configure_request), (panel_app_move_to),
+	(panel_apps_nudge), (panel_apps_rescale):
+	Add new --margins, --padding switches.
+
 2004-12-01  mallum <mallum@handhelds.org>
 
 	* configure.ac:

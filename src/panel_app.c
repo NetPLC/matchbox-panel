@@ -216,6 +216,7 @@ panel_app_add_end(MBPanel *panel, MBPanelApp *papp_new)
     papp_new->offset = ( PANEL_IS_VERTICAL(panel) ? panel->h : panel->w ) 
       - panel_app_get_size(panel, papp_new);
 
+
   papp_new->gravity = PAPP_GRAVITY_END;
 }
 
@@ -272,10 +273,24 @@ panel_app_new(MBPanel *panel, Window win, char *cmd_str)
       add_at_start = True;
     }
 
+  /* Assume square app - it can always change */
+
+  if (panel->orientation == North || panel->orientation == South)
+    {
+      papp->h = panel->h - (2*panel->margin_topbottom);
+      papp->w = papp->h;
+    }
+  else
+    {
+      papp->w = panel->w - (2*panel->margin_topbottom); 
+      papp->h = papp->w;
+    }
+
+
   if (add_at_start)
     {
       if (panel->apps_start_head == NULL)
-	padding = panel->margin_start;
+	padding = panel->margin_sides;
       else
 	padding = panel->padding;
 
@@ -284,12 +299,14 @@ panel_app_new(MBPanel *panel, Window win, char *cmd_str)
   else
     {
       if (panel->apps_end_head == NULL)
-	padding = -1 * panel->margin_end;
+	padding = -1 * panel->margin_sides;
       else
 	padding = -1 * panel->padding;
 
       panel_app_add_end(panel, papp); 
     }
+
+
 
   DBG("%s() papp offset at %i\n", __func__, papp->offset );
 
@@ -299,13 +316,11 @@ panel_app_new(MBPanel *panel, Window win, char *cmd_str)
 
   if (panel->orientation == North || panel->orientation == South)
     {
-      papp->h = panel->h - 4;
       papp->y = (panel->h - papp->h) / 2;
       papp->x = papp->offset + padding;
     }
   else
     {
-      papp->w = panel->w - 4; 
       papp->x = (panel->w - papp->w) / 2;
       papp->y = papp->offset + padding;
     }
@@ -343,7 +358,12 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
       if (panel->orientation == North || panel->orientation == South)
 	{
 	  xwc.width  = ev->width;
-	  xwc.height = panel->h - 4;
+	  xwc.height = panel->h - (2*panel->margin_topbottom);
+
+	  if (ev->width == ev->height) /* app wants to be square */
+	    {
+	      xwc.width  = xwc.height;
+	    }
 
 	  papp->y = (panel->h - papp->h) / 2;
 
@@ -372,8 +392,11 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
 
 	} else { 		/* East / West orientated dock */
 
-	  xwc.width  = panel->w - 4;
+	  xwc.width  = panel->w - (2*panel->margin_topbottom);
 	  xwc.height = ev->height;
+
+	  if (ev->width == ev->height) /* app wants to be square */
+	    xwc.height  = xwc.width;
 
 	  papp->x = (panel->w - papp->w) / 2;
 	  xwc.x = papp->x;
@@ -495,7 +518,7 @@ panel_apps_rescale (MBPanel    *panel,
 
   while (papp_cur != NULL)
     {
-      papp->h = panel->h - 4;
+      papp->h = panel->h - (2*panel->margin_topbottom);
       XResizeWindow(panel->dpy, papp->win, papp->w, papp->h);
       panel_app_deliver_config_event(panel, papp);
       papp_cur = papp_cur->next;
