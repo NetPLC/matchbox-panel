@@ -78,7 +78,12 @@ int system_cpu(void)
     int i;
     FILE *stat;
 
-    stat = fopen("/proc/stat", "r");
+    if ((stat = fopen("/proc/stat", "r")) == NULL)
+      {
+	fprintf(stderr, "mb-applet-system-monitor: failed to open /proc/stat. Exiting\n");
+	exit(1);
+      }
+
     fscanf(stat, "%*s %Ld %Ld %Ld %Ld", &ab, &ac, &ad, &ae);
     fclose(stat);
 
@@ -119,7 +124,14 @@ int system_memory(void)
     static char not_needed[2048];
 
     if (mem_delay-- <= 0) {
-	mem = fopen("/proc/meminfo", "r");
+      if ((mem = fopen("/proc/meminfo", "r")) == NULL)
+	{
+	  fprintf(stderr, "mb-applet-system-monitor: failed to open /proc/meminfo. Exiting.\n");
+	  exit(1);
+      }
+
+
+
 	fgets(not_needed, 2048, mem);
 	
 	/* 

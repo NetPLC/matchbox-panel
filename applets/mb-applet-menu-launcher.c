@@ -187,7 +187,7 @@ sn_exec(char* name, char* bin_name, char *desc)
     case 0:
       sn_launcher_context_setup_child_process (context);
       mb_exec(bin_name);
-      fprintf (stderr, "mbmenu: Failed to exec %s \n", bin_name);
+      fprintf (stderr, "mb-applet-menu-launcher: Failed to exec %s \n", bin_name);
       _exit (1);
       break;
     }
@@ -204,10 +204,10 @@ static void fork_exec(char *cmd)
       case 0:
 	mb_exec(cmd);
 	/* execlp("/bin/sh", "sh", "-c", cmd, NULL); */
-	fprintf(stderr, "mbmenu: exec failed, cleaning up child\n");
+	fprintf(stderr, "mb-applet-menu-launcher: exec of '%s' failed, cleaning up child\n, cmd");
 	exit(1);
       case -1:
-	fprintf(stderr, "mbmenu: can't fork\n"); break;
+	fprintf(stderr, "mb-applet-menu-launcher: can't fork '%s'\n", cmd); break;
       }
 }
 
@@ -415,8 +415,13 @@ build_menu(void)
   
   dd = mb_dotdesktop_new_from_file(vfolder_path_root);
 
-  if (!dd) 			/* XXX improve */
-    { fprintf( stderr, "mbdesktop: cant open " PKGDATADIR "/vfolders/Root.desktop\n" ); exit(1); }
+  if (!dd) 	
+    { 
+      fprintf( stderr, 
+	       "mb-applet-menu-launcher: cant open " PKGDATADIR "/vfolders/Root.desktop\n"
+	       "                         Did you install matchbox-common ?" ); 
+      exit(1); 
+    }
 
   root_match_str = mb_dotdesktop_get(dd, "Match");
 
@@ -461,7 +466,7 @@ build_menu(void)
 
   if (getcwd(orig_wd, 255) == (char *)NULL)
     {
-      fprintf(stderr, "mbmenu: cant get current directory\n");
+      fprintf(stderr, "mb-applet-menu-launcher: cant get current directory\n");
       exit(0);
     }
 
@@ -620,12 +625,12 @@ build_menu(void)
 			}
 		    }
 		  else fprintf(stderr, 
-			       "mbmenu: %s has no icon, png or name\n", 
+			       "mb-applet-menu-launcher: %s has no icon, png or name\n", 
 			       dir_entry->d_name);
 		  mb_dotdesktop_free(dd);
 		}
 	      else
-		fprintf(stderr, "mbmenu: failed to parse %s :( \n", dir_entry->d_name);
+		fprintf(stderr, "mb-applet-menu-launcher: failed to parse %s :( \n", dir_entry->d_name);
 	    }
 	}
   
@@ -643,7 +648,7 @@ build_menu(void)
 	{
 	  if ((dp = opendir(dirs[i])) == NULL)
 	    {
-	      fprintf(stderr, "mbmenu: failed to open %s\n", dirs[i]);
+	      fprintf(stderr, "mb-applet-menu-launcher: failed to open %s\n", dirs[i]);
 	      continue;
 	    }
 	  
@@ -660,7 +665,7 @@ build_menu(void)
 		  len = fread(buf, 1, stat_info.st_size, fp);
 		  if (len >= 0) buf[len] = '\0';
 		  if (!(parse_menu_file(buf)))
-		    fprintf(stderr, "mbmenu: had problems parsing %s. Ignoring. \n",
+		    fprintf(stderr, "mb-applet-menu-launcher: had problems parsing %s. Ignoring. \n",
 			    dir_entry->d_name);
 		  DBG("done\n\n");
 		  fclose(fp);
@@ -872,7 +877,7 @@ load_icon(void)
       || !(app_data->img_tray 
 	   = mb_pixbuf_img_new_from_file(app_data->pb, icon_path)))
     {
-      fprintf(stderr, "mbmenu: failed to load icon\n");
+      fprintf(stderr, "mb-applet-menu-launcher: failed to load panel icon\n");
       exit(1);
     }
 

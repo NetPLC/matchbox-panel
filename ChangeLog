@@ -1,3 +1,21 @@
+2004-04-27  Matthew Allum,,,  <mallum@handhelds.org>
+
+	* applets/mb-applet-menu-launcher.c: (sn_exec), (fork_exec),
+	(build_menu), (load_icon):
+	Improved/cleaned error messages
+	* applets/mb-applet-system-monitor.c: (system_cpu),
+	(system_memory):
+	Exit rather than segv if /proc files cant be opened.
+
+2004-04-27  Matthew Allum,,,  <mallum@handhelds.org>
+
+	reviewed by: <delete if not using a buddy>
+
+	* applets/mb-applet-menu-launcher.c: (sn_exec), (fork_exec),
+	(build_menu), (load_icon):
+	* applets/mb-applet-system-monitor.c: (system_cpu),
+	(system_memory):
+
 2004-04-22  Matthew Allum,,,  <mallum@openedhand.com>
 
 	* src/panel.c: (panel_init):
