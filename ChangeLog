@@ -1,3 +1,8 @@
+2004-12-23  mallum,,,  <mallum@openedhand.com>
+
+	* src/panel_app.c: (panel_app_handle_configure_request):
+	Tweak positioning for non sqaure applets
+
 2004-12-20  mallum,,,  <mallum@openedhand.com>
 
 	* src/panel.c: (panel_set_bg), (panel_init):

@@ -355,6 +355,12 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
       DBG("%s() panel is w: %i  %i h:\n", 
 	  __func__, panel->w, panel->h );
 
+      /*
+      if (papp->x == ev->x && papp->y == ev->y 
+	  && papp->h == ev->height && papp->w == ev->width)
+	return;
+      */
+
       if (panel->orientation == North || panel->orientation == South)
 	{
 	  xwc.width  = ev->width;
@@ -371,17 +377,20 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
 	    {
 	      if (papp == panel_app_list_get_last(panel, panel->apps_end_head))
 		{
+		  DBG("%s() papp is last at end\n", __func__);
 		  panel_app_move_to(panel, papp, 
 				    papp->x - (xwc.width - papp->w));
 		}
 	      else if (papp == panel_app_list_get_last(panel, 
 						       panel->apps_start_head))
 		{
+		  DBG("%s() papp is last at start\n", __func__);
 		  panel_app_move_to(panel, papp, 
-				    papp->x + (xwc.width - papp->w));
+				    papp->x /*+ (xwc.width - papp->w)*/);
 		}
 	      else
 		{
+		  DBG("%s() papp is nowhere special\n", __func__);
 		  panel_apps_nudge (panel, papp->next, xwc.width - papp->w);
 		}
 	      papp->w = xwc.width;
@@ -413,7 +422,7 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
 						       panel->apps_start_head))
 		{
 		  panel_app_move_to(panel, papp, 
-				    papp->y + (xwc.height - papp->h));
+				    papp->y /* + (xwc.height - papp->h) */);
 		}
 	      else
 		{
