@@ -44,6 +44,6 @@ install-data-local:  $(CATALOGS)
 			$(mkinstalldirs) $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES; \
 			chmod 755 $(DESTDIR)$(datadir)/locale/$$l; \
 			chmod 755 $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES; \
-			$(INSTALL_DATA) -m 644 $$n $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/matchbox.mo; \
+			$(INSTALL_DATA) -m 644 $$n $(DESTDIR)$(datadir)/locale/$$l/LC_MESSAGES/matchbox-panel.mo; \
 		fi; \
 	done

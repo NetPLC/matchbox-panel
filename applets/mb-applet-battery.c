@@ -333,7 +333,7 @@ load_icon(void)
  if (icon_path == NULL 
      || !(img_icon = mb_pixbuf_img_new_from_file(pb, icon_path)))
     {
-      fprintf(stderr, "miniapm: failed to load icon %s\n", MINIAPM_IMG);
+      fprintf(stderr, "mb-applet-battery: failed to load icon %s\n", MINIAPM_IMG);
       exit(1);
     }
 
@@ -346,7 +346,7 @@ load_icon(void)
  if (icon_path == NULL 
      || !(img_icon_pwr = mb_pixbuf_img_new_from_file(pb, icon_path)))
     {
-      fprintf(stderr, "miniapm: failed to load icon %s\n", MINIAPM_PWR_IMG);
+      fprintf(stderr, "mb-applet-battery: failed to load icon %s\n", MINIAPM_PWR_IMG);
       exit(1);
     }
 
@@ -428,8 +428,6 @@ main( int argc, char *argv[])
 {
   MBTrayApp *app = NULL;
   struct timeval tv;
-
- printf("%s() called\n", __func__);
 
 #if ENABLE_NLS
   setlocale (LC_ALL, "");

@@ -1,3 +1,10 @@
+2004-02-10  Matthew Allum,,,  <mallum@openedhand.com>
+
+	* applets/mb-applet-battery.c: (main):
+	Change miniapm printf's to mb-applet-battery
+	* po/Makefile.am:
+	Fix .mo's getting installed in correct location
+
 2004-02-09  Matthew Allum,,,  <mallum@openedhand.com>
 
 	* applets/icons/minisys.png:
