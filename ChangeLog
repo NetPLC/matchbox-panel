@@ -1,3 +1,9 @@
+2004-07-23  mallum,,,  <mallum@handhelds.org>
+
+	* src/session.c: (session_destroy),
+	(session_preexisting_handle_timeouts):
+	Fix default apps not appearing. 
+
 2004-06-28  Matthew Allum,,,  <mallum@handhelds.org>
 
 	* po/zh_TW.po:
@@ -24,15 +30,6 @@
 	* applets/mb-applet-system-monitor.c: (system_cpu),
 	(system_memory):
 	Exit rather than segv if /proc files cant be opened.
-
-2004-04-27  Matthew Allum,,,  <mallum@handhelds.org>
-
-	reviewed by: <delete if not using a buddy>
-
-	* applets/mb-applet-menu-launcher.c: (sn_exec), (fork_exec),
-	(build_menu), (load_icon):
-	* applets/mb-applet-system-monitor.c: (system_cpu),
-	(system_memory):
 
 2004-04-22  Matthew Allum,,,  <mallum@openedhand.com>
 

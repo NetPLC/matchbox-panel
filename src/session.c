@@ -1,6 +1,6 @@
 #include "session.h"
 
-#define DEFAULT_SESSIONS "mbmenu,minitime"
+#define DEFAULT_SESSIONS "mb-applet-menu-launcher,mb-applet-clock"
 
 void 
 session_set_defaults(MBPanel *panel, char *defaults)
@@ -228,7 +228,7 @@ session_preexisting_handle_timeouts(MBPanel *panel)
 {
   if (!session_preexisting_restarting(panel)) return False;
 
-  DBG("%s() called\n", __func__);
+  /* DBG("%s() called\n", __func__); */
 
   /* catch session timeouts */
   if (panel->session_entry_cur[0] != '\0')
