@@ -1,5 +1,10 @@
 2005-02-22  mallum,,,  <mallum@openedhand.com>
 
+	* src/panel.c: (panel_main):
+	Exit if tray selection is 'stolen'
+
+2005-02-22  mallum,,,  <mallum@openedhand.com>
+
 	* src/panel.c: (panel_usage):
 	make usage display version.
 

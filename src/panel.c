@@ -1036,6 +1036,13 @@ panel_main(MBPanel *panel)
 	  mb_menu_handle_xevent(panel->mbmenu, &an_event);
 	  switch (an_event.type)
 	    {
+	    case SelectionClear:
+	      if (an_event.xselectionclear.selection == panel->atoms[ATOM_SYSTEM_TRAY])
+		{
+		  fprintf(stderr, "matchbox-panel: Another system tray has started and taken tray ID. Exiting.\n");
+		  exit(-1);
+		}
+	      break;
 	    case ButtonPress:
 	      panel_handle_button_event(panel, &an_event.xbutton);
 	      break;
