@@ -1,3 +1,8 @@
+2004-02-24  Matthew Allum,,,  <mallum@openedhand.com>
+
+	* src/panel.h:
+	remove uneeded xpm.h include
+
 2004-02-13  Matthew Allum,,,  <mallum@openedhand.com>
 
 	* applets/mb-applet-wireless.c: (resize_callback),
