@@ -43,10 +43,6 @@
 #endif
 
 
-#ifdef USE_XFT
-#include <X11/Xft/Xft.h>
-#endif
-
 #ifdef USE_LIBSN
 #define SN_API_NOT_YET_FROZEN 1
 #include <libsn/sn.h>

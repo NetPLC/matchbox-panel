@@ -71,7 +71,7 @@ struct apm_reply {
 #define AC_LINE_STATUS_ON 1
 #endif
 
-#ifdef USE_PNG
+#ifdef MB_HAVE_PNG
 #define MINIAPM_IMG     "miniapm.png"
 #define MINIAPM_PWR_IMG "miniapm-power.png"
 #else

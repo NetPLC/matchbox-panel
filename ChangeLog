@@ -1,5 +1,12 @@
 2004-02-04  Matthew Allum, mallum@handhelds.org
 
+	* applets/mb-applet-battery.c:
+	* applets/mb-applet-menu-launcher.c:
+	* applets/mb-applet-system-monitor.c:
+	#ifdef cleanups
+
+2004-02-04  Matthew Allum, mallum@handhelds.org
+
 	* applets/Makefile.am:
 	Made mb-applet-battery build conditional on apm deps
 

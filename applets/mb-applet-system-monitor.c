@@ -1,5 +1,5 @@
 /*
- *  minisys - tiny sys monitor
+ *  mb-applet-system-monitor - tiny sys monitor
  *
  *  cpu reading code based on wmbubblemon
  *
