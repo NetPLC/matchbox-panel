@@ -207,12 +207,13 @@ paint_callback (MBTrayApp *app, Drawable drw )
 
   mb_pixbuf_img_composite(pb, img_backing, ImgIconScaled, 0, 0);
 
-  membox_x = (mb_pixbuf_img_get_width(img_backing)/4) - (mb_pixbuf_img_get_width(img_backing)/16);
-  membox_y = membox_x;
-  membox_w = (mb_pixbuf_img_get_width(img_backing)/16) * 2;
-  cpubox_x = ((mb_pixbuf_img_get_width(img_backing)/4) * 3) - (mb_pixbuf_img_get_width(img_backing)/16);
-  cpubox_y = membox_y;
-  cpubox_w = membox_w;
+  cpubox_x = (mb_pixbuf_img_get_width(img_backing)/4) - (mb_pixbuf_img_get_width(img_backing)/16);
+  cpubox_y = cpubox_x;
+  cpubox_w = (mb_pixbuf_img_get_width(img_backing)/16) * 2;
+
+  membox_x = ((mb_pixbuf_img_get_width(img_backing)/4) * 3) - (mb_pixbuf_img_get_width(img_backing)/16);
+  membox_y = cpubox_y;
+  membox_w = cpubox_w;
 
   /* clear boxes */
 
