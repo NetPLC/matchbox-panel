@@ -112,23 +112,14 @@ panel_menu_update_remove_items(MBPanel *panel)
 		  if ((icon_data = panel_app_icon_prop_data_get(panel, papp)) 
 		      != NULL )
 		    {
-		      char *p;
-		      int j;
-		      
 		      DBG("%s() Got icon data (size: %i x %i)\n", __func__,
 			  icon_data[0], icon_data[1] );
-		      
-		      papp->icon = mb_pixbuf_img_new(panel->pb, 
-						     icon_data[0], icon_data[1] ); 
-		      p = papp->icon->rgba;
-		      
-		      for (j =0 ; j < (icon_data[0]*icon_data[1]); j++)
-			{
-			  *p++ = (icon_data[j+2] >> 16) & 0xff;  
-			  *p++ = (icon_data[j+2] >> 8) & 0xff;  
-			  *p++ = icon_data[j+2] & 0xff;  
-			  *p++ = icon_data[j+2] >> 24; 
-			}
+
+		      papp->icon 
+			= mb_pixbuf_img_new_from_int_data(panel->pb,
+							  &icon_data[2],
+							  icon_data[0], 
+							  icon_data[1]);
 
 		      XFree(icon_data);
 		    }

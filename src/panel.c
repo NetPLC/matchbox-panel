@@ -398,10 +398,12 @@ panel_set_bg(MBPanel *panel, int bg_type, char *bg_spec)
 	      return;
 	    }
 
+	  /*
 	  DBG("%s() First pixel of root looks like %i, %i, %i, %i\n", 
 	      __func__, img_tmp->rgba[0], img_tmp->rgba[1],
 	      img_tmp->rgba[2], img_tmp->rgba[3]);
-	  
+	  */
+
 	  if (trans_level > 0)
 	    for (dx = 0; dx < panel->w; dx++)
 	      for (dy = 0; dy < panel->h; dy++)
@@ -1717,6 +1719,10 @@ MBPanel
       fprintf(stderr, "%s: failed to open display", argv[0]);
       exit(1);
     }
+
+   if (getenv("MB_SYNC")) 
+     XSynchronize (panel->dpy, True);
+
 
   panel->screen = DefaultScreen(panel->dpy);
   panel->win_root = RootWindow(panel->dpy, panel->screen);

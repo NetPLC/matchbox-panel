@@ -1,3 +1,10 @@
+2004-12-20  mallum,,,  <mallum@openedhand.com>
+
+	* src/panel.c: (panel_set_bg), (panel_init):
+	* src/panel_menu.c: (panel_menu_update_remove_items):
+	Fixes for new pixbuf 16bpp internals.
+	ALso add support for MB_SYNC env var.
+
 2004-12-17  mallum,,,  <mallum@openedhand.com>
 
 	* configure.ac:
