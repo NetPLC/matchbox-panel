@@ -1,5 +1,5 @@
 /*
- * Monolaunch - A docked applicatication launcher
+ * mb-applet-launcher - A docked applicatication launcher
  *
  * Originally based on xsingleinstance by Merle F. McClelland for CompanionLink
  *

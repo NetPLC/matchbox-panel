@@ -1,6 +1,6 @@
 SUBDIRS = dotdesktop icons small-icons
 
-EXTRA_DIST = mb-applet-battery.c
+EXTRA_DIST = mb-applet-battery.c mb-applet-xterm-wrapper.sh
 
 PREFIXDIR  = $(prefix)
 PKGDATADIR = $(datadir)/matchbox
@@ -27,3 +27,5 @@ mb_applet_launcher_SOURCES =       mb-applet-launcher.c
 mb_applet_system_monitor_SOURCES = mb-applet-system-monitor.c 
 mb_applet_battery_SOURCES =        mb-applet-battery.c
 mb_applet_battery_LDADD   =        $(LIBMB_LIBS) -lapm  
+
+bin_SCRIPTS = mb-applet-xterm-wrapper.sh

@@ -1,5 +1,62 @@
 2004-02-04  Matthew Allum, mallum@handhelds.org
 
+	* applets/Makefile.am:
+	* applets/dotdesktop/Makefile.am:
+	* applets/dotdesktop/mb-launcher-term.desktop:
+	* applets/dotdesktop/mb-show-desktop.desktop:
+	* applets/icons/Makefile.am:
+	* applets/icons/battery.xpm:
+	* applets/icons/broken-0.png:
+	* applets/icons/broken-0.xpm:
+	* applets/icons/mbmenu.png:
+	* applets/icons/mbmenu.xpm:
+	* applets/icons/mbterm.png:
+	* applets/icons/mbterm.xpm:
+	* applets/icons/miniapm-power.png:
+	* applets/icons/miniapm-power.xpm:
+	* applets/icons/miniapm.png:
+	* applets/icons/miniapm.xpm:
+	* applets/icons/minisys.png:
+	* applets/icons/minisys.xpm:
+	* applets/icons/minitime.png:
+	* applets/icons/minitime.xpm:
+	* applets/icons/minitimestrip.xpm:
+	* applets/icons/miniwave-icon.png:
+	* applets/icons/miniwave.xpm:
+	* applets/icons/no-link-0.png:
+	* applets/icons/no-link-0.xpm:
+	* applets/icons/oval_filled.xpm:
+	* applets/icons/signal-1-40.png:
+	* applets/icons/signal-1-40.xpm:
+	* applets/icons/signal-41-60.png:
+	* applets/icons/signal-41-60.xpm:
+	* applets/icons/signal-61-80.png:
+	* applets/icons/signal-61-80.xpm:
+	* applets/icons/signal-81-100.png:
+	* applets/icons/signal-81-100.xpm:
+	* applets/icons/term.png:
+	* applets/mb-applet-launcher.c:
+	* applets/mb-applet-xterm-wrapper.sh:
+	* applets/small-icons/Makefile.am:
+	* applets/small-icons/broken-0.png:
+	* applets/small-icons/broken-0.xpm:
+	* applets/small-icons/mbdesktop.png:
+	* applets/small-icons/mbdesktop.xpm:
+	* applets/small-icons/no-link-0.png:
+	* applets/small-icons/no-link-0.xpm:
+	* applets/small-icons/signal-1-40.png:
+	* applets/small-icons/signal-1-40.xpm:
+	* applets/small-icons/signal-41-60.png:
+	* applets/small-icons/signal-41-60.xpm:
+	* applets/small-icons/signal-61-80.png:
+	* applets/small-icons/signal-61-80.xpm:
+	* applets/small-icons/signal-81-100.png:
+	* applets/small-icons/signal-81-100.xpm:
+
+	BIG icon cleanup 
+
+2004-02-04  Matthew Allum, mallum@handhelds.org
+
 	* applets/mb-applet-battery.c:
 	* applets/mb-applet-menu-launcher.c:
 	* applets/mb-applet-system-monitor.c:

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Desktop
-Comment=Toggle Desktop Visiblity
-Exec=matchbox-remote -desktop
-Type=Application
-Icon=mbdesktop.png
-Categories=Action
-
