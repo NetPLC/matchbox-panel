@@ -1,3 +1,10 @@
+2005-02-21  mallum,,,  <mallum@openedhand.com>
+
+	* applets/mb-applet-battery.c: (paint_callback), (button_callback):
+	Apply patches for battery applet from Rob Taylor
+
+2005-01-21 0.9.1 Released
+
 2005-01-21  mallum,,,  <mallum@openedhand.com>
 
 	* applets/icons/miniapm*.png

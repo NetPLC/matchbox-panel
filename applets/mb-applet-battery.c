@@ -230,7 +230,7 @@ paint_callback (MBTrayApp *app, Drawable drw )
   printf("bar: %ix%i +%i+%i (%i)\n", bar_width, bar_height, bar_x, bar_y, mb_pixbuf_img_get_width(img_backing) );
   */  
 
-  if (apm_vals[PERCENTAGE] <= 0 || apm_vals[PERCENTAGE] > 99)
+  if (apm_vals[PERCENTAGE] <= 0 || apm_vals[PERCENTAGE] > 100)
     { 
       r = 0x66; g = 0xff; b = 0x33; ac_power = True; 
       apm_vals[PERCENTAGE] = -1;
@@ -273,24 +273,28 @@ paint_callback (MBTrayApp *app, Drawable drw )
 	  mb_pixbuf_img_plot_pixel(pb, img_backing, x, y, r, g, b);
     }
 
-  /* Bubble alerts  */
-  if ((time_left_idx > 0) 
-      && !ac_power
-      && apm_vals[PERCENTAGE] > 0
-      /* && apm_vals[TIME_LEFT]  > 0 XXX Less strict */ 
-      && (apm_vals[TIME_LEFT] < time_left_alerts[time_left_idx]))
+  /*dont do this if time values arent supported by this bios*/
+  if (apm_vals[TIME_LEFT] > 0 )
     {
-      char tray_msg[256];
-      sprintf(tray_msg, 
-	      _("Battery power very low !\n\nTime Left: %.2i minutes"), 
-	      time_left_alerts[time_left_idx]);
-      mb_tray_app_tray_send_message(app, tray_msg, 0);
-      time_left_idx--;
-    }
-  else if (time_left_idx < 4 
-	   && apm_vals[TIME_LEFT] > time_left_alerts[time_left_idx+1])
-    {
-      time_left_idx++;
+    /* Bubble alerts  */
+    if ((time_left_idx > 0) 
+        && !ac_power
+       && apm_vals[PERCENTAGE] > 0
+        /* && apm_vals[TIME_LEFT]  > 0 XXX Less strict */ 
+        && (apm_vals[TIME_LEFT] < time_left_alerts[time_left_idx]))
+      {
+        char tray_msg[256];
+        sprintf(tray_msg, 
+   	        _("Battery power very low !\n\nTime Left: %.2i minutes"), 
+	        time_left_alerts[time_left_idx]);
+        mb_tray_app_tray_send_message(app, tray_msg, 0);
+        time_left_idx--;
+      }
+    else if (time_left_idx < 4 
+  	     && apm_vals[TIME_LEFT] > time_left_alerts[time_left_idx+1])
+      {
+        time_left_idx++;
+      }
     }
 
   mb_pixbuf_img_render_to_drawable(pb, img_backing, drw, 0, 0);
@@ -378,19 +382,27 @@ button_callback (MBTrayApp *app, int x, int y, Bool is_released )
   if (apm_vals[AC_POWER] == AC_LINE_STATUS_ON)
     {
       if (apm_vals[PERCENTAGE] > 0 
-	  && apm_vals[PERCENTAGE] < 100 )
+	  && apm_vals[PERCENTAGE] <= 100 )
 	sprintf(tray_msg, _("AC Connected\nCharging: %.2i %%\n")
 		, apm_vals[PERCENTAGE]);
       else
 	sprintf(tray_msg, _("AC Connected\nFully charged.\n"));
     } else {
       if (apm_vals[PERCENTAGE] > 0 
-	  && apm_vals[PERCENTAGE] < 100 
-	  /* && apm_vals[TIME_LEFT] > 0 Less strict */)
-	{
-	  sprintf(tray_msg, 
-		  _("Battery Power\nJuice %.2i %%\nTime left: %.2i mins\n"), apm_vals[PERCENTAGE], apm_vals[TIME_LEFT]);
-	}
+	  && apm_vals[PERCENTAGE] <= 100 )
+        {
+	  if (apm_vals[TIME_LEFT] > 0 )
+	    {
+	      sprintf(tray_msg, 
+	   	      _("Battery Power\nJuice %.2i %%\nTime left: %.2i mins\n"), apm_vals[PERCENTAGE], apm_vals[TIME_LEFT]);
+	    }
+          else
+	    {
+	      sprintf(tray_msg, 
+	   	      _("Battery Power\nJuice %.2i %%\n"), apm_vals[PERCENTAGE]);
+	    }
+
+        }
       else sprintf(tray_msg, _("Battery Power\n Device read error.\n"));
     }
   mb_tray_app_tray_send_message(app, tray_msg, 5000);
