@@ -1,3 +1,9 @@
+2004-02-09  Matthew Allum,,,  <mallum@openedhand.com>
+
+	* applets/icons/minisys.png:
+	* applets/icons/minisys.xpm:
+	Large mb-applet-system-monitor icon improved
+
 2004-02-07  Matthew Allum,,,  <mallum@handhelds.org>
 
 	* applets/Makefile.am:
