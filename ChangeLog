@@ -1,3 +1,12 @@
+2005-04-05  mallum,,,  <mallum@openedhand.com>
+
+	* applets/mb-applet-wireless.c: (update_wireless),
+	(paint_callback), (load_icons), (resize_callback),
+	(button_callback), (theme_callback), (timeout_callback),
+	(find_iwface), (main):
+	Fix up to iwlib using wireless applet. Brunt of work via
+	Chris Lord.
+
 2005-03-17  mallum,,,  <mallum@openedhand.com>
 
 	* applets/Makefile.am:

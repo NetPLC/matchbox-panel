@@ -56,10 +56,6 @@
 #define IMG_EXT "xpm"
 #endif
 
-/* also see http://www.snorp.net/files/patches/wireless-applet.c */
-
-static int LastImg = -1;
-
 enum {
   MW_BROKE = 0,
   MW_NO_LINK,
@@ -86,45 +82,79 @@ static char *ImgLookup[64] = {
 
 };
 
-static char *ThemeName = NULL;
-static MBPixbuf *pb;
+static char          *ThemeName = NULL;
+static MBPixbuf      *pb;
 static MBPixbufImage *Imgs[6] = { 0,0,0,0,0,0 }, 
-  *ImgsScaled[6] = { 0,0,0,0,0,0 };
-static int CurImg = MW_BROKE;
+                     *ImgsScaled[6] = { 0,0,0,0,0,0 };
+static int            CurImg = MW_BROKE;
+static int            LastImg = -1;
+
+
 
 struct {
-   char  *iface;
-   char  status[3];
-   struct wireless_info info;
+   char *iface;			/* Interface name */
+   char *essid;			/* ESSID */
+   char *mode;			/* Mode */
+   int   quality;		/* Quality (%) */
+   int   level, noise;		/* Signal level, noise (dBm) */
 } Mwd;
 
-int skfd; /* file descriptor for socket */
+/* iwlib stuff  */
+
+int  Wfd; /* file descriptor for socket */
+static struct wireless_info WInfo;
 
 Bool
 update_wireless(void) 
 {
+  /* urg, iwlib api :/ */
 
-  if (skfd == -1) {
-    fprintf (stderr, "Unable to open a socket for wireless extensions.\nPlease ensure your kernel has wireless extensions support.");
-    return False;
-  }
+  if (Wfd == -1) 
+    {
+      fprintf(stderr, "mb-applet-wireless: Kernel lacks wireless support?\n" );
+      return False;
+    }
 
   if (Mwd.iface == NULL)
       return False;
 
-  if (iw_get_basic_config(skfd, Mwd.iface, &Mwd.info.b) < 0)
+  if (iw_get_basic_config(Wfd, Mwd.iface, &WInfo.b) < 0)
     {
-      printf("iw_get_basic_config failed %s\n", Mwd.iface); 
+      fprintf(stderr, "mb-applet-wireless: unable to read wireless config\n" );
       return False;
     }
 
+  if(iw_get_range_info(Wfd, Mwd.iface, &(WInfo.range)) >= 0)
+    WInfo.has_range = 1;  
 
-  if(iw_get_range_info(skfd, Mwd.iface, &(Mwd.info.range)) >= 0)
-    Mwd.info.has_range = 1;  
+  if (iw_get_stats(Wfd, Mwd.iface, 
+		   &(WInfo.stats),
+                   &(WInfo.range), WInfo.has_range) >= 0)
+    WInfo.has_stats = 1;
+    
+  Mwd.essid = ( WInfo.b.has_essid ? WInfo.b.essid : NULL );
+  Mwd.mode  = ( WInfo.b.has_mode ? (char *)iw_operation_mode[WInfo.b.mode] : NULL );
 
-  if (iw_get_stats(skfd, Mwd.iface, &(Mwd.info.stats),
-                   &(Mwd.info.range), Mwd.info.has_range) >= 0)
-    Mwd.info.has_stats = 1;
+  if (WInfo.has_stats) 
+    {
+      /* via http://www.snorp.net/files/patches/wireless-applet.c */
+      Mwd.quality = (int)rint ((log (WInfo.stats.qual.qual) / log (94)) * 100);
+
+      if (Mwd.quality > 100) 
+	Mwd.quality = 100;
+      else 
+	if (Mwd.quality < 0) 
+	  Mwd.quality = 0;
+
+      Mwd.level = (int)WInfo.stats.qual.level;
+      Mwd.noise = (int)WInfo.stats.qual.noise;
+    } 
+  else 
+    {
+      Mwd.quality = -1;
+      Mwd.level = -1;
+      Mwd.noise = -1;
+    }
 
   return True;
 }
@@ -137,16 +167,15 @@ paint_callback (MBTrayApp *app, Drawable drw )
 
   if (update_wireless())
     {
-      if (Mwd.info.has_range && (Mwd.info.stats.qual.level != 0))
+      if (Mwd.quality != -1)
 	{
-	  /* res->percent = (int)rint ((log (link) / log (92)) * 100.0); ? */
-	  if (Mwd.info.stats.qual.qual > 0 && Mwd.info.stats.qual.qual < 41)
+	  if (Mwd.quality >= 0 && Mwd.quality <= 40)
 	    CurImg = MW_SIG_1_40;
-	  else if (Mwd.info.stats.qual.qual > 40 && Mwd.info.stats.qual.qual < 61)
+	  else if (Mwd.quality > 40 && Mwd.quality <= 60)
 	    CurImg = MW_SIG_41_60;
-	  else if (Mwd.info.stats.qual.qual > 60 && Mwd.info.stats.qual.qual < 81)
+	  else if (Mwd.quality > 60 && Mwd.quality <= 80)
 	    CurImg = MW_SIG_61_80;
-	  else if (Mwd.info.stats.qual.qual > 80)
+	  else if (Mwd.quality > 80)
 	    CurImg = MW_SIG_80_100;
 	  else
 	    CurImg = MW_NO_LINK;
@@ -192,21 +221,20 @@ load_icons(MBTrayApp *app)
       if (icon_path == NULL 
 	  || !(Imgs[i] = mb_pixbuf_img_new_from_file(pb, icon_path)))
 	{
-	  fprintf(stderr, "minivol: failed to load icon\n" );
+	  fprintf(stderr, "mb-applet-wireless: failed to load icon\n" );
 	  exit(1);
 	}
 
       free(icon_path);
     }
-  
 }
 
 void
 resize_callback (MBTrayApp *app, int w, int h )
 {
-  int i;
-  int base_width  = mb_pixbuf_img_get_width(Imgs[0]);
-  int base_height = mb_pixbuf_img_get_height(Imgs[0]);
+  int  i;
+  int  base_width  = mb_pixbuf_img_get_width(Imgs[0]);
+  int  base_height = mb_pixbuf_img_get_height(Imgs[0]);
   int  scale_width = base_width, scale_height = base_height;
   Bool want_resize = True;
 
@@ -241,55 +269,56 @@ resize_callback (MBTrayApp *app, int w, int h )
 
   for (i=0; i<6; i++)
     {
-      if (ImgsScaled[i] != NULL) mb_pixbuf_img_free(pb, ImgsScaled[i]);
-      ImgsScaled[i] = mb_pixbuf_img_scale(pb, Imgs[i], 
-					  scale_width, scale_height);
-    }
+      if (ImgsScaled[i] != NULL) 
+	mb_pixbuf_img_free(pb, ImgsScaled[i]);
 
+      ImgsScaled[i] = mb_pixbuf_img_scale(pb, 
+					  Imgs[i], 
+					  scale_width, 
+					  scale_height);
+    }
 }
 
 void
 button_callback (MBTrayApp *app, int x, int y, Bool is_released )
 {
   char tray_msg[256];
+  char quality[10];
+  char level[10];
+  char noise[10];
+
+  update_wireless();
+  
+  if (Mwd.quality != -1)
+    snprintf (quality, 10, "%u%%", Mwd.quality);
+  else
+  	strncpy (quality, "Unknown", 10);
+  if (Mwd.level != -1)
+    snprintf (level, 10, "%udBm", Mwd.level);
+  else
+  	strncpy (level, "Unknown", 10);
+  if (Mwd.noise != -1)
+    snprintf (noise, 10, "%udBm", Mwd.noise);
+  else
+  	strncpy (noise, "Unknown", 10);
 
   if (!is_released) return;
 
-  update_wireless() ;
-
-  /*if (Mwd.info.mode)*/
-    {
-      /*if (get_extented_iw_info(&Mwd.info) == 0)*/
-	{
-	  sprintf(tray_msg,
-		  "%s:\n" 
-		  "  Network: %s\n"
-		  "  Link %.1f\n  Level %.1f\n  Noise %.1f\n",
-		  Mwd.iface, 
-		  Mwd.info.has_nickname ? Mwd.info.nickname  : "Unknown",
-		  Mwd.info.stats.qual.qual, 
-		  Mwd.info.stats.qual.level, 
-		  Mwd.info.stats.qual.noise );
-	}
-      /*
-      else
-
-	{
-	  sprintf(tray_msg, _("%s:\n Link %.1f\n Level %.1f\n Noise %.1f\n"),
-		  Mwd.iface, 
-		  Mwd.info.stats.qual.qual, 
-		  Mwd.info.stats.qual.level, 
-		  Mwd.info.stats.qual.noise );
-	}
-      */
-    }
-    /*
-  else
-    sprintf(tray_msg, _("No wireless cards detected\n"));
-    */
+  snprintf(tray_msg, 256,
+	  "%s:\n"
+	  "  Mode: %s\n" 
+	  "  ESSID: %s\n"
+	  "  Quality: %s\n"
+	  "  Level: %s\n"
+	  "  Noise: %s\n",
+	  Mwd.iface, 
+	  Mwd.mode ? Mwd.mode : "Unknown",
+	  Mwd.essid ? Mwd.essid  : "Unknown",
+	  quality, 
+	  level, 
+	  noise );
 
   mb_tray_app_tray_send_message(app, tray_msg, 5000);
-
 }
 
 void 
@@ -301,7 +330,9 @@ theme_callback (MBTrayApp *app, char *theme_name)
   LastImg = -1; 			/* Make sure paint gets updated */
 
   ThemeName = strdup(theme_name);
+
   load_icons(app);
+
   resize_callback (app, mb_tray_app_width(app), mb_tray_app_width(app) );
 }
 
@@ -311,16 +342,21 @@ timeout_callback ( MBTrayApp *app )
   mb_tray_app_repaint (app);
 }
 
-int get_iface(int skfd, char *ifname, char *args[], int count)
+int  				/* repeatadly call via enum_devices */
+find_iwface(int Wfd, char *ifname, char *args[], int count)
 {
 
- if (iw_get_basic_config(skfd, ifname, &Mwd.info.b) < 0)
-   return;
+  /* is it a wireless if */
+ if (iw_get_basic_config(Wfd, ifname, &WInfo.b) < 0)
+   return 0;
 
-  if (Mwd.iface != NULL)
+  /* already found first one */
+  if (Mwd.iface != NULL) 
     return 0;
 
+  /* mark first found as one to monitor */
   Mwd.iface = strdup(ifname);
+
   return 0;
 }
 
@@ -338,12 +374,11 @@ main( int argc, char *argv[])
   textdomain (PACKAGE);
 #endif
 
-  memset(&Mwd.info, 0, sizeof(struct wireless_info));
-  skfd = iw_sockets_open();
-  if (skfd != -1)
-    {
-      iw_enum_devices(skfd, get_iface, NULL, 0);
-    }
+  memset(&WInfo, 0, sizeof(struct wireless_info));
+  Wfd = iw_sockets_open();
+
+  if (Wfd != -1)
+    iw_enum_devices(Wfd, find_iwface, NULL, 0);
 
   app = mb_tray_app_new ( _("Wireless Monitor"),
 			  resize_callback,
@@ -355,6 +390,7 @@ main( int argc, char *argv[])
 		      mb_tray_app_xscreen(app));
    
    memset(&tv,0,sizeof(struct timeval));
+
    tv.tv_sec = 2;
 
    load_icons(app);
