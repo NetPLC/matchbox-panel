@@ -93,6 +93,8 @@ if test x$enable_nls = xyes; then
 		  	 INTLIBS="" ))
 
   AC_CHECK_PROG(XGETTEXT, xgettext, xgettext)
+  AC_CHECK_PROG(MSGMERGE, msgmerge, msgmerge)
+  AC_CHECK_PROG(MSGFMT, msgfmt, msgfmt)
 
   if test "$XGETTEXT" != ""; then 
     if $XGETTEXT --help 2>&1 | grep illegal >/dev/null ; then

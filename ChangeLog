@@ -1,3 +1,9 @@
+2004-12-17  mallum,,,  <mallum@openedhand.com>
+
+	* configure.ac:
+	* po/Makefile.am:
+	Tweaks to nls auto* gubbins. via patch from Matt Dainty
+
 2004-12-13  mallum,,,  <mallum@openedhand.com>
 
 	* src/panel.c: (panel_usage), (panel_reorder_apps), (panel_init):
