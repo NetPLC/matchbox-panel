@@ -7,3 +7,4 @@ EXTRA_DIST = $(files)
 
 desktopdir = $(datadir)/applications/
 desktop_DATA = $(files)
+

@@ -458,8 +458,9 @@ main(int argc, char **argv)
   char *dotdesktop_file = NULL;
   MBDotDesktop *dd      = NULL;
   Bool start_app        = False;
+  char png_path[256]    = { 0 };
 
-  TrayApp = mb_tray_app_new ( "MonoLaunch",
+  TrayApp = mb_tray_app_new ( "mb-applet-launcher",
 			      resize_callback,
 			      paint_callback,
 			      &argc,
@@ -541,7 +542,6 @@ main(int argc, char **argv)
 	  && mb_dotdesktop_get(dd, "Icon")
 	  && mb_dotdesktop_get(dd, "Exec") )
 	{
-	  char png_path[256] = { 0 };
 
 	  img_file = mb_dotdesktop_get(dd, "Icon");
 
@@ -578,6 +578,14 @@ main(int argc, char **argv)
 
     } else {
       img_file = argv[switch_count];
+
+      if (img_file[0] != '/')
+	{
+	  /* FIXME: should really get from theme */
+	  snprintf(png_path, 256, "%s/share/pixmaps/%s", DATADIR, img_file);
+	  img_file = strdup(png_path);
+	}
+
       cmd_str  = arr_to_str(&argv[switch_count+1], argc - switch_count - 1);
     }
 

@@ -1,5 +1,12 @@
 2004-02-04  Matthew Allum, mallum@handhelds.org
 
+	* applets/dotdesktop/mb-launcher-term.desktop:
+	* applets/mb-applet-launcher.c: (main):
+	Fixed mb-launcher-term not to require absolute paths 
+        for images 	
+
+2004-02-04  Matthew Allum, mallum@handhelds.org
+
 	* applets/mb-applet-menu-launcher.c: (build_menu):
 	Only add the action seperator if there are action items 
 
