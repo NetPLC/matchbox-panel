@@ -6,7 +6,7 @@ PREFIXDIR  = $(prefix)
 PKGDATADIR = $(datadir)/matchbox
 DATADIR    = $(datadir)
 
-INCLUDES = -DDATADIR=\"$(DATADIR)\" -DPKGDATADIR=\"$(PKGDATADIR)\" -DPREFIX=\"$(PREFIXDIR)\" $(LIBMB_CFLAGS)
+INCLUDES = -DDATADIR=\"$(DATADIR)\" -DPKGDATADIR=\"$(PKGDATADIR)\" -DPREFIX=\"$(PREFIXDIR)\" $(LIBMB_CFLAGS) $(SN_CFLAGS)
 
 if WANT_APM
 bin_PROGRAMS =                                                    \
@@ -14,7 +14,7 @@ bin_PROGRAMS =                                                    \
   mb-applet-launcher mb-applet-system-monitor mb-applet-battery
 
   mb_applet_battery_SOURCES =        mb-applet-battery.c
-  mb_applet_battery_LDADD   =        $(LIBMB_LIBS) -lapm  
+  mb_applet_battery_LDADD   =        $(LIBMB_LIBS) $(SN_LIBS) -lapm  
 
 else
 bin_PROGRAMS =                                                    \
@@ -22,7 +22,7 @@ bin_PROGRAMS =                                                    \
   mb-applet-launcher mb-applet-system-monitor
 endif
 
-LDADD = $(LIBMB_LIBS)
+LDADD = $(LIBMB_LIBS) $(SN_LIBS)
 
 mb_applet_clock_SOURCES =          mb-applet-clock.c
 mb_applet_menu_launcher_SOURCES =  mb-applet-menu-launcher.c

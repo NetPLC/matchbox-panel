@@ -21,6 +21,10 @@
      - add use_gpe defines for this !
 */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #ifdef USE_DNOTIFY
 #define _GNU_SOURCE
 #endif
@@ -37,10 +41,6 @@
 #include <sys/wait.h>
 
 #include <libmb/mb.h>
-
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
 
 #ifdef USE_LIBSN

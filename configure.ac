@@ -27,11 +27,13 @@ AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([alarm getcwd gettimeofday memset mkdir select setenv setlocale strcasecmp strdup strpbrk strstr])
 
-# maybe this should be locale support
+AC_ARG_ENABLE(dnotify,
+  [  --enable-dnotify      enable dnotify support (Linux 2.4+ only).],
+  enable_dnotify=$enableval, enable_dnotify=no)
 
-AC_ARG_ENABLE(startup-notification,
+AC_ARG_ENABLE(startup_notification,
   [  --enable-startup-notification   enable startup notification support],
-     enable_sn=$enableval, enable_sn=no )
+     enable_startup_notification=$enableval, enable_startup_notification=no )
 
 AC_ARG_ENABLE(nls,
   [  --enable-nls        enable Native Language Support ( gettext/libintl )],
@@ -69,7 +71,7 @@ fi
 dnl ----- Startup Notification ---------------------------------------------
 
 
-if test x$enable_sn != xno; then
+if test x$enable_startup_notification != xno; then
   PKG_CHECK_MODULES(SN, libstartup-notification-1.0, ,
 			   AC_MSG_ERROR([*** Required Startup Notification Librays not installed ***]))
 
@@ -159,6 +161,15 @@ dnl ---- Icons --------------------------------------------------------------
 
 AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_small_icons = xyes)  
 
+dnl ----- DNOTIFY ----------------------------------------------------------
+
+if test x$enable_dnotify = xyes; then
+## FIXME: need to actually check its present
+  AC_DEFINE(USE_DNOTIFY, [1], [Has dnotify support])
+fi
+
+AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_small_icons = xyes)  
+
 dnl ----- Specific Applet deps ----------------------------------------------
 
 miniapm_enabled="no, missing deps"
@@ -194,6 +205,9 @@ dnl ------ Substitute in found libs, clags to Makefiles etc -----------------
 AC_SUBST(LIBMB_CFLAGS)
 AC_SUBST(LIBMB_LIBS)
 
+AC_SUBST(SN_CFLAGS)
+AC_SUBST(SN_LIBS)
+
 AC_OUTPUT([
 Makefile
 src/Makefile  
@@ -215,7 +229,7 @@ echo "
 
         Building with Debug:                ${enable_debug}
 
-        Building with Startup-Notification: ${enable_sn}
+        Building with Startup-Notification: ${enable_startup_notification}
 	Building with NLS:                  ${enable_nls}
         Building with small icons:          ${enable_small_icons}
 	Building with DNOTIFY:		    ${enable_dnotify}
