@@ -223,8 +223,7 @@ panel_menu_init(MBPanel *panel)
 					       mb_dotdesktop_get(ddentry, 
 								 "Name"), 
 					       png_path, 
-					       mb_dotdesktop_get(ddentry, 
-								 "Exec"), 
+					       mb_dotdesktop_get_exec(ddentry), 
 					       panel_menu_exec_cb, 
 					       (void *)panel, 0);
 		    } else {

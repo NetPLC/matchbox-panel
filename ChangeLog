@@ -1,3 +1,12 @@
+2004-12-01  Ross Burton  <ross@burtonini.com>
+
+	* applets/mb-applet-launcher.c:
+	* applets/mb-applet-menu-launcher.c:
+	* applets/mb-applet-clock.c:
+	* src/panel_menu.c:
+	Use mb_dotdesktop_get_exec().  Also move config.h includes so that
+	AC_GNU_SOURCE works, and fix a bad fprintf.
+
 2004-12-01  Ross Burton  <ross@openedhand.com>
 
 	* configure.ac:

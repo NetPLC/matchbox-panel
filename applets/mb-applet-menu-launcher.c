@@ -204,7 +204,7 @@ static void fork_exec(char *cmd)
       case 0:
 	mb_exec(cmd);
 	/* execlp("/bin/sh", "sh", "-c", cmd, NULL); */
-	fprintf(stderr, "mb-applet-menu-launcher: exec of '%s' failed, cleaning up child\n, cmd");
+	fprintf(stderr, "mb-applet-menu-launcher: exec of '%s' failed, cleaning up child\n", cmd);
 	exit(1);
       case -1:
 	fprintf(stderr, "mb-applet-menu-launcher: can't fork '%s'\n", cmd); break;
@@ -616,7 +616,7 @@ build_menu(void)
 			  mb_menu_add_item_to_menu(app_data->mbmenu, m, 
 						   mb_dotdesktop_get(dd, "Name"),
 						   png_path,
-						   mb_dotdesktop_get(dd, "Exec"),
+						   mb_dotdesktop_get_exec(dd),
 						   activate_callback, 
 						   (void *)app_data, flags); 
 			  /* mb_menu_add_seperator_to_menu(app_data-> mbmenu, m); */

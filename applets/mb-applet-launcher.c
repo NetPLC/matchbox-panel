@@ -552,7 +552,7 @@ main(int argc, char **argv)
 	      img_file = strdup(png_path);
 	    }
 
-	  cmd_str  = mb_dotdesktop_get(dd, "Exec");
+	  cmd_str  = mb_dotdesktop_get_exec(dd);
 	  if (!win_panel_title) 
 	    win_panel_title = mb_dotdesktop_get(dd, "Name");
 #ifdef USE_LIBSN

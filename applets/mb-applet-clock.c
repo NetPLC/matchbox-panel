@@ -24,6 +24,10 @@ freely, subject to the following restrictions:
        distribution.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
@@ -38,10 +42,6 @@ freely, subject to the following restrictions:
 #include <unistd.h>
 
 #include <libmb/mb.h>
-
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
 #ifdef ENABLE_NLS
 # include <libintl.h>
