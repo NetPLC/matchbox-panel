@@ -31,7 +31,7 @@ msgstr ""
 #: ../applets/mb-applet-system-monitor.c:253
 #, c-format
 msgid "CPU: %i %%, MEMORY: %i %%\n"
-msgstr "Ye Old CPU: %i %%, MEMORY: %i %%\n"
+msgstr "CPU: %i %%, MEMORY: %i %%\n"
 
 #: ../applets/mb-applet-system-monitor.c:324
 msgid "CPU/Mem Monitor"

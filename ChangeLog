@@ -1,3 +1,20 @@
+2005-01-21  mallum,,,  <mallum@openedhand.com>
+
+	* applets/dotdesktop/Makefile.am:
+	Only install .desktop files for installed applets
+	* applets/mb-applet-battery.c: (paint_callback), (button_callback):
+	Make less strcit ( via anon oe patch )
+	* po/en_GB.po:
+	Remove test text
+	* src/panel_app.c: (panel_app_handle_configure_request):
+	Position/size end applet properly 
+	( Hopefully fixes half clock sometimes showing )
+	* src/panel.c: (panel_handle_dock_request):
+	* src/panel.h:
+	* src/session.c: (session_preexisting_start_next),
+	(session_preexisting_win_matches_wanted):
+	Defer launching any non session applets while restarting a session.
+
 2005-01-11  mallum,,,  <mallum@openedhand.com>
 
 	* configure.ac:

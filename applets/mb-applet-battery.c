@@ -277,7 +277,7 @@ paint_callback (MBTrayApp *app, Drawable drw )
   if ((time_left_idx > 0) 
       && !ac_power
       && apm_vals[PERCENTAGE] > 0
-      && apm_vals[TIME_LEFT]  > 0
+      /* && apm_vals[TIME_LEFT]  > 0 XXX Less strict */ 
       && (apm_vals[TIME_LEFT] < time_left_alerts[time_left_idx]))
     {
       char tray_msg[256];
@@ -386,7 +386,7 @@ button_callback (MBTrayApp *app, int x, int y, Bool is_released )
     } else {
       if (apm_vals[PERCENTAGE] > 0 
 	  && apm_vals[PERCENTAGE] < 100 
-	  && apm_vals[TIME_LEFT] > 0)
+	  /* && apm_vals[TIME_LEFT] > 0 Less strict */)
 	{
 	  sprintf(tray_msg, 
 		  _("Battery Power\nJuice %.2i %%\nTime left: %.2i mins\n"), apm_vals[PERCENTAGE], apm_vals[TIME_LEFT]);

@@ -112,6 +112,8 @@
 #define DEFAULT_COLOR_SPEC "#e2e2de" /* Same as gnome ? */
 #define MB_MSG_FONT        "Sans 14px"   
 
+#define MAX_DEFERED_WINS 32 	/* *very* Unlikely as much as 32 */
+
 enum {
   BG_SOLID_COLOR,
   BG_PIXMAP,
@@ -281,9 +283,18 @@ typedef struct _panel {
   int                     click_y;
   Time                    click_time;
 
-
   char                   *bg_trans;
   long                    root_pixmap_id;
+
+  /* Defered apps list - win ids that start while session is
+   * starting but *arnt* in the session, so they are docked
+   * after starting. 
+   *
+   * XXX: should really use a list here.
+  */
+  
+  Window                  session_defered_wins[MAX_DEFERED_WINS];
+  int                     n_session_defered_wins;
 
 #ifdef USE_XSETTINGS
   XSettingsClient        *xsettings_client;
@@ -308,6 +319,10 @@ panel_update_client_list_prop (MBPanel *panel);
 
 void
 panel_reorder_apps(MBPanel *panel);
+
+void
+panel_handle_dock_request(MBPanel *panel, Window win);
+
 
 #include "panel_menu.h"
 #include "panel_util.h"  

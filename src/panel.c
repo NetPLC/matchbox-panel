@@ -824,10 +824,19 @@ panel_handle_dock_request(MBPanel *panel, Window win)
 
   util_get_command_str_from_win(panel, win, &cmd_str); /* cmd_str freed l8r */
 
-  if (session_preexisting_win_matches_wanted(panel, win, cmd_str))
+  if (session_preexisting_restarting(panel))
     {
-      app_origin_dist = panel->session_init_offset;
-      session_preexisting_clear_current(panel);
+      if (session_preexisting_win_matches_wanted(panel, win, cmd_str))
+	{
+	  app_origin_dist = panel->session_init_offset;
+	  session_preexisting_clear_current(panel);
+	}
+      else
+	{
+	  DBG("%s() defering winid %li ( %s) \n", __func__, win, cmd_str );
+	  panel->session_defered_wins[panel->n_session_defered_wins++] = win;
+	  return;
+	}
     }
 
   new_papp = panel_app_new(panel, win, cmd_str);

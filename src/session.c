@@ -174,6 +174,8 @@ session_preexisting_restarting(MBPanel *panel)
 Bool
 session_preexisting_start_next(MBPanel *panel)
 {
+  int i = 0;
+
   if (!session_preexisting_restarting(panel)) return False;
 
   if (panel->session_entry_cur[0] == '\0' 
@@ -183,6 +185,15 @@ session_preexisting_start_next(MBPanel *panel)
       panel->session_needed_pid = util_fork_exec(panel->session_entry_cur);
       return True;
     }
+
+  /* Nothing left in session, dock any defered */
+
+  DBG("%s() Now launching defered apps\n", __func__);
+
+  for (i=0; i<panel->n_session_defered_wins; i++)
+    panel_handle_dock_request(panel, panel->session_defered_wins[i]);
+  
+
   return False;
 }
 
@@ -191,6 +202,7 @@ session_preexisting_win_matches_wanted(MBPanel *panel, Window win,
 				       char *win_cmd)
 {
   pid_t win_pid = 0;
+
   if (!session_preexisting_restarting(panel)) return False;
 
   DBG("%s() called\n", __func__);

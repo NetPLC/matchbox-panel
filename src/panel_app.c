@@ -377,20 +377,27 @@ panel_app_handle_configure_request(MBPanel *panel, XConfigureRequestEvent *ev)
 	    {
 	      if (papp == panel_app_list_get_last(panel, panel->apps_end_head))
 		{
-		  DBG("%s() papp is last at end\n", __func__);
+		  DBG("%s() papp %s is last at end\n", __func__, papp->name);
 		  panel_app_move_to(panel, papp, 
 				    papp->x - (xwc.width - papp->w));
 		}
 	      else if (papp == panel_app_list_get_last(panel, 
 						       panel->apps_start_head))
 		{
-		  DBG("%s() papp is last at start\n", __func__);
+		  DBG("%s() papp %s is last at start\n", __func__, papp->name);
 		  panel_app_move_to(panel, papp, 
 				    papp->x /*+ (xwc.width - papp->w)*/);
 		}
+	      else if (papp == panel->apps_end_head)
+		{
+		  DBG("******** %s() papp %s panel->apps_end_head ****\n", __func__, papp->name);
+		  panel_app_move_to(panel, papp, 
+				    panel->w - panel->margin_sides - xwc.width);
+		  panel_apps_nudge (panel, papp->next, papp->w - xwc.width);
+		}
 	      else
 		{
-		  DBG("%s() papp is nowhere special\n", __func__);
+		  DBG("%s() papp %s is nowhere special\n", __func__, papp->name);
 		  panel_apps_nudge (panel, papp->next, xwc.width - papp->w);
 		}
 	      papp->w = xwc.width;
