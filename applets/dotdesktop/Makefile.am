@@ -4,7 +4,7 @@ files =                                                        \
   mb-applet-menu-launcher.desktop   mb-show-desktop.desktop    \
   mb-applet-system-monitor.desktop
 
-EXTRA_DIST = $(desktopfiles)
+EXTRA_DIST = $(files)
 
 desktopdir = $(datadir)/applications/
 desktop_DATA = $(files)
