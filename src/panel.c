@@ -663,7 +663,7 @@ panel_set_theme_from_root_prop(MBPanel *panel)
 void 
 panel_usage(char *bin_name)
 {
-  fprintf(stderr, "%s usage: %s [Options...]\n"
+  fprintf(stderr, "%s (%s) usage: %s [Options...]\n"
 	  "Where options are;\n"
           "-display, -d         <X11 Display name>\n"
           "-geometry, -g        Use --size / --orientation instead.\n"
@@ -687,7 +687,7 @@ panel_usage(char *bin_name)
 	  "--bgtrans,  -bt      <'yes'|transparency percentage>\n"
 	  "*NOTE* setting the background here will disable the effect\n"
 	  "       of any external theme changes. \n"
-	  , bin_name, bin_name);
+	  , bin_name, VERSION, bin_name);
   exit(1);
 }
 

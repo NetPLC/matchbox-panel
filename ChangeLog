@@ -1,5 +1,10 @@
 2005-02-22  mallum,,,  <mallum@openedhand.com>
 
+	* src/panel.c: (panel_usage):
+	make usage display version.
+
+2005-02-22  mallum,,,  <mallum@openedhand.com>
+
 	* applets/mb-applet-clock.c: (file_exists), (main):
 	Fix bug where clock hangs and also fix so it only wakes
 	at beginning of every minute - thus saving some power.
