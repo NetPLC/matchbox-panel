@@ -189,8 +189,24 @@ fi
 AM_CONDITIONAL(WANT_APM, test x$miniapm_enabled = x"yes")
 
 
-# XXX wireless checks 
+dnl ------ wireless checks --------------------------------------------------
 
+wifi_enabled="no"
+
+AC_MSG_CHECKING(for suitable wireless headers)
+AC_TRY_COMPILE([#include <linux/wireless.h>],
+               [#if WIRELESS_EXT < 11
+                #error "Wireless Extension v11 or newer required"
+                #endif ], enable_linux_wifi=yes, enable_linux_wifi=no)
+
+if test x$enable_linux_wifi = xyes; then
+   wifi_enabled="yes"
+   AC_MSG_RESULT(yes)
+else
+   AC_MSG_RESULT(no)
+fi
+
+AM_CONDITIONAL(WANT_WIFI, test x$wifi_enabled = x"yes")
 
 dnl ------ GCC flags --------------------------------------------------------
 
@@ -235,4 +251,5 @@ echo "
 	Building with DNOTIFY:		    ${enable_dnotify}
 
         Building mb-applet-battery:         ${miniapm_enabled}
+        Building mb-applet-wireless:        ${wifi_enabled}
 "

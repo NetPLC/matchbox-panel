@@ -10,16 +10,20 @@ INCLUDES = -DDATADIR=\"$(DATADIR)\" -DPKGDATADIR=\"$(PKGDATADIR)\" -DPREFIX=\"$(
 
 if WANT_APM
 bin_PROGRAMS =                                                    \
-  mb-applet-clock    mb-applet-menu-launcher  mb-applet-wireless  \
-  mb-applet-launcher mb-applet-system-monitor mb-applet-battery
+  mb-applet-clock    mb-applet-menu-launcher  mb-applet-battery   \
+  mb-applet-launcher mb-applet-system-monitor 
 
   mb_applet_battery_SOURCES =        mb-applet-battery.c
   mb_applet_battery_LDADD   =        $(LIBMB_LIBS) $(SN_LIBS) -lapm  
 
 else
-bin_PROGRAMS =                                                    \
-  mb-applet-clock    mb-applet-menu-launcher  mb-applet-wireless  \
+bin_PROGRAMS =                                 \
+  mb-applet-clock    mb-applet-menu-launcher    \
   mb-applet-launcher mb-applet-system-monitor
+endif
+
+if WANT_WIFI
+  bin_PROGRAMS += mb-applet-wireless
 endif
 
 LDADD = $(LIBMB_LIBS) $(SN_LIBS)

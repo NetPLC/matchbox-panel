@@ -709,21 +709,26 @@ void
 button_callback (MBTrayApp *app, int x, int y, Bool is_released )
 {
   int abs_x, abs_y;
-  sigset_t block_sigset;
   static Bool next_cancels;
+
+#ifdef USE_DNOTIFY
+  sigset_t block_sigset;
+#endif
 
   app_data->button_is_down = True;
   if (is_released) app_data->button_is_down = False;
 
-  sigemptyset(&block_sigset);
-  sigaddset(&block_sigset, SIGRTMIN);
-
   if (is_released && !next_cancels)
     {
+
+#ifdef USE_DNOTIFY 		/* block any reloads while active */
+      sigemptyset(&block_sigset);
       sigaddset(&block_sigset, SIGRTMIN);
+      sigprocmask(SIG_BLOCK, &block_sigset, NULL); 
+#endif
+	  
       menu_get_popup_pos (app, &abs_x, &abs_y);
       mb_menu_activate (app_data->mbmenu, abs_x, abs_y);
-
     }
   else
     if (mb_menu_is_active(app_data->mbmenu))
@@ -796,7 +801,9 @@ theme_callback (MBTrayApp *app, char *theme_name)
 void
 xevent_callback (MBTrayApp *app, XEvent *ev)
 {
+#ifdef USE_DNOTIFY
   sigset_t block_sigset;
+#endif
 
   mb_menu_handle_xevent (app_data->mbmenu, ev);  
 
@@ -816,18 +823,23 @@ xevent_callback (MBTrayApp *app, XEvent *ev)
       if (ev->xclient.message_type == app_data->mbcommand_atom
 	  && ev->xclient.data.l[0] == MB_CMD_SHOW_EXT_MENU )
 	{
+#ifdef USE_DNOTIFY
 	  sigemptyset(&block_sigset);
 	  sigaddset(&block_sigset, SIGRTMIN);
-
+#endif
 	  if (!mb_menu_is_active(app_data->mbmenu)) 
 	    {
 	      int abs_x, abs_y;
+#ifdef USE_DNOTIFY
 	      sigprocmask(SIG_BLOCK, &block_sigset, NULL); 
+#endif
 	      menu_get_popup_pos (app, &abs_x, &abs_y);
 	      mb_menu_activate(app_data->mbmenu, abs_x, abs_y);
 	    } else {
 	      mb_menu_deactivate(app_data->mbmenu);
+#ifdef USE_DNOTIFY
 	      sigprocmask(SIG_UNBLOCK, &block_sigset, NULL); 
+#endif
 	    }
 	}
     }

@@ -1,3 +1,15 @@
+2004-04-10  Matthew Allum  <mallum@openedhand.com>
+
+	* configure.ac:
+	* applets/Makefile.am:
+	Only build mb-applet-wireless if linux/wireless.h exists
+
+	* applets/mb-applet-menu-launcher.c: (button_callback),
+	(xevent_callback):
+	Tidy up DNOTIFY code.
+
+2004-03-22 matchbox-panel-0.8.1 released released tag: RELEASE_0_8_1
+
 2004-03-17  Matthew Allum,,,  <mallum@handhelds.org>
 
 	* README:
