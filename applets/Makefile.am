@@ -1,14 +1,22 @@
 SUBDIRS = dotdesktop icons small-icons
 
+EXTRA_DIST = mb-applet-battery.c
+
 PREFIXDIR  = $(prefix)
 PKGDATADIR = $(datadir)/matchbox
 DATADIR    = $(datadir)
 
 INCLUDES = -DDATADIR=\"$(DATADIR)\" -DPKGDATADIR=\"$(PKGDATADIR)\" -DPREFIX=\"$(PREFIXDIR)\" $(LIBMB_CFLAGS)
 
+if WANT_APM
 bin_PROGRAMS =                                                    \
   mb-applet-clock    mb-applet-menu-launcher  mb-applet-wireless  \
   mb-applet-launcher mb-applet-system-monitor mb-applet-battery
+else
+bin_PROGRAMS =                                                    \
+  mb-applet-clock    mb-applet-menu-launcher  mb-applet-wireless  \
+  mb-applet-launcher mb-applet-system-monitor
+endif
 
 LDADD = $(LIBMB_LIBS)
 

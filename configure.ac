@@ -29,10 +29,6 @@ AC_CHECK_FUNCS([alarm getcwd gettimeofday memset mkdir select setenv setlocale s
 
 # maybe this should be locale support
 
-#AC_ARG_ENABLE(translations,
-#  [  --enable-translations    enable debug ( verbose ) build],
-#     enable_translations=$enableval, enable_tra=no )
-
 AC_ARG_ENABLE(startup-notification,
   [  --enable-startup-notification   enable startup notification support],
      enable_sn=$enableval, enable_sn=no )
@@ -42,7 +38,7 @@ AC_ARG_ENABLE(nls,
    enable_nls=$enableval, enable_nls=no)
 
 AC_ARG_ENABLE(sicons,
-  [  --small-icons    enable small icons],
+  [  --enable-small-icons    enable small icons],
      enable_sicons=$enableval, enable_sicons=no )
 
 
@@ -155,6 +151,7 @@ AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_sicons = xyes)
 
 dnl ----- Specific Applet deps ----------------------------------------------
 
+miniapm_enabled="no, missing deps"
 
 AC_CHECK_HEADERS(apm.h, enable_linux_apm=yes, enable_linux_apm=no)
 if test x$enable_linux_apm = xyes; then
@@ -197,3 +194,19 @@ applets/small-icons/Makefile
 po/Makefile
 ])
 
+dnl ==========================================================================
+echo "
+                    Matchbox-panel $VERSION
+                  =========================
+
+        prefix:                 ${prefix}
+        source code location:   ${srcdir}
+        compiler:               ${CC} ${X_LIBS}
+
+        Building with Debug:                ${enable_debug}
+
+        Building with Startup-Notification: ${enable_sn}
+        Building with small icons:          ${enable_sicons}
+
+        Building mb-applet-battery:         ${miniapm_enabled}
+"

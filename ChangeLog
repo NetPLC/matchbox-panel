@@ -1,3 +1,12 @@
+2004-02-04  Matthew Allum, mallum@handhelds.org
+
+	* applets/Makefile.am:
+	Made mb-applet-battery build conditional on apm deps
+
+	* configure.ac:
+	Fixed --enable-small-icons option
+	Added Summary
+
 2004-02-03  Matthew Allum, mallum@handhelds.org
 
 	* applets/mb-applet-menu-launcher.c: (build_menu):
