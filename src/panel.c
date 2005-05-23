@@ -1009,10 +1009,6 @@ panel_main(MBPanel *panel)
   int xfd;
   Bool had_rotation = False;
 
-  XSelectInput (panel->dpy, panel->win, StructureNotifyMask|ExposureMask|
-		SubstructureRedirectMask|SubstructureNotifyMask|
-		ButtonPressMask|ButtonReleaseMask|PointerMotionMask|
-		PropertyChangeMask);
 
   XSelectInput (panel->dpy, panel->win_root, 
 		PropertyChangeMask|StructureNotifyMask);
@@ -1090,6 +1086,7 @@ panel_main(MBPanel *panel)
 						 &an_event.xconfigurerequest);
 	      break;
 	    case ConfigureNotify:
+	      DBG("%s(): configureNotify\n", __func__);
 	      if (an_event.xconfigure.window == panel->win_root)
 		{
 		  had_rotation = True;
@@ -1109,6 +1106,8 @@ panel_main(MBPanel *panel)
 		    {
 		      int diff = 0;
 		      MBPanelApp *papp = NULL;
+
+		      DBG("mark %i\n", __LINE__);
 
 		      if (panel->ignore_next_config)
 			{
@@ -1133,6 +1132,8 @@ panel_main(MBPanel *panel)
 			  
 			  had_rotation = False;
 
+			  DBG("mark %i\n", __LINE__);
+
 			  if ((PANEL_IS_VERTICAL(panel)
 			       && (an_event.xconfigure.width == panel->w)
 			       )
@@ -1142,7 +1143,7 @@ panel_main(MBPanel *panel)
 			       /* && (an_event.xconfigure.width  == dpy_w) 
 				  && dpy_w != panel->w */ )
 			      )
-			    {
+			    { 
 
 			      DBG("%s() flipping ....\n", __func__);
 
@@ -1178,7 +1179,8 @@ panel_main(MBPanel *panel)
 			    papp = panel->apps_start_head;
 			  else
 			    papp = panel->apps_end_head;
-			} else {			      
+			} else {	
+			  DBG("mark %i\n", __LINE__);
 			  diff = an_event.xconfigure.width - panel->w;
 			  if (an_event.xconfigure.x > panel->x)
 			    papp = panel->apps_start_head;
@@ -1902,6 +1904,11 @@ MBPanel
 			 CopyFromParent,
 			 dattr_flags,
 			 &dattr);
+
+  XSelectInput (panel->dpy, panel->win, StructureNotifyMask|ExposureMask|
+		SubstructureRedirectMask|SubstructureNotifyMask|
+		ButtonPressMask|ButtonReleaseMask|PointerMotionMask|
+		PropertyChangeMask);
 
   size_hints.flags      = PPosition | PSize | PMinSize;
   size_hints.x          = panel->x;

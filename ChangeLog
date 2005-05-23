@@ -1,3 +1,10 @@
+2005-05-23  mallum,,,  <mallum@openedhand.com>
+
+	* src/panel.c: (panel_main), (panel_init):
+	Select for panel win events much earlier so we dont
+	miss initial configure notifys. Much improved panel
+	in titlebar.
+
 2005-04-11  mallum,,,  <mallum@openedhand.com>
 
 	* configure.ac:
