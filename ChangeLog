@@ -1,3 +1,10 @@
+2005-09-15  mallum  <mallum@openedhand.com>
+
+	* applets/Makefile.am:
+	* applets/mb-applet-battery.c: (read_apm):
+	* configure.ac:
+	Incorporate ACPI support for battery applet via Michal Ludvig.
+
 2005-05-23  mallum,,,  <mallum@openedhand.com>
 
 	* src/panel.c: (panel_main), (panel_init):

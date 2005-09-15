@@ -4,7 +4,7 @@ AC_CONFIG_SRCDIR([src/panel.c])
 
 AM_INIT_AUTOMAKE()
 AM_MAINTAINER_MODE
-AM_CONFIG_HEADER([config.h])
+AM_CONFIG_HEADER(config.h)
 
 # Checks for programs.
 AC_GNU_SOURCE
@@ -52,6 +52,9 @@ AC_ARG_ENABLE(debug,
   [  --enable-debug    enable debug ( verbose ) build],
      enable_debug=$enableval, enable_debug=no )
 
+AC_ARG_ENABLE(acpi-linux,
+  [  --enable-acpi-linux   Use Linux ACPI rather than APM for battery info],
+     enable_acpi_linux=$enableval, enable_acpi_linux=no )
 
 PKG_CHECK_MODULES(LIBMB, libmb >= 1.6,,
 	         AC_MSG_ERROR([*** Required Matchbox Library (libmb) 1.6 not installed ***]))
@@ -77,6 +80,12 @@ if test x$enable_startup_notification != xno; then
 			   AC_MSG_ERROR([*** Required Startup Notification Librays not installed ***]))
 
   AC_DEFINE(USE_LIBSN, [1], [Has StartupNotification Support])
+fi
+
+dnl ----- Linux ACPI -------------------------------------------------------
+
+if test x$enable_acpi_linux = xyes; then
+  AC_DEFINE(USE_ACPI_LINUX, [1], [Use /proc/acpi to get battery status])
 fi
 
 dnl ----- NLS Fun -----------------------------------------------------------
@@ -175,21 +184,27 @@ AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_small_icons = xyes)
 
 dnl ----- Specific Applet deps ----------------------------------------------
 
-miniapm_enabled="no, missing deps"
+miniapm_enabled="no ( enable ACPI? )"
 
-AC_CHECK_HEADERS(apm.h, enable_linux_apm=yes, enable_linux_apm=no)
-if test x$enable_linux_apm = xyes; then
-   miniapm_enabled="yes"
-   AC_DEFINE(HAVE_APM_H, [1], [Have Linux APM headers])
+if test x$enable_acpi_linux = xyes; then
+  miniapm_enabled="yes, with ACPI"
+else
+  AC_CHECK_HEADERS(apm.h, enable_linux_apm=yes, enable_linux_apm=no)
+  if test x$enable_linux_apm = xyes; then
+     miniapm_enabled="yes"
+     AC_DEFINE(HAVE_APM_H, [1], [Have Linux APM headers])
+  fi
+
+  AC_CHECK_HEADERS(apmvar.h, enable_bsd_apm=yes, enable_bsd_apm=no)
+  if test x$enable_bsd_apm = xyes; then
+     AC_DEFINE(HAVE_APMVAR_H, [1], [Have BSD APM headers])
+     miniapm_enabled="yes"
+  fi
 fi
 
-AC_CHECK_HEADERS(apmvar.h, enable_bsd_apm=yes, enable_bsd_apm=no)
-if test x$enable_bsd_apm = xyes; then
-   AC_DEFINE(HAVE_APMVAR_H, [1], [Have BSD APM headers])
-   miniapm_enabled="yes"
-fi
+AM_CONDITIONAL(WANT_APM, test x"$miniapm_enabled" = xyes)
 
-AM_CONDITIONAL(WANT_APM, test x$miniapm_enabled = x"yes")
+AM_CONDITIONAL(WANT_ACPI, test x$enable_acpi_linux = xyes)
 
 
 dnl ------ wireless checks --------------------------------------------------

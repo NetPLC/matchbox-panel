@@ -134,7 +134,173 @@ sn_activate(char *name, char *exec_str)
 
 #endif
 
+#ifdef USE_ACPI_LINUX
 
+#define ACPI_PREFIX	"/proc/acpi"
+#define BAT_PREFIX	"battery/BAT0"
+#define AC_PREFIX	"ac_adapter/AC0"
+
+/* ACPI sometimes reports incorrect values, especially 
+ * shortly after unplugging the AC power. Tweak this for 
+ * your hardware. 
+ * See /proc/acpi/battery/BAT0/state:"present rate" for
+ * "normal" values on your system. */
+#define	ACPI_RATE_MIN	300
+#define	ACPI_RATE_MAX	5000
+
+struct avg_consumption {
+	unsigned long avg_values[100];
+	int avg_index;
+	int avg_records;
+	int countdown;
+};
+
+static struct avg_consumption a;
+
+static int
+read_apm(int *values)
+{
+	enum ac_state { AC_UNKNOWN = -1, AC_OFFLINE = 0, AC_ONLINE = 1 };
+	enum bat_state { BAT_UNKNOWN = -1, BAT_CHARGING = 1, BAT_DISCHARGING = 2 };
+
+	struct entry {
+		char *key;
+		char *value;
+		char *unit;
+	};
+
+	struct acpi_status {
+		enum ac_state	ac_state;
+		enum bat_state	bat_state;
+		unsigned long	design_capacity;
+		unsigned long	remaining_capacity;
+		unsigned long	present_rate;
+	};
+
+	static int
+	line_parse(char *line, struct entry *e)
+	{
+		char *ptr;
+		
+		ptr = strchr(line, ':');
+		if (!ptr)
+			return -1;
+		e->key = line;
+		*ptr = 0;
+		while (*++ptr && *ptr == ' ');
+		e->value = ptr;
+		while (*++ptr && *ptr != '\n' && *ptr != ' ');
+		*ptr = 0;
+		if (*++ptr) {
+			e->unit = ptr;
+			while (*++ptr && *ptr != '\n');
+			*ptr = 0;
+		} else
+			e->unit = 0;
+	
+		return 0;
+	}
+
+	FILE *f;
+	char line[1024];
+	struct entry e;
+	struct acpi_status s;
+
+	memset (&s, 0, sizeof(s));
+
+	f = fopen(ACPI_PREFIX "/" AC_PREFIX "/state", "r");
+	if (f) {
+		while (fgets(line, sizeof(line), f)) {
+			if (line_parse(line, &e) < 0)
+				continue;
+			if (strcmp(e.key, "state") == 0) {
+				if(strcmp(e.value, "on-line") == 0) 
+					s.ac_state = AC_ONLINE;
+				else if (strcmp(e.value, "off-line") == 0)
+					s.ac_state = AC_OFFLINE;
+				else 
+					s.ac_state = AC_UNKNOWN;
+			}
+		}
+		fclose(f);
+	}
+
+	f = fopen(ACPI_PREFIX "/" BAT_PREFIX "/info", "r");
+	if (f) {
+		while (fgets(line, sizeof(line), f)) {
+			if (line_parse(line, &e) < 0)
+				continue;
+			if (strcmp(e.key, "design capacity") == 0)
+				sscanf(e.value, "%lu", &s.design_capacity);
+		}
+		fclose(f);
+	}
+
+	f = fopen(ACPI_PREFIX "/" BAT_PREFIX "/state", "r");
+	if (f) {
+		while (fgets(line, sizeof(line), f)) {
+			if (line_parse(line, &e) < 0)
+				continue;
+			if (strcmp(e.key, "remaining capacity") == 0)
+				sscanf(e.value, "%lu", &s.remaining_capacity);
+			else if (strcmp(e.key, "charging state") == 0) {
+				if (strcmp(e.value, "charging") == 0)
+					s.bat_state = BAT_CHARGING;
+				else if (strcmp(e.value, "discharging") == 0)
+					s.bat_state = BAT_DISCHARGING;
+				else
+					s.bat_state = BAT_UNKNOWN;
+			} else if (strcmp(e.key, "present rate") == 0)
+				sscanf(e.value, "%lu", &s.present_rate);
+		}
+		fclose(f);
+	}
+
+	/* Don't estimate TIME_LEFT on current power consumption. Instead 
+	 * compute some average and ignore too low/high values.  */
+	values[TIME_LEFT] = 0;
+	if (s.bat_state != BAT_DISCHARGING && !a.countdown) {
+		memset(&a, 0, sizeof(a));
+		a.countdown = 10;
+	}
+	else if (s.bat_state == BAT_DISCHARGING && s.present_rate) {
+		int num_values = sizeof(a.avg_values)/sizeof(a.avg_values[0]);
+		unsigned long sum = 0;
+		int i;
+
+		if (a.countdown) {
+			a.countdown--;
+			goto bail_out;
+		}
+
+		if (s.present_rate < ACPI_RATE_MIN || s.present_rate > ACPI_RATE_MAX) {
+			goto bail_out;
+		}
+
+		a.avg_values[a.avg_index++] = s.present_rate;
+		a.avg_index %= num_values;
+		if (a.avg_records < num_values)
+			a.avg_records++;
+		if (a.avg_records > 10) {
+			for (i=0; i<a.avg_records; i++)
+				sum += a.avg_values[i];
+			values[TIME_LEFT] = s.remaining_capacity*60/(sum/a.avg_records);
+		}
+bail_out:
+		sum = 0; /* shut up gcc */
+	}
+	
+	values[PERCENTAGE] = s.design_capacity ? s.remaining_capacity*100/s.design_capacity : 0;
+	values[AC_POWER] = s.ac_state;
+
+#if 0
+	printf("AC status: %d\n", values[AC_POWER]);
+	printf("Level:     %d%%\n", values[PERCENTAGE]);
+	printf("Remaining: %d sec\n", values[TIME_LEFT]);
+#endif
+	return 1;
+}
+#else
 #ifdef HAVE_APM_H
 
 static int 
@@ -180,6 +346,7 @@ read_apm(int *values)
 }
 
 #endif
+#endif /* Use ACPI */
 
 void 
 fork_exec(char *cmd)
