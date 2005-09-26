@@ -1,3 +1,8 @@
+2005-09-26  mallum,,,  <mallum@openedhand.com>
+
+	* applets/mb-applet-menu-launcher.c: (build_menu):
+	Fix potential segv on parsing corrupt .directory files.
+
 2005-09-15  mallum  <mallum@openedhand.com>
 
 	* applets/Makefile.am:

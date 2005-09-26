@@ -438,6 +438,11 @@ build_menu(void)
   mb_dot_desktop_folders_enumerate(ddfolders, ddentry)
     {
       char *icon_path = NULL;
+      char *folder_name = NULL;
+
+      /* Check Name is valid for entry */
+      if ((folder_name = mb_dot_desktop_folder_entry_get_name(ddentry)) == NULL)
+	continue;
 
       if (mb_dot_desktop_folder_entry_get_icon(ddentry))
 	icon_path = mb_dot_desktop_icon_get_full_path (app_data->theme_name, 
@@ -445,7 +450,7 @@ build_menu(void)
 						       mb_dot_desktop_folder_entry_get_icon(ddentry) );
 
       menu_lookup[i].item = mb_menu_add_path(app_data->mbmenu, 
-					     mb_dot_desktop_folder_entry_get_name(ddentry),
+					     folder_name,
 					     icon_path, MBMENU_NO_SORT );
 
       menu_lookup[i].match_str = mb_dot_desktop_folder_entry_get_match(ddentry);
