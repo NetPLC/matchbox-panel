@@ -184,6 +184,11 @@ AM_CONDITIONAL(WANT_SMALL_ICONS, test x$enable_small_icons = xyes)
 
 dnl ----- Specific Applet deps ----------------------------------------------
 
+AC_CHECK_HEADERS(linux/version.h, have_linux_ver_h=yes, have_linux_ver_h=no)
+if test x$have_linux_ver_h = xyes; then
+     AC_DEFINE(HAVE_LINUX_VER_H, [1], [Have linux version header])
+fi
+
 miniapm_enabled="no ( enable ACPI? )"
 
 if test x$enable_acpi_linux = xyes; then
@@ -221,6 +226,8 @@ fi
 AC_SUBST(WIRELESS_LIBS)
 
 AM_CONDITIONAL(WANT_WIFI, test x$wifi_enabled = x"yes")
+
+
 
 dnl ------ GCC flags --------------------------------------------------------
 

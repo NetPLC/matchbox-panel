@@ -1,3 +1,10 @@
+2006-01-20  Matthew Allum  <mallum@openedhand.com>
+
+	* applets/mb-applet-system-monitor.c: (system_cpu):
+	* configure.ac:
+	mb-applet-system-monitor fixes for 2.6 kernels. 
+	see bug #51, based on patch by Patrick Steiner.
+
 2005-09-26  mallum,,,  <mallum@openedhand.com>
 
 	* applets/mb-applet-menu-launcher.c: (build_menu):
