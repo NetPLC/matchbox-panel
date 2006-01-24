@@ -212,6 +212,7 @@ typedef struct _panel {
   int                     msg_timeout; 
   MBPanelApp             *msg_win_sender;
   Bool                    msg_has_context;
+  unsigned long		  msg_sender_id;
   int                     msg_context_y1, msg_context_y2;
 
   GC                      msg_gc;

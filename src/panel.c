@@ -886,6 +886,7 @@ panel_handle_client_message(MBPanel *panel, XClientMessageEvent *e)
 	  break;
 	case SYSTEM_TRAY_CANCEL_MESSAGE:
 	  DBG("%s() is SYSTEM_TRAY_CANCEL_MESSAGE\n", __func__ );
+	  msg_cancel(panel, e);
 	  break;
 	}
       return;

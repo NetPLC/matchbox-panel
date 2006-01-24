@@ -16,5 +16,6 @@ void msg_destroy(MBPanel *d, MBPanelMessageQueue *m);
 void msg_add_data(MBPanel *d, XClientMessageEvent *e);
 void msg_handle_events(MBPanel *d, XEvent *e);
 void msg_handle_timeouts(MBPanel *d);
+void msg_cancel(MBPanel *d, XClientMessageEvent *e);
 
 #endif

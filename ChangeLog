@@ -1,5 +1,14 @@
 2006-01-24  Matthew Allum  <mallum@openedhand.com>
 
+	* src/msg.c: (msg_win_create), (msg_handle_events):
+	* src/msg.h:
+	* src/panel.c: (panel_handle_client_message):
+	* src/panel.h:
+	Apply patch from Phil Blundell to implement cancelation
+	of systray popup messages. 
+
+2006-01-24  Matthew Allum  <mallum@openedhand.com>
+
 	* applets/mb-applet-wireless.c: (find_iwface):
 	Workaround for issues with Z hostap driver that
 	presents multiple wireless interfaces. The first

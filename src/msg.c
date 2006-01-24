@@ -547,6 +547,22 @@ msg_win_create(MBPanel             *panel,
   XFreePixmap(panel->dpy, mask);
 }
 
+void
+msg_cancel (MBPanel *panel, XClientMessageEvent *e)
+{
+   MBPanelApp *sender;
+
+   if ((sender = panel_app_get_from_window(panel, e->window )) == NULL)
+     return;
+   
+   if (panel->msg_win 
+       && panel->msg_win_sender == sender 
+       && panel->msg_sender_id == e->data.l[2])
+     {
+       XDestroyWindow(panel->dpy, panel->msg_win);
+       panel->msg_win = None;
+     }
+}
 
 void
 msg_handle_events(MBPanel *panel, XEvent *e)
@@ -566,6 +582,7 @@ msg_handle_events(MBPanel *panel, XEvent *e)
 	 panel->msg_starttime  = msg->starttime;
 	 panel->msg_timeout    = msg->timeout; 
 	 panel->msg_win_sender = msg->sender;
+	 panel->msg_sender_id  = msg->id;
 
 	 panel->msg_has_context = False;
 
