@@ -1,3 +1,10 @@
+2006-01-24  Matthew Allum  <mallum@openedhand.com>
+
+	* applets/mb-applet-wireless.c: (find_iwface):
+	Workaround for issues with Z hostap driver that
+	presents multiple wireless interfaces. The first
+	of which does not give stat info.
+
 2006-01-20  Matthew Allum  <mallum@openedhand.com>
 
 	* applets/mb-applet-system-monitor.c: (system_cpu):

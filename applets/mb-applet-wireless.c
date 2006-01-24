@@ -350,14 +350,27 @@ find_iwface(int Wfd, char *ifname, char *args[], int count)
  if (iw_get_basic_config(Wfd, ifname, &WInfo.b) < 0)
    return 0;
 
-  /* already found first one */
-  if (Mwd.iface != NULL) 
-    return 0;
+ /* dont stop check interfaces till we find one that supports stats 
+  * works round odd issues on Z with host AP.
+ */
+ if (Mwd.iface != NULL && WInfo.has_stats == 1) 
+   return 0;
 
-  /* mark first found as one to monitor */
-  Mwd.iface = strdup(ifname);
+ if(iw_get_range_info(Wfd, Mwd.iface, &(WInfo.range)) >= 0)
+   WInfo.has_range = 1;  
 
-  return 0;
+ if (iw_get_stats(Wfd, Mwd.iface, 
+		  &(WInfo.stats),
+		  &(WInfo.range), WInfo.has_range) >= 0)
+   WInfo.has_stats = 1;
+
+ /* mark first found as one to monitor */
+ if (Mwd.iface)
+   free(Mwd.iface);
+
+ Mwd.iface = strdup(ifname);
+ 
+ return 0;
 }
 
 
