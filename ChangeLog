@@ -1,3 +1,14 @@
+2006-01-27  Matthew Allum  <mallum@openedhand.com>
+
+	* src/msg.c: (_get_server_time), (msg_win_create),
+	(msg_handle_events), (msg_calc_win_size):
+	* src/panel.c: (panel_main):
+	* src/session.c: (session_preexisting_clear_current):
+	* src/session.h:
+	Apply patch from Phil Blundell remove uneeded polling.
+	( See bug #68 )
+
+
 2006-01-24  Matthew Allum  <mallum@openedhand.com>
 
 	* src/msg.c: (msg_win_create), (msg_handle_events):

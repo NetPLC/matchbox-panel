@@ -235,23 +235,41 @@ session_preexisting_clear_current(MBPanel *panel)
   panel->session_entry_cur[0] = '\0';
 }
 
-Bool 
-session_preexisting_handle_timeouts(MBPanel *panel)
+Bool
+session_preexisting_set_timeout (MBPanel        *panel, 
+				 struct timeval *tv, 
+				 struct timeval **tvp)
 {
-  if (!session_preexisting_restarting(panel)) return False;
+  int timeleft;
 
-  /* DBG("%s() called\n", __func__); */
-
-  /* catch session timeouts */
-  if (panel->session_entry_cur[0] != '\0')
+  for (;;)
     {
-      if ( (time(NULL)-panel->session_start_time) > SESSION_TIMEOUT)
+      if (!session_preexisting_restarting(panel)) 
+	return False;
+
+      if (panel->session_entry_cur[0] == '\0')
+	return False;
+
+      timeleft = SESSION_TIMEOUT - (time (NULL) - panel->session_start_time);
+
+      if (timeleft <= 0)
 	{
 	  fprintf(stderr, "Session timeout on %s\n", panel->session_entry_cur);
 	  session_preexisting_clear_current(panel);
 	  session_preexisting_start_next(panel);
+	  continue;
 	}
+
+      break;
     }
+
+  if (!*tvp || tv->tv_sec > timeleft)
+    {
+      tv->tv_usec = 0;
+      tv->tv_sec = timeleft;
+      *tvp = tv;
+    }
+
   return True;
 }
 

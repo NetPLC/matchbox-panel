@@ -23,7 +23,7 @@ static unsigned long
 _get_server_time(MBPanel *d)
 {
   XEvent xevent;
-  char c = 'a';
+  unsigned char c = 'a';
 
   XChangeProperty (d->dpy, d->win_root, 
 		   d->atoms[ATOM_MB_DOCK_TIMESTAMP],
@@ -503,7 +503,7 @@ msg_win_create(MBPanel             *panel,
      {
        int context_width = mb_font_get_txt_width ( panel->msg_font,  
 						   msg->extra_context_data, 
-						   strlen(msg->extra_context_data),
+						   strlen((char*)msg->extra_context_data),
 						   MB_ENCODING_UTF8);
 
        XSetForeground( panel->dpy, panel->msg_gc, mb_col_xpixel(panel->msg_link_col));
@@ -621,21 +621,40 @@ msg_handle_events(MBPanel *panel, XEvent *e)
    }
 }
 
-void
-msg_handle_timeouts(MBPanel *d)
+Bool
+msg_set_timeout (MBPanel *d, struct timeval *tv, struct timeval **tvp)
 {
    if (d->msg_win)
    {
      if (d->msg_timeout) 	/* NON ZERO */
        {
-	 if ((d->msg_starttime+d->msg_timeout) < _get_server_time(d))
+	 int timeleft, sec, usec;
+	 
+	 timeleft = d->msg_timeout - (_get_server_time (d) - d->msg_starttime);
+	 if (timeleft < 0)
 	   {
-	       XDestroyWindow(d->dpy, d->msg_win);
-	       d->msg_win = None;
-	       return;
+	     XDestroyWindow(d->dpy, d->msg_win);
+	     d->msg_win = None;
+	     return False;
 	   }
+
+	 sec = timeleft / 1000;
+	 usec = (timeleft % 1000) * 1000;
+
+	 if (!*tvp 
+	     || tv->tv_sec > sec 
+	     || (tv->tv_sec == sec && tv->tv_usec > usec) )
+	   {
+	     tv->tv_usec = usec;
+	     tv->tv_sec = sec;
+	     *tvp = tv;
+	   }
+
+	 return True;
        }
    }
+
+   return False;
 }
 
 static MBLayout*
@@ -659,7 +678,7 @@ msg_calc_win_size(MBPanel *panel, MBPanelMessageQueue *m, int *w, int *h)
   *h += (mb_font_get_height(panel->msg_font) + MSG_LINE_SPC) ;
 
   title_width = mb_font_get_txt_width(panel->msg_font,  
-				      m->sender->name, strlen(m->sender->name),
+				      m->sender->name, strlen((char*)m->sender->name),
 				      MB_ENCODING_UTF8) 
     + (2 * mb_font_get_height(panel->msg_font));
 
@@ -669,7 +688,7 @@ msg_calc_win_size(MBPanel *panel, MBPanelMessageQueue *m, int *w, int *h)
      {
        context_width = mb_font_get_txt_width(panel->msg_font,
 					     m->extra_context_data, 
-					     strlen(m->extra_context_data),
+					     strlen((char*)m->extra_context_data),
 					     MB_ENCODING_UTF8);
 
        if (context_width > *w) *w = context_width;

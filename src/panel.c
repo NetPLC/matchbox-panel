@@ -1020,11 +1020,12 @@ panel_main(MBPanel *panel)
 
   while(1)
     {
-      struct timeval tvt;
-      tvt.tv_usec = 500;
-      tvt.tv_sec = 0;
+      struct timeval tvt, *tvp = NULL;
+
+      session_preexisting_set_timeout (panel, &tvt, &tvp);
+      msg_set_timeout (panel, &tvt, &tvp);
       
-      if (get_xevent_timed(panel->dpy, &an_event, &tvt))
+      if (get_xevent_timed(panel->dpy, &an_event, tvp))
 	{
 #ifdef USE_XSETTINGS
 	  if (panel->xsettings_client != NULL)
@@ -1228,8 +1229,6 @@ panel_main(MBPanel *panel)
 	    }
 	  msg_handle_events(panel, &an_event);
 	}
-      session_preexisting_handle_timeouts(panel);
-      msg_handle_timeouts(panel);
     }
 }
 

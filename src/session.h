@@ -28,7 +28,7 @@ Bool session_preexisting_win_matches_wanted(MBPanel *panel, Window win,
 
 void session_preexisting_clear_current(MBPanel *panel);
 
-Bool session_preexisting_handle_timeouts(MBPanel *panel);
+Bool session_preexisting_set_timeout(MBPanel *panel, struct timeval *tv, struct timeval **tvp);
 
 Bool session_preexisting_get_next(MBPanel *panel);
 
