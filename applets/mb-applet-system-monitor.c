@@ -37,16 +37,6 @@
 # define _(text) (text)
 #endif
 
-#ifdef HAVE_LINUX_VER_H
-#include <linux/version.h>
-#else
-#define LINUX_VERSION_CODE 0
-#endif
-
-#ifndef KERNEL_VERSION
-#define KERNEL_VERSION(a,b,c) (((a) << 16) | ((b) << 8) | (c))
-#endif
-
 #ifdef MB_HAVE_PNG
 #define IMG_EXT "png"
 #else
@@ -74,10 +64,26 @@ struct {
 
 MBPixbuf *pb = NULL;
 MBPixbufImage *ImgIcon = NULL, *ImgIconScaled = NULL, *ImgGraph = NULL;
-
 int GraphHeight = 0, GraphWidth = 0;
-
 char *ThemeName;
+int IsKernel26 = 0;
+
+int 
+check_if_kernel_2_6(void)
+{
+  float v_nr=0;
+  FILE  *version;
+  
+  if ((version = fopen("/proc/version", "r")) == NULL)
+    {
+      fprintf(stderr, "mb-applet-system-monitor: failed to open /proc/version. Exiting\n");
+      exit(1);
+    }
+  fscanf(version, "%*s %*s %f", &v_nr);
+  fclose(version);
+  
+  return (v_nr > 2.5);
+}
 
 /* returns current CPU load in percent, 0 to 100 */
 int system_cpu(void)
@@ -144,41 +150,42 @@ int system_memory(void)
       
       fgets(not_needed, 2048, mem);
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,0)
-    
-      rewind (mem);
+      if (IsKernel26)
+	{
+	  rewind (mem);
       
-      fscanf (mem, "%*s %Ld %*s", &total);
-      fscanf (mem, "%*s %Ld %*s", &mfree);
-      fscanf (mem, "%*s %Ld %*s", &buffers);
-      fscanf (mem, "%*s %Ld %*s", &cached);
-      fscanf (mem, "%*s %Ld %*s", &shared);
-      fscanf (mem, "%*s %Ld %*s", &used);
-      fscanf (mem, "%*s %Ld %*s", &uneeded);
-      fscanf (mem, "%*s %Ld %*s", &uneeded);
-      fscanf (mem, "%*s %Ld %*s", &uneeded);
-      fscanf (mem, "%*s %Ld %*s", &uneeded);
-      fscanf (mem, "%*s %Ld %*s", &uneeded);
-      fscanf (mem, "%*s %Ld %*s", &cache_total);
-      fscanf (mem, "%*s %Ld %*s", &cache_free);
+	  fscanf (mem, "%*s %Ld %*s", &total);
+	  fscanf (mem, "%*s %Ld %*s", &mfree);
+	  fscanf (mem, "%*s %Ld %*s", &buffers);
+	  fscanf (mem, "%*s %Ld %*s", &cached);
+	  fscanf (mem, "%*s %Ld %*s", &shared);
+	  fscanf (mem, "%*s %Ld %*s", &used);
+	  fscanf (mem, "%*s %Ld %*s", &uneeded);
+	  fscanf (mem, "%*s %Ld %*s", &uneeded);
+	  fscanf (mem, "%*s %Ld %*s", &uneeded);
+	  fscanf (mem, "%*s %Ld %*s", &uneeded);
+	  fscanf (mem, "%*s %Ld %*s", &uneeded);
+	  fscanf (mem, "%*s %Ld %*s", &cache_total);
+	  fscanf (mem, "%*s %Ld %*s", &cache_free);
       
-      total = total * 1024;
-      mfree = mfree * 1024;
-      buffers = buffers * 1024;
-      cached = cached * 1024;
-      used = used * 1024;
-      shared = shared * 1024;
-      cache_total = cache_total * 1024;
-      cache_used = cache_total - (cache_free * 1024);
-#else
-      /*
-	total:    used:    free:  shared: buffers:  cached:
-      */
-      fscanf(mem, "%*s %Ld %Ld %Ld %Ld %Ld %Ld", &total, &used, &mfree,
-	     &shared, &buffers, &cached);
-      fscanf(mem, "%*s %Ld %Ld", &cache_total, &cache_used);
-      
-#endif
+	  total = total * 1024;
+	  mfree = mfree * 1024;
+	  buffers = buffers * 1024;
+	  cached = cached * 1024;
+	  used = used * 1024;
+	  shared = shared * 1024;
+	  cache_total = cache_total * 1024;
+	  cache_used = cache_total - (cache_free * 1024);
+	}
+      else
+	{ /* Assume 2.4  */
+	  /*
+	    total:    used:    free:  shared: buffers:  cached:
+	  */
+	  fscanf(mem, "%*s %Ld %Ld %Ld %Ld %Ld %Ld", &total, &used, &mfree,
+		 &shared, &buffers, &cached);
+	  fscanf(mem, "%*s %Ld %Ld", &cache_total, &cache_used);
+	}
       
       fclose(mem);
       
@@ -355,6 +362,8 @@ main( int argc, char *argv[])
   bind_textdomain_codeset (PACKAGE, "UTF-8");
   textdomain (PACKAGE);
 #endif
+
+  IsKernel26 = check_if_kernel_2_6();
 
   app = mb_tray_app_new ( _("CPU/Mem Monitor"),
 			  resize_callback,

@@ -1,3 +1,9 @@
+2006-02-07  Matthew Allum  <mallum@openedhand.com>
+
+	* applets/mb-applet-system-monitor.c: (system_memory), (main):
+	* configure.ac:
+	Detect kernel version at run rather than build time.
+
 2006-01-27  Matthew Allum  <mallum@openedhand.com>
 
 	* src/msg.c: (_get_server_time), (msg_win_create),
