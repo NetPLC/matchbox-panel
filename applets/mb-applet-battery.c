@@ -367,17 +367,12 @@ fork_exec(char *cmd)
 void
 paint_callback (MBTrayApp *app, Drawable drw )
 {
-
-
   int      power_pixels = 0;
   unsigned char r = 0, g = 0, b = 0;
   int      x, y;
   int      bar_width, bar_height, bar_x, bar_y;
 
   MBPixbufImage *img_backing = NULL;
-  
-
-
 
   while (!read_apm(apm_vals))
     usleep(50000L);

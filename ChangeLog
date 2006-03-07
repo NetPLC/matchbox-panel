@@ -1,3 +1,8 @@
+2006-03-07  Matthew Allum  <mallum@openedhand.com>
+
+	* configure.ac:
+	Bump up version
+
 2006-02-07  Matthew Allum  <mallum@openedhand.com>
 
 	* applets/mb-applet-system-monitor.c: (system_memory), (main):
