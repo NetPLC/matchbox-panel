@@ -248,7 +248,8 @@ panel_app_new(MBPanel *panel, Window win, char *cmd_str)
   Bool               add_at_start = False;
 
   papp = NEW(MBPanelApp);
-  
+
+  papp->name   = NULL;
   papp->next   = NULL;
   papp->win    = win;
   papp->panel  = panel;
